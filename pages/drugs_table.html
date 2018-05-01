@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Drug Table</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
+    <link rel="icon" href="../assets/img/favicon.png">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../assets/css/material-dashboard.css?v=2.0.0">
+    <!-- Documentation extras -->
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="../assets/assets-for-demo/demo.css" rel="stylesheet" />
+    <!-- iframe removal -->
+</head>
+
+<body class="">
+    <div id="login_div" class="main-div">
+    <h2 align="center">DROGA LOGIN</h2>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button id="login">Login</button>
+  </div>
+   <div id="user_div">
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+           <div class="logo" id="user_para" align="center">
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../pages/drugs_table.html">
+                            <i class="material-icons">content_paste</i>
+                            <p>Drugs Table</p>
+                        </a>
+                    </li>
+                    <li class="nav-item   ">
+                        <a class="nav-link" href="../pages/maps.html">
+                            <i class="material-icons">location_ons</i>
+                            <p>Maps</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">
+                            <i class="material-icons">notifications</i>
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active-pro">
+                        <a class="nav-link" href="" id="logout">
+                            <i class="material-icons">reply</i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <a class="navbar-brand" href="#pablo">Table List</a>
+                    </div>
+                    <button type="button" class="btn bg-grey btn-xs waves-effect m-r-20 open_dtr_modal"><i class="material-icons">library_add</i></button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                        <span class="navbar-toggler-icon icon-bar"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <form class="navbar-form">
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="Search...">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="material-icons">dashboard</i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Stats</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="notification">5</span>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Some Actions</span>
+                                    </p>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                                    <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                                    <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                                    <a class="dropdown-item" href="#">Another Notification</a>
+                                    <a class="dropdown-item" href="#">Another One</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#pablo">
+                                    <i class="material-icons">person</i>
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title ">Add Drug</h4>
+                                    <p class="card-category"> Control Drug</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                        
+                                            <tbody>
+                                                <tr>
+                                                   <td>Id: </td>
+                                                   <td><input type="text" name="id" id="drug_id" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                   <td>Product Name: </td>
+                                                   <td><input type="text" name="drug_name" id="drug_name" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                   <td>Location: </td>
+                                                   <td><input type="text" name="location" id="location" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                   <td>Latitude: </td>
+                                                   <td><input type="text" name="latitude" id="latitude" /></td>
+                                                  </tr>
+                                                  <tr>
+                                                   <td>Longitude: </td>
+                                                   <td><input type="text" name="longitude" id="longitude" /></td>
+                                                  </tr>
+                                                  <tr>
+                                           <td colspan="2">
+                                            <input type="button" class="btn btn-success" value="Save" onclick="save_drug();" />
+                                            <input type="button" class="btn btn-info" value="Update" onclick="update_drug();" />
+                                            <input type="button" class="btn btn-danger" value="Delete" onclick="delete_drug();" />
+                                           </td>
+                                          </tr>
+                                            </tbody>
+
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card card-plain">
+                                <div class="card-header card-header-primary">
+                                    <h4 class="card-title "> DRUG LIST</h4>
+                                    <p class="card-category">Counterfeit Drugs</p>
+                               </div>
+                            <div class="card-body">
+                                <div class="table-responsive">                                                                          
+                                   <table  class="table table-hover" id="tbl_drug_list" border="1">
+                                          <tr>
+                                           <td>#ID</td>
+                                           <td>Drug</td>
+                                           <td>Location</td>
+                                           <td>Latitude</td>
+                                           <td>Longitude</td>
+                                          </tr>
+                                         </table>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                       
+            <footer class="footer ">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="https://www.creative-tim.com">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://presentation.creative-tim.com">
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com">
+                                    Blog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.creative-tim.com/license">
+                                    Licenses
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright pull-right">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>, made with love by
+                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    </div>
+</body>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script type="text/javascript">
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBPI4d6GOjXxhEFCzi017wax19t5DOht7w",
+    authDomain: "droga-62e8e.firebaseapp.com",
+    databaseURL: "https://droga-62e8e.firebaseio.com",
+    projectId: "droga-62e8e",
+    storageBucket: "",
+    messagingSenderId: "47255492640"
+  };
+  firebase.initializeApp(config);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  
+
+  if (user) {
+    // User is signed in.
+    // document.location.href = "dashboard.html";
+
+    document.getElementById("user_div").style.display = "block";
+    document.getElementById("login_div").style.display = "none";
+
+    var user = firebase.auth().currentUser;
+
+    if(user != null){
+
+      var email_id = user.email;
+      document.getElementById("user_para").innerHTML = "User : " + email_id;
+
+    }
+
+
+  } else {
+
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+
+  }
+
+  $(document).ready(function() {
+
+     $("#login").click(function(event){
+      var userEmail = document.getElementById("email_field").value;
+      var userPass = document.getElementById("password_field").value;
+
+      firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        window.alert("Error : " + errorMessage);
+
+        // ...
+     });
+
+});
+     $("#logout").click(function(event){ 
+       firebase.auth().signOut();
+     });
+});
+});
+</script>
+<script type="text/javascript">
+  var tblUsers = document.getElementById('tbl_drug_list');
+  var databaseRef = firebase.database().ref('drugs/');
+  var rowIndex = 1;
+  
+  databaseRef.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+   var childKey = childSnapshot.key;
+   var childData = childSnapshot.val();
+   
+   var row = tblUsers.insertRow(rowIndex);
+   var cellId = row.insertCell(0);
+   var cellName = row.insertCell(1);
+   var location = row.insertCell(2);
+   var lat = row.insertCell(3);
+   var lng = row.insertCell(4);
+   cellId.appendChild(document.createTextNode(childKey));
+   cellName.appendChild(document.createTextNode(childData.drug_name));
+   location.appendChild(document.createTextNode(childData.location));
+   lat.appendChild(document.createTextNode(childData.lat));
+   lng.appendChild(document.createTextNode(childData.lng));
+   
+   rowIndex = rowIndex + 1;
+    });
+  });
+   
+  function save_drug(){
+   var drug_name = document.getElementById('drug_name').value;
+   var location = document.getElementById('location').value;
+   var lat = document.getElementById('latitude').value;
+   var lng = document.getElementById('longitude').value;
+  
+   var did = firebase.database().ref().child('drugs').push().key;
+   
+   var data = {
+    drug_id: did,
+    drug_name: drug_name,
+    location: location,
+    lat: lat,
+    lng: lng
+
+   }
+   
+   var updates = {};
+   updates['/drugs/' + did] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The drug is added successfully!');
+   reload_page();
+  }
+  
+  function update_drug(){
+   var drug_name = document.getElementById('drug_name').value;
+   var drug_id = document.getElementById('drug_id').value;
+   var location = document.getElementById('location').value;
+   var lat = document.getElementById('lat').value;
+   var lng = document.getElementById('lng').value;
+
+   var data = {
+    drug_id: drug_id,
+    drug_name: drug_name,
+    location: location,
+    lat: lat,
+    lng: lng
+   }
+   
+   var updates = {};
+   updates['/drugs/' + drug_id] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The drug is updated successfully!');
+   
+   reload_page();
+  }
+  
+  function delete_drug(){
+   var drug_id = document.getElementById('drug_id').value;
+  
+   firebase.database().ref().child('/drugs/' + drug_id).remove();
+   alert('The drug is deleted successfully!');
+   reload_page();
+  }
+  
+  function reload_page(){
+   window.location.reload();
+  }
+</script>
+
+<!--   Core JS Files   -->
+ 
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/bootstrap-material-design.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
+<script src="../assets/js/plugins/chartist.min.js"></script>
+<!-- Library for adding dinamically elements -->
+<script src="../assets/js/plugins/arrive.min.js" type="text/javascript"></script>
+<!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
+
+</html>
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->
+
+</html>

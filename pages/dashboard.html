@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body class="">
+     <div id="user_div" class="loggedin-div">
+                    <h3>Welcome User</h3>
+                    <p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+                    <button onclick="logout()">Logout</button>
+                  </div>
+
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBPI4d6GOjXxhEFCzi017wax19t5DOht7w",
+    authDomain: "droga-62e8e.firebaseapp.com",
+    databaseURL: "https://droga-62e8e.firebaseio.com",
+    projectId: "droga-62e8e",
+    storageBucket: "",
+    messagingSenderId: "47255492640"
+  };
+  firebase.initializeApp(config);
+</script>
+  <script src="../assets/js/index.js"></script>
+</html>
