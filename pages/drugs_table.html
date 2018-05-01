@@ -2,15 +2,15 @@
 <html lang="en">
 
 <head>
-  <title>Drug Table</title>
+  <title>DROGA</title>
   <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css" />
   <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="icon" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/img/pills.png">
+    <link rel="icon" href="../assets/img/pills.png">
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
@@ -22,22 +22,27 @@
 </head>
 
 <body class="">
-    <div id="login_div" class="main-div">
-    <h2 align="center">DROGA LOGIN</h2>
+   <div id="login_div" class="main-div">
+    <div class="logo"  align="center">
+               <h1> DR<img src="../assets/img/pills.png" height="80" width="80">GA</h1>
+            </div>
+    <p align="center">LOGIN</p>
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
     <button id="login">Login</button>
   </div>
-   <div id="user_div">
+
+  <div id="user_div" class="">
     <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-           <div class="logo" id="user_para" align="center">
+           <div class="logo" align="center">
+            <h2> DR<img src="../assets/img/pills.png" height="70" width="70">GA</h2>
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
@@ -283,7 +288,7 @@
     if(user != null){
 
       var email_id = user.email;
-      document.getElementById("user_para").innerHTML = "User : " + email_id;
+      
 
     }
 
@@ -320,7 +325,7 @@
 });
 </script>
 <script type="text/javascript">
-  var tblUsers = document.getElementById('tbl_drug_list');
+  var tbldrugs = document.getElementById('tbl_drug_list');
   var databaseRef = firebase.database().ref('drugs/');
   var rowIndex = 1;
   
@@ -329,7 +334,7 @@
    var childKey = childSnapshot.key;
    var childData = childSnapshot.val();
    
-   var row = tblUsers.insertRow(rowIndex);
+   var row = tbldrugs.insertRow(rowIndex);
    var cellId = row.insertCell(0);
    var cellName = row.insertCell(1);
    var location = row.insertCell(2);
@@ -342,6 +347,7 @@
    lng.appendChild(document.createTextNode(childData.lng));
    
    rowIndex = rowIndex + 1;
+   
     });
   });
    
