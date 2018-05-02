@@ -22,6 +22,18 @@
 
     <!-- iframe removal -->
 </head>
+<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+</style>
 
 <body class="">
    <div id="login_div" class="main-div">
@@ -69,6 +81,8 @@
                 </ul>
             </div>
         </div>
+
+        
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
@@ -98,6 +112,23 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-danger">
+                                    <h4 class="card-title ">DATA SETS</h4>
+                                    
+                                    <button class="btn" id="add">
+                                    <i class="material-icons">create</i>
+                                </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-danger">
@@ -145,6 +176,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header card-header-warning">
@@ -167,7 +199,49 @@
                     </div>
                 </div>
             </div>
-                       
+            <div id="upload_drug" class="modal fade" role="dialog">
+                          <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add Data Set</h4>
+                              </div>
+                              <div class="modal-body">
+                                <form class="add_data">
+                                    <div  id="myProgress">
+                                      <div id="myBar"></div>
+                                    </div>
+                                <div class="form-group">
+                                        <input type="text" class="form-control" id="id_drug" placeholder="" name="id_drug" hidden="">
+                                      <label style="color: black;">Drug Name</label>
+                                      <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
+                                </div>
+
+                                <div class="form-group">
+                                      <label style="color: black;">Angle</label>
+                                      <input type="text" class="form-control" id="angle" placeholder="Drug angle" name="angle">
+                                </div>
+                                     <h4>Upload Data Sets</h4>
+                                        <label class="upload-group">
+                                            <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
+                                        </label>
+                                        <h2 id="count">No Data Stored</h2>    
+                                    
+
+                               
+                                
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default add_drug" onclick="uploadImageAsPromise();">Save</button>&nbsp&nbsp
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                               </form>
+                            </div>
+
+                          </div>
+                        </div>
             <footer class="footer ">
                 <div class="container-fluid">
                     <nav class="pull-left">
@@ -205,17 +279,21 @@
 
 <script type="text/javascript">
 
+    var selectedFile;
+    var imageFile = [];
+    var imagesize=0;
+    var ix=0;
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyBPI4d6GOjXxhEFCzi017wax19t5DOht7w",
     authDomain: "droga-62e8e.firebaseapp.com",
     databaseURL: "https://droga-62e8e.firebaseio.com",
     projectId: "droga-62e8e",
-    storageBucket: "",
+    storageBucket: "gs://droga-62e8e.appspot.com/",
     messagingSenderId: "47255492640"
   };
   firebase.initializeApp(config);
-
+  var storage = firebase.storage();
   firebase.auth().onAuthStateChanged(function(user) {
   
 
@@ -245,6 +323,36 @@
   }
 
   $(document).ready(function() {
+
+    $("#add").on('click',function(){
+         $("#myProgress").hide();
+        $('#upload_drug').modal('show');
+    })
+
+    $("#file").on("change",function(event){
+        //selectedFile = event.target.files[0];
+                if(event.target.files[0]!=null){
+                     imageFile[imagesize] = event.target.files[0];
+                      imagesize++;
+                }
+               
+
+                //uploadImageAsPromise(imageFile);
+                
+                //console.log(imageFile);
+         
+                $('#count').text(imageFile.length+ " Data Stored");
+        console.log((imageFile));
+    })
+
+     $('#upload_drug').on('hidden.bs.modal', function (e) {
+               imagesize=0;
+                ix=0;
+               imageFile = [];
+                $("#data_drug").val('');
+                $("#angle").val('');
+                $('#count').text("No Data Stored");
+            })
 
      $("#login").click(function(event){
       var userEmail = document.getElementById("email_field").value;
@@ -359,6 +467,119 @@
   function reload_page(){
    window.location.reload();
   }
+
+  function upload_drug(){
+    var filename= selectedFile.name;
+    var storageRef = firebase.storage().ref('/drugImages'+filename);
+    var uploadTask = storageRef.put(selectedFile);
+
+    console.log(filename);
+        // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on('state_changed', function(snapshot){
+      // Observe state change events such as progress, pause, and resume
+      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      console.log('Upload is ' + progress + '% done');
+      switch (snapshot.state) {
+        case firebase.storage.TaskState.PAUSED: // or 'paused'
+          console.log('Upload is paused');
+          break;
+        case firebase.storage.TaskState.RUNNING: // or 'running'
+          console.log('Upload is running');
+          break;
+      }
+    }, function(error) {
+      // Handle unsuccessful uploads
+    }, function() {
+      // Handle successful uploads on complete
+      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+      var postKey = firebase.database().ref('DATASETS/').push().key;
+      var downloadURL = uploadTask.snapshot.downloadURL;
+      var updates={};
+      var postData = {
+        url: downloadURL,
+        drug:$("#data_drug").val()
+      };
+      updates['/DATASETS/'+postKey]=postData;
+      firebase.database().ref().update(updates);
+      console.log(downloadURL);
+      
+
+    });
+
+  }
+
+
+
+  function uploadImageAsPromise () {
+    if($("#data_drug").val()=="" && $("#angle").val()=="" ){
+            window.alert("Error : Fill Up Everything");
+    }else{
+        return new Promise(function (resolve, reject) {
+
+        imageFile.forEach(function(){
+
+       
+        var storageRef = firebase.storage().ref("DATASETS/"+imageFile[ix]);
+
+        //Upload file
+        var task = storageRef.put(imageFile[ix]);
+
+        //Update progress bar
+        task.on('state_changed',
+            function progress(snapshot){
+                
+                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                var elem = document.getElementById("myBar"); 
+                    var width = snapshot.bytesTransferred;
+                    var id = setInterval(frame, 10);
+                    function frame() {
+                        if (width >= 100) {
+                            clearInterval(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+                        } else {
+                            width++; 
+                            elem.style.width = width + '%'; 
+                            elem.innerHTML = width * 1 + '%';
+                        }
+                    }           
+                                $("#myProgress").show();
+                                console.log(percentage);
+            },
+            function error(err){
+
+            },
+            function complete(){
+                var postKey = firebase.database().ref('DATASETS/').push().key;
+                var downloadURL = task.snapshot.downloadURL;
+                var updates={};
+                var postData = {
+                        url: downloadURL,
+                        drug:$("#data_drug").val(),
+                        angle: $("#angle").val()
+                      };
+                updates['/DATASETS/'+postKey]=postData;
+                firebase.database().ref().update(updates);
+                console.log(downloadURL);
+                ix++;
+                if(ix==imageFile.length){
+                 window.alert("Upload Completed!");
+                $('#upload_drug').modal('hide');
+        }
+            }
+        );
+        
+
+    });
+        
+        
+         })
+       
+    }
+
+}
 </script>
 
 <!--   Core JS Files   -->
