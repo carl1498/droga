@@ -122,14 +122,12 @@
                                 </button>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        
-                                    </div>
-
+                                        <div class="container" id="image_display">
+                                        </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" hidden="">
                             <div class="card">
                                 <div class="card-header card-header-danger">
                                     <h4 class="card-title ">Add Drug</h4>
@@ -280,7 +278,7 @@
 <script type="text/javascript">
 
     var selectedFile;
-    var imageFile = [];
+    var imageFile;
     var imagesize=0;
     var ix=0;
   // Initialize Firebase
@@ -305,6 +303,9 @@
     document.getElementById("login_div").style.display = "none";
 
     var user = firebase.auth().currentUser;
+    displayImages(user);
+
+    
 
     if(user != null){
 
@@ -323,6 +324,11 @@
   }
 
   $(document).ready(function() {
+     firebase.auth().onAuthStateChanged(function(user) {
+            if(user){
+                      
+             }
+                });
 
     $("#add").on('click',function(){
          $("#myProgress").hide();
@@ -330,25 +336,24 @@
     })
 
     $("#file").on("change",function(event){
-        //selectedFile = event.target.files[0];
-                if(event.target.files[0]!=null){
-                     imageFile[imagesize] = event.target.files[0];
-                      imagesize++;
-                }
-               
+            selectedFile = event.target.files[0];
+            if(selectedFile!=null){
+                 imageFile = selectedFile;
+                  
+            }
+           
 
-                //uploadImageAsPromise(imageFile);
-                
-                //console.log(imageFile);
-         
-                $('#count').text(imageFile.length+ " Data Stored");
-        console.log((imageFile));
-    })
+            //uploadImageAsPromise(imageFile);
+            
+            console.log(imageFile);
+     
+            $('#count').text("Data Stored");
+})
 
      $('#upload_drug').on('hidden.bs.modal', function (e) {
-               imagesize=0;
-                ix=0;
-               imageFile = [];
+               // imagesize=0;
+               //  ix=0;
+               // imageFile = [];
                 $("#data_drug").val('');
                 $("#angle").val('');
                 $('#count').text("No Data Stored");
@@ -468,49 +473,7 @@
    window.location.reload();
   }
 
-  function upload_drug(){
-    var filename= selectedFile.name;
-    var storageRef = firebase.storage().ref('/drugImages'+filename);
-    var uploadTask = storageRef.put(selectedFile);
-
-    console.log(filename);
-        // Register three observers:
-    // 1. 'state_changed' observer, called any time the state changes
-    // 2. Error observer, called on failure
-    // 3. Completion observer, called on successful completion
-    uploadTask.on('state_changed', function(snapshot){
-      // Observe state change events such as progress, pause, and resume
-      // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log('Upload is ' + progress + '% done');
-      switch (snapshot.state) {
-        case firebase.storage.TaskState.PAUSED: // or 'paused'
-          console.log('Upload is paused');
-          break;
-        case firebase.storage.TaskState.RUNNING: // or 'running'
-          console.log('Upload is running');
-          break;
-      }
-    }, function(error) {
-      // Handle unsuccessful uploads
-    }, function() {
-      // Handle successful uploads on complete
-      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-      var postKey = firebase.database().ref('DATASETS/').push().key;
-      var downloadURL = uploadTask.snapshot.downloadURL;
-      var updates={};
-      var postData = {
-        url: downloadURL,
-        drug:$("#data_drug").val()
-      };
-      updates['/DATASETS/'+postKey]=postData;
-      firebase.database().ref().update(updates);
-      console.log(downloadURL);
-      
-
-    });
-
-  }
+  
 
 
 
@@ -520,13 +483,13 @@
     }else{
         return new Promise(function (resolve, reject) {
 
-        imageFile.forEach(function(){
+    
 
        
-        var storageRef = firebase.storage().ref("DATASETS/"+imageFile[ix]);
+        var storageRef = firebase.storage().ref("/IMAGES/"+imageFile.name);
 
         //Upload file
-        var task = storageRef.put(imageFile[ix]);
+        var task = storageRef.put(imageFile);
 
         //Update progress bar
         task.on('state_changed',
@@ -552,22 +515,25 @@
 
             },
             function complete(){
-                var postKey = firebase.database().ref('DATASETS/').push().key;
+                var postKey = firebase.database().ref('/DATASETS/').push().key;
+                var drugname= $("#data_drug").val();
+                var angle = $("#angle").val();
                 var downloadURL = task.snapshot.downloadURL;
                 var updates={};
                 var postData = {
                         url: downloadURL,
-                        drug:$("#data_drug").val(),
-                        angle: $("#angle").val()
+                        drug: drugname,
+                        angle: angle
                       };
                 updates['/DATASETS/'+postKey]=postData;
                 firebase.database().ref().update(updates);
                 console.log(downloadURL);
-                ix++;
-                if(ix==imageFile.length){
+             
+                location.reload();
                  window.alert("Upload Completed!");
                 $('#upload_drug').modal('hide');
-        }
+
+       
             }
         );
         
@@ -575,11 +541,91 @@
     });
         
         
-         })
+   
        
     }
 
 }
+            function displayImages(user){
+                    firebase.database().ref('/DATASETS/' ).once('value').then(function(snapshot){
+                        var datasets = snapshot.val(); 
+                        if(datasets!=null){                 
+                        var keys = Object.keys(datasets);
+                        console.log(keys);
+                        
+                        for(var i= 0; i<keys.length; i++){
+                           
+                            var currentData =  datasets[keys[i]];
+                                console.log(currentData);
+                            if(i%3==0){
+
+                                currentRow = document.createElement("div");
+                                $(currentRow).addClass("row");
+                                $("#image_display").append(currentRow);
+                            }
+                            var col = document.createElement("div");
+                            $(col).addClass("col-lg-4");
+                            var image= document.createElement("img");
+                            image.src= currentData.url;
+                            $(image).addClass("contentImage");
+                            $(image).css("width",300);
+                            $(image).css("height",300);
+                            var p = document.createElement("p");
+                            $(p).html("Drug Name: "+ currentData.drug)
+                            $(p).css("color","green");
+                            $(p).addClass("contentCaption");
+                            $(col).append(image);
+                            $(col).append(p);
+                            $(currentRow).append(col);
+                        }
+                         }     
+                    })
+
+
+            }
+            // function upload_drug(){
+  //   var filename= selectedFile.name;
+  //   var storageRef = firebase.storage().ref('/drugImages'+filename);
+  //   var uploadTask = storageRef.put(selectedFile);
+
+  //   console.log(filename);
+  //       // Register three observers:
+  //   // 1. 'state_changed' observer, called any time the state changes
+  //   // 2. Error observer, called on failure
+  //   // 3. Completion observer, called on successful completion
+  //   uploadTask.on('state_changed', function(snapshot){
+  //     // Observe state change events such as progress, pause, and resume
+  //     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+  //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //     console.log('Upload is ' + progress + '% done');
+  //     switch (snapshot.state) {
+  //       case firebase.storage.TaskState.PAUSED: // or 'paused'
+  //         console.log('Upload is paused');
+  //         break;
+  //       case firebase.storage.TaskState.RUNNING: // or 'running'
+  //         console.log('Upload is running');
+  //         break;
+  //     }
+  //   }, function(error) {
+  //     // Handle unsuccessful uploads
+  //   }, function() {
+  //     // Handle successful uploads on complete
+  //     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+  //     var postKey = firebase.database().ref('DATASETS/').push().key;
+  //     var downloadURL = uploadTask.snapshot.downloadURL;
+  //     var updates={};
+  //     var postData = {
+  //       url: downloadURL,
+  //       drug:$("#data_drug").val()
+  //     };
+  //     updates['/DATASETS/'+postKey]=postData;
+  //     firebase.database().ref().update(updates);
+  //     console.log(downloadURL);
+      
+
+  //   });
+
+  // }
 </script>
 
 <!--   Core JS Files   -->
