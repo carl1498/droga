@@ -125,7 +125,7 @@
                                         <i class="material-icons">style</i>
                                     </div>
                                     <p class="card-category">DATA SETS</p>
-                                    <h3 class="card-title">2</h3>
+                                    <h3 class="card-title" id="count_data"></h3>
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
@@ -214,6 +214,18 @@
    rowIndex = rowIndex + 1;
     });
     document.getElementById("count_report").innerHTML = rowIndex;
+  });
+
+  var datasets = firebase.database().ref('DATASETS/');
+  var data_count = 0;
+  
+  datasets.once('value', function(snapshot) {   
+  snapshot.forEach(function(childSnapshot) {
+   // var childKey = childSnapshot.key;
+   // var childData = childSnapshot.val();
+   data_count = data_count + 1;
+    });
+    document.getElementById("count_data").innerHTML = data_count;
   });
 
      $("#login").click(function(event){
