@@ -205,7 +205,7 @@
   }
 
   $(document).ready(function() {
-  var databaseRef = firebase.database().ref('drugs/');
+  var databaseRef = firebase.database().ref('reports/');
   var rowIndex = 0;
   
   databaseRef.once('value', function(snapshot) {   
@@ -217,7 +217,7 @@
     document.getElementById("count_report").innerHTML = rowIndex;
   });
 
-  var datasets = firebase.database().ref('DATASETS/');
+  var datasets = firebase.database().ref('reports/');
   var data_count = 0;
   
   datasets.once('value', function(snapshot) {   
