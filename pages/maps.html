@@ -20,17 +20,60 @@
     <link href="../assets/assets-for-demo/demo.css" rel="stylesheet" />
     <!-- iframe removal -->
 </head>
+<style type="text/css">
+    html, body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+  overflow: hidden;
+}
+ 
+.loader {
+  z-index: -1;
+  margin: auto;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid black;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 
-<body class="">
+<body class="wrapper">
+       
+ 
+
+    <div class="body">
+    
     <div id="login_div" class="main-div">
-    <div class="logo"  align="center">
-               <h1> DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h1>
+        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+             <div class="row">
+             <div class="loader" >log in</div>             
+         </div>
+        </div>
+    </div>
+       
+        
+    <div class="logo">
+               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
             </div>
     <p align="center">LOGIN</p>
+    <form id="login" class="form-horizontal ">
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <button id="login">Login</button>
+    <button type="submit">Login</button>
+      </form>
+  </div>
+
   </div>
 
   <div id="user_div" class="">
@@ -64,7 +107,16 @@
                             <p>Maps</p>
                         </a>
                     </li>
+
+                            <li class="nav-item">
+                                  <a class="nav-link" href="" id="logout">
+                            <i class="material-icons">reply</i>
+                            <p>Logout</p>
+                        </a>
+                            </li>
+                       
                 </ul>
+
             </div>
         </div>
         <div class="main-panel">
@@ -80,16 +132,7 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                  <a class="nav-link" href="" id="logout">
-                            <i class="material-icons">reply</i>
-                            <p>Logout</p>
-                        </a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -130,7 +173,7 @@
 
     document.getElementById("user_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
-
+ $('#loader_modal').modal('hide');
     var user = firebase.auth().currentUser;
 
     if(user != null){
@@ -148,13 +191,18 @@
   }
 
   $(document).ready(function() {
+    
 
-     $("#login").click(function(event){
+     $("#login").on('submit',function(event){
+         $('#loader_modal').modal('show');
+        event.preventDefault();
+        //alert();
       var userEmail = document.getElementById("email_field").value;
       var userPass = document.getElementById("password_field").value;
 
       firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
         // Handle Errors here.
+
         var errorCode = error.code;
         var errorMessage = error.message;
 
@@ -165,7 +213,10 @@
 
 });
      $("#logout").click(function(event){
+        var address = window.location.origin;
+        window.location= address+"/droga/pages";
        firebase.auth().signOut();
+        
      });
 
      (function() {
@@ -184,10 +235,9 @@
                 var databaseRef = firebase.database().ref('reports');
                   var rowIndex = 1;
                   
-                  databaseRef.once('value', function(snapshot) {
+                  databaseRef.on('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
                    var childKey = childSnapshot.key;
-                   console.log(childKey);
                    var childData = childSnapshot.val();
                    // init markers
                     var marker = new google.maps.Marker({
@@ -201,7 +251,7 @@
                         // add click event
                         google.maps.event.addListener(marker, 'click', function() {
                             infowindow = new google.maps.InfoWindow({
-                                content: 'FAKE DRUG: ' 
+                                content: 'FAKE DRUG: ' + childData.email
                                 // + childData.drug_name
                             });
                             infowindow.open(map, marker);

@@ -34,18 +34,54 @@
   background-color: #4CAF50;
 }
 </style>
-
+<style type="text/css">
+    html, body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+   
+}
+ 
+.loader {
+  z-index: -1;
+  margin: auto;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid black;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 <body class="">
-   <div id="login_div" class="main-div">
-    <div class="logo"  align="center">
-               <h2> DES<img src="../assets/img/pills.png" height="50" width="50">CRY</h2>
+    <div id="login_div" class="main-div">
+        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+             <div class="row">
+             <div class="loader" >log in</div>             
+         </div>
+        </div>
+    </div>
+       
+        
+    <div class="logo">
+               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
             </div>
     <p align="center">LOGIN</p>
+    <form id="login" class="form-horizontal ">
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <button id="login">Login</button>
+    <button type="submit">Login</button>
+      </form>
   </div>
+
 
   <div id="user_div" class="">
     <div class="wrapper">
@@ -78,6 +114,13 @@
                             <p>Maps</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                                  <a class="nav-link" href="" id="logout">
+                            <i class="material-icons">reply</i>
+                            <p>Logout</p>
+                        </a>
+                            </li>
+                       
                 </ul>
             </div>
         </div>
@@ -96,16 +139,7 @@
                         <span class="navbar-toggler-icon icon-bar"></span>
                         <span class="navbar-toggler-icon icon-bar"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                               <a class="nav-link" href="" id="logout">
-                                    <i class="material-icons">reply</i>
-                                    <p>Logout</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </nav>
             <!-- End Navbar -->
@@ -123,6 +157,7 @@
                                 </div>
                                 <div class="card-body">
                                         <div class="container" id="image_display">
+                                            <h3>Retrieving Data...</h3>
                                         </div>
                                 </div>
                             </div>
@@ -189,7 +224,7 @@
                                            <th>Email</th>
                                            <th>Latitude</th>
                                            <th>Longitude</th>
-                                           <th>Phone</th>                                      
+                                           <th>Phone</th>                              
                                         </table>
                                     </div>
                                 </div>
@@ -272,7 +307,13 @@
     </div>
 </body>
 
-
+<script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/bootstrap-material-design.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!-- Google Map Plugin -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3Uo3Zc3LdKB_vrJNfqxhgSizm2XG7zc"></script>
+<script src="../assets/js/plugins/demo.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
 
@@ -302,7 +343,7 @@
 
     document.getElementById("user_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
-
+    $('#loader_modal').modal('hide');
     var user = firebase.auth().currentUser;
     displayImages(user);
 
@@ -325,6 +366,7 @@
   }
 
   $(document).ready(function() {
+
      firebase.auth().onAuthStateChanged(function(user) {
             if(user){
                       
@@ -346,7 +388,7 @@
 
             //uploadImageAsPromise(imageFile);
             
-            console.log(imageFile);
+
      
             $('#count').text("Data Stored");
 })
@@ -360,12 +402,16 @@
                 $('#count').text("No Data Stored");
             })
 
-     $("#login").click(function(event){
+      $("#login").on('submit',function(event){
+         $('#loader_modal').modal('show');
+        event.preventDefault();
+        //alert();
       var userEmail = document.getElementById("email_field").value;
       var userPass = document.getElementById("password_field").value;
 
       firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
         // Handle Errors here.
+
         var errorCode = error.code;
         var errorMessage = error.message;
 
@@ -385,8 +431,8 @@
   var tbldrugs = document.getElementById('tbl_drug_list');
   var databaseRef = firebase.database().ref('reports');
   var rowIndex = 1;
-  
-  databaseRef.once('value', function(snapshot) {
+
+  databaseRef.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
    var childKey = childSnapshot.key;
    var childData = childSnapshot.val();
@@ -512,7 +558,7 @@
                         }
                     }           
                                 $("#myProgress").show();
-                                console.log(percentage);
+                               
             },
             function error(err){
 
@@ -530,9 +576,9 @@
                       };
                 updates['/DATASETS/'+postKey]=postData;
                 firebase.database().ref().update(updates);
-                console.log(downloadURL);
+               
              
-                location.reload();
+                //location.reload();
                  window.alert("Upload Completed!");
                 $('#upload_drug').modal('hide');
 
@@ -550,17 +596,20 @@
 
 }
             function displayImages(user){
-                    firebase.database().ref('/DATASETS/' ).once('value').then(function(snapshot){
+
+                var dataDisplay = firebase.database().ref('DATASETS');
+                    dataDisplay.on('value',function(snapshot){
                         var datasets = snapshot.val(); 
                         if(datasets!=null){                 
                         var keys = Object.keys(datasets);
-                        console.log(keys);
-                        
+                     
+                         $("#image_display").children().remove();
                         for(var i= 0; i<keys.length; i++){
                            
                             var currentData =  datasets[keys[i]];
-                                console.log(currentData);
+                          
                             if(i%3==0){
+
 
                                 currentRow = document.createElement("div");
                                 $(currentRow).addClass("row");
