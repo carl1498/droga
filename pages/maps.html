@@ -142,7 +142,10 @@ body{
 </div>
 </body>
 
-
+<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
@@ -192,7 +195,7 @@ body{
 
   $(document).ready(function() {
     
-
+ 
      $("#login").on('submit',function(event){
          $('#loader_modal').modal('show');
         event.preventDefault();
@@ -220,43 +223,105 @@ body{
      });
 
      (function() {
-                // map options
-                var options = {
-                    zoom:10,
-                    center: new google.maps.LatLng(7.1907, 125.4553), // centered Davao city
-                    mapTypeId: google.maps.MapTypeId.HYBRID,
-                    mapTypeControl: true
-                };
 
-                // init map
-                var map = new google.maps.Map(document.getElementById('map'), options);
 
+       
+               L.mapbox.accessToken = 'pk.eyJ1IjoiZHJ1Z2Rlc2NyeSIsImEiOiJjamg0Y256ZHMwbjJxMnpvMm84aWpmb3dmIn0.evfUh1Swt1ChxQCFFUU3mg';
+          
+
+              var mapSimple = L.mapbox.map('map', 'mapbox.streets')
+                .setView([7.1907, 125.4553], 9);
+
+                 
+                 mapSimple.addControl(L.mapbox.geocoderControl('mapbox.streets',{
+                   autocomplete: true
+                 }));
                 // NY and CA sample Lat / Lng
                 var databaseRef = firebase.database().ref('reports');
                   var rowIndex = 1;
-                  
+                  var street='';
+                  var place='';
+                  var city='';
+                  var country='';
                   databaseRef.on('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
+                      // function getRandomColor() {
+                      //   var letters = '0123456789ABCDEF';
+                      //   var color = '#';
+                      //   for (var i = 0; i < 6; i++) {
+                      //     color += letters[Math.floor(Math.random() * 16)];
+                      //   }
+                      //   return color;
+                      // }
+
                    var childKey = childSnapshot.key;
                    var childData = childSnapshot.val();
-                   // init markers
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(childData.latitude, childData.longitude),
-                        map: map,
-                        title: childData.email
-                    });
 
+
+$.ajax({url: "http://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
+                          //console.log(result.results[0].locations[0]);
+                          street = result.results[0].locations[0].street;
+                          place = result.results[0].locations[0].adminArea5;
+                          city = result.results[0].locations[0].adminArea3;
+                          country = result.results[0].locations[0].adminArea1;
+                           var geojson = [
+                          {
+                            type: 'Feature',
+                            geometry: {
+                              type: 'Point',
+                              coordinates: [childData.longitude, childData.latitude]
+                            },
+                            properties: {
+                              'marker-color': '#FF0000',
+                              // 'marker-size': 'small',
+                              'marker-symbol': 'danger',
+                              'description': '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
+                              '<br><strong>Fake Drug: </strong> Drug Name ' ,
+                               
+                            }
+                          }
+                        ];
+                      var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
+                      }});
+               
+                  
+                   // init markers
+                    // var marker = new google.maps.Marker({
+                    //     position: new google.maps.LatLng(childData.latitude, childData.longitude),
+                    //     map: map,
+                    //     title: childData.email
+                    // });
+                  //   var latlng = {lat: parseFloat(childData.latitude), lng: parseFloat(childData.longitude)};
+
+                  //   geocoder.geocode({'location': latlng}, function(results, status) {
+                  //   if (status === 'OK') {
+                  //     if (results[0]) {
+                  //       map.setZoom(11);
+                  //       var marker = new google.maps.Marker({
+                  //         position: latlng,
+                  //         map: map
+                  //       });
+                  //       infowindow.setContent(results[0].formatted_address);
+                  //       infowindow.open(map, marker);
+                  //     } else {
+                  //       window.alert('No results found');
+                  //     }
+                  //   } else {
+                  //    console.log('Geocoder failed due to: ' + status);
+                  //   }
+                  // });
                     // process multiple info windows
-                    (function(marker, i) {
-                        // add click event
-                        google.maps.event.addListener(marker, 'click', function() {
-                            infowindow = new google.maps.InfoWindow({
-                                content: 'FAKE DRUG: ' + childData.email
-                                // + childData.drug_name
-                            });
-                            infowindow.open(map, marker);
-                        });
-                    })(marker, i);
+                    // (function(marker, i) {
+                       
+                        
+                    //     // add click event
+                    //     google.maps.event.addListener(marker, 'click', function() {
+                    //         infowindow = new google.maps.InfoWindow({
+                    //             content: 'FAKE DRUG: ' + childData.email
+                    //         });
+                    //         infowindow.open(map, marker);
+                    //     });
+                    // })(marker, i);
                    rowIndex = rowIndex + 1;
                    
                     });
@@ -271,6 +336,31 @@ body{
             })();
 
 });
+
+
+function geocodeLatLng(geocoder, map, infowindow) {
+  var input = document.getElementById('latlng').value;
+  var latlngStr = input.split(',', 2);
+  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  console.log(latlng);
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') {
+      if (results[0]) {
+        map.setZoom(11);
+        var marker = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+        infowindow.setContent(results[0].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
+}
 
 
 });
