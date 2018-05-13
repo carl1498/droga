@@ -232,7 +232,7 @@ h2, h3,p{
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card bg-dark text-white">
                                 <div class="card-header card-header-danger">
                                     <h4 class="card-title ">DATA SETS</h4>
                                     
@@ -248,7 +248,7 @@ h2, h3,p{
                             </div>
                         </div>
                         <div class="col-md-12" hidden="">
-                            <div class="card">
+                            <div class="card" >
                                 <div class="card-header card-header-danger">
                                     <h4 class="card-title ">Add Drug</h4>
                                     <p class="card-category"> Control Drug</p>
@@ -296,14 +296,14 @@ h2, h3,p{
                         </div>
                         
                         <div class="col-md-12">
-                            <div class="card ">
+                            <div class="card bg-dark text-white">
                                 <div class="card-header card-header-warning">
                                     <h4 class="card-title "> DRUG LIST</h4>
                                     <p class="card-category">Counterfeit Drugs</p>
                                </div>
                             <div class="card-body">
                                 <div class="table-responsive">                                                                          
-                                   <table  class="table table-hover" id="tbl_drug_list">
+                                   <table  class="table" id="tbl_drug_list">
                                           
                                            <th>Authenticity</th>
                                            <th>Email</th>
@@ -347,7 +347,7 @@ h2, h3,p{
                                         <label class="upload-group">
                                             <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
                                         </label>
-                                        <h2 id="count">No Data Stored</h2>    
+                                        <h4 id="count">No Data Stored</h4>    
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default add_drug" onclick="uploadImageAsPromise();">Save</button>&nbsp&nbsp
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -716,7 +716,7 @@ h2, h3,p{
                             $(image).css("height",300);
                             var p = document.createElement("p");
                             $(p).html("Drug Name: "+ currentData.drug)
-                            $(p).css("color","green");
+                            $(p).css("color","white");
                             $(p).addClass("contentCaption");
                             $(col).append(image);
                             $(col).append(p);
