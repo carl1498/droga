@@ -36,12 +36,101 @@
 </style>
 <style type="text/css">
     html, body{
+  background: #17202A;
   min-height: 100%;
 }
 body{
   position: relative;
-   
 }
+h2, h3,p{
+  margin:0; padding:0;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+.login {
+  margin:0 auto;
+  max-width:500px;
+}
+.login-header {
+  color:#fff;
+  text-align:center;
+  font-size:300%;
+}
+/* .login-header h1 {
+   text-shadow: 0px 5px 15px #000; */
+}
+.login-form {
+  border:.5px solid #fff;
+  background:#4facff;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.login-form h3 {
+  text-align:left;
+  margin-left:40px;
+  color:#fff;
+}
+.login-form {
+  box-sizing:border-box;
+  padding-top:15px;
+  padding-bottom:10%;
+  margin:5% auto;
+  text-align:center;
+}
+.login input[type="email"],
+.login input[type="password"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Nunito', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.login-form button[type="submit"] {
+  height:30px;
+  width:100px;
+  background:#fff;
+  border:1px solid #f2f2f2;
+  border-radius:20px;
+  color: slategrey;
+  text-transform:uppercase;
+  font-family: 'Nunito', sans-serif;
+  cursor:pointer;
+}
+.sign-up{
+  color:#f2f2f2;
+  margin-left:-70%;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.no-access {
+  color:#E86850;
+  margin:20px 0px 20px -57%;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.try-again {
+  color:#f2f2f2;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+/*Media Querie*/
+@media only screen and (min-width : 150px) and (max-width : 530px){
+  .login-form h3 {
+    text-align:center;
+    margin:0;
+  }
+  .sign-up, .no-access {
+    margin:10px 0;
+  }
+  .login-button {
+    margin-bottom:10px;
+  }
+ 
  
 .loader {
   z-index: -1;
@@ -59,8 +148,8 @@ body{
   100% { transform: rotate(360deg); }
 }
 </style>
-<body class="">
-    <div id="login_div" class="main-div">
+<body class="" ">
+   <div id="login_div" class="login">
         <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
              <div class="row">
@@ -70,11 +159,12 @@ body{
     </div>
        
         
-    <div class="logo">
+    <div class="  ">
+      <br><br><br><br>
                <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
             </div>
-    <p align="center">LOGIN</p>
-    <form id="login" class="form-horizontal ">
+    <h3 align="center">LOGIN</h3>
+    <form id="login" class="login-form">
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
@@ -82,15 +172,10 @@ body{
       </form>
   </div>
 
-
   <div id="user_div" class="">
     <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
+       <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
+        
            <div class="logo" align="center">
             <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
             </div>
@@ -162,7 +247,7 @@ body{
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" hidden="">
                             <div class="card">
                                 <div class="card-header card-header-danger">
                                     <h4 class="card-title ">Add Drug</h4>
@@ -211,7 +296,7 @@ body{
                         </div>
                         
                         <div class="col-md-12">
-                            <div class="card card-plain">
+                            <div class="card ">
                                 <div class="card-header card-header-warning">
                                     <h4 class="card-title "> DRUG LIST</h4>
                                     <p class="card-category">Counterfeit Drugs</p>
@@ -315,7 +400,8 @@ body{
 
 
 <script type="text/javascript">
-
+    document.getElementById("login_div").style.display = "none";
+    document.getElementById("user_div").style.display = "none";
     var selectedFile;
     var imageFile;
     var imagesize=0;
@@ -337,10 +423,13 @@ body{
   if (user) {
     // User is signed in.
     // document.location.href = "dashboard.html";
-
+    
     document.getElementById("user_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
     $('#loader_modal').modal('hide');
+   $('#loader_modal').on('hidden.bs.modal', function (e) {
+    LoadOnce();
+   });
     var user = firebase.auth().currentUser;
     displayImages(user);
 
@@ -349,8 +438,8 @@ body{
     if(user != null){
 
       var email_id = user.email;
-      
-
+       
+ 
     }
 
 
@@ -359,10 +448,13 @@ body{
 
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
+    console.log('maonio');
 
   }
+ 
 
   $(document).ready(function() {
+
 
      firebase.auth().onAuthStateChanged(function(user) {
             if(user){
@@ -482,7 +574,10 @@ body{
    alert('The drug is added successfully!');
    //reload_page();
   }
-  
+  function LoadOnce() 
+      { 
+      window.location.reload(); 
+      } 
   function update_drug(){
    var drug_name = document.getElementById('drug_name').value;
    var drug_id = document.getElementById('drug_id').value;

@@ -23,11 +23,100 @@
 </head>
 <style type="text/css">
     html, body{
+  background: #17202A;
   min-height: 100%;
 }
 body{
   position: relative;
 }
+h2, h3,p{
+  margin:0; padding:0;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+.login {
+  margin:0 auto;
+  max-width:500px;
+}
+.login-header {
+  color:#fff;
+  text-align:center;
+  font-size:300%;
+}
+/* .login-header h1 {
+   text-shadow: 0px 5px 15px #000; */
+}
+.login-form {
+  border:.5px solid #fff;
+  background:#4facff;
+  border-radius:10px;
+  box-shadow:0px 0px 10px #000;
+}
+.login-form h3 {
+  text-align:left;
+  margin-left:40px;
+  color:#fff;
+}
+.login-form {
+  box-sizing:border-box;
+  padding-top:15px;
+  padding-bottom:10%;
+  margin:5% auto;
+  text-align:center;
+}
+.login input[type="email"],
+.login input[type="password"] {
+  max-width:400px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Nunito', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+.login-form button[type="submit"] {
+  height:30px;
+  width:100px;
+  background:#fff;
+  border:1px solid #f2f2f2;
+  border-radius:20px;
+  color: slategrey;
+  text-transform:uppercase;
+  font-family: 'Nunito', sans-serif;
+  cursor:pointer;
+}
+.sign-up{
+  color:#f2f2f2;
+  margin-left:-70%;
+  cursor:pointer;
+  text-decoration:underline;
+}
+.no-access {
+  color:#E86850;
+  margin:20px 0px 20px -57%;
+  text-decoration:underline;
+  cursor:pointer;
+}
+.try-again {
+  color:#f2f2f2;
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+/*Media Querie*/
+@media only screen and (min-width : 150px) and (max-width : 530px){
+  .login-form h3 {
+    text-align:center;
+    margin:0;
+  }
+  .sign-up, .no-access {
+    margin:10px 0;
+  }
+  .login-button {
+    margin-bottom:10px;
+  }
  
 .loader {
   z-index: -1;
@@ -47,7 +136,7 @@ body{
 </style>
 <body class="">
 
-   <div id="login_div" class="main-div">
+   <div id="login_div" class="login">
         <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
              <div class="row">
@@ -57,11 +146,12 @@ body{
     </div>
        
         
-    <div class="logo">
+    <div class="  ">
+      <br><br><br><br>
                <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
             </div>
-    <p align="center">LOGIN</p>
-    <form id="login" class="form-horizontal ">
+    <h3 align="center">LOGIN</h3>
+    <form id="login" class="login-form">
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
@@ -71,7 +161,7 @@ body{
 
   <div id="user_div" class="">
     <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -194,24 +284,24 @@ body{
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="#" style="color: white;">
                                     DROGA SURVEILLANCE SYSTEM
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" style="color: white;">
                                     About Us
                                 </a>
                             </li>
                            
                         </ul>
                     </nav>
-                    <div class="copyright pull-right">
+                    <div class="copyright pull-right" style="color: yellow;">
                         &copy;
                         <script>
                             document.write(new Date().getFullYear())
                         </script> Supported By:
-                        <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
+                        <a href="https://www.creative-tim.com" target="_blank" style="color: white;">ScriptedScript Web Systems</a>.
                     </div>
                 </div>
             </footer> 
@@ -232,7 +322,8 @@ body{
   
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script type="text/javascript">
-
+document.getElementById("login_div").style.display = "none";
+    document.getElementById("user_div").style.display = "none";
   var config = {
     apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
     authDomain: "descry-9b0ce.firebaseapp.com",
@@ -253,6 +344,7 @@ body{
     document.getElementById("user_div").style.display = "block";
     document.getElementById("login_div").style.display = "none";
     $('#loader_modal').modal('hide');
+    
     var user = firebase.auth().currentUser;
 
     if(user != null){
@@ -331,6 +423,7 @@ body{
        firebase.auth().signOut();
      });
 });
+
 });
 </script>
 
