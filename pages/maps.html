@@ -376,7 +376,7 @@ $('#loader_modal').modal('hide');
      $("#logout").click(function(event){
       firebase.auth().signOut().then(function() {
          var address = window.location.origin;
-        window.location= address+"/pages";
+        window.location= address+"/droga/pages";
         }, function(error) {
          alert();
         });
@@ -388,7 +388,7 @@ $('#loader_modal').modal('hide');
      $("#back").click(function(event){
         firebase.auth().signOut().then(function() {
          var address = window.location.origin;
-        window.location= address+"/pages";
+        window.location= address+"/droga/pages";
         }, function(error) {
          alert();
         });
