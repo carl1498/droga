@@ -155,9 +155,39 @@ h2, h3,p{
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <button type="submit">Login</button>
+    <button type="submit">Login</button><br>
+    <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
+
       </form>
+
+
   </div>
+  <div id="verification" class="login">
+        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+             <div class="row">
+             <div class="loader" >Verifying..</div>             
+         </div>
+        </div>
+    </div>
+       
+        
+    <div class="">
+      <br><br><br><br>
+               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+            </div>
+    <h3 align="center">Verification</h3>
+    <div align="center">
+      <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
+    </div>
+     <a class="nav-link" href="" id="logout">
+                            <i class="material-icons">reply</i>
+                            <p>Back</p>
+                        </a>
+
+
+  </div>
+
 
   <div id="user_div" class="">
     <div class="wrapper">
@@ -324,7 +354,8 @@ h2, h3,p{
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script type="text/javascript">
 document.getElementById("login_div").style.display = "none";
-    document.getElementById("user_div").style.display = "none";
+document.getElementById("user_div").style.display = "none";
+document.getElementById("verification").style.display = "none";
   var config = {
     apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
     authDomain: "descry-9b0ce.firebaseapp.com",
@@ -339,27 +370,27 @@ document.getElementById("login_div").style.display = "none";
   
 
   if (user) {
+    var user = firebase.auth().currentUser;
+    var email_id = user.email;
+    var email_verified =user.emailVerified;
     // User is signed in.
     // document.location.href = "dashboard.html";
-
-    document.getElementById("user_div").style.display = "block";
-    document.getElementById("login_div").style.display = "none";
-    $('#loader_modal').modal('hide');
-    
-    var user = firebase.auth().currentUser;
-
-    if(user != null){
-      var email_id = user.email;
-      
-
-    }
-
-
-  } else {
+          if(email_verified==false){
+            document.getElementById("user_div").style.display = "none";
+              document.getElementById("login_div").style.display = "none";
+              document.getElementById("verification").style.display = "block";
+              $('#loader_modal').modal('hide');
+          }else{
+            document.getElementById("user_div").style.display = "block";
+              document.getElementById("login_div").style.display = "none";
+              document.getElementById("verification").style.display = "none";
+          }             
+          } else {
 
 
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
+              document.getElementById("user_div").style.display = "none";
+              document.getElementById("login_div").style.display = "block";
+              document.getElementById("verification").style.display = "none";
 
   }
 
@@ -404,7 +435,6 @@ document.getElementById("login_div").style.display = "none";
       $("#login").on('submit',function(event){
          $('#loader_modal').modal('show');
         event.preventDefault();
-        //alert();
       var userEmail = document.getElementById("email_field").value;
       var userPass = document.getElementById("password_field").value;
 
@@ -420,6 +450,39 @@ document.getElementById("login_div").style.display = "none";
      });
 
 });
+        $("#create_account").on('click',function(event){
+                 $('#loader_modal').modal('show');
+                event.preventDefault();
+                //alert();
+              var userEmail = document.getElementById("email_field").value;
+              var userPass = document.getElementById("password_field").value;
+
+              firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                // Handle Errors here.
+
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                window.alert("Error : " + errorMessage);
+
+                // ...
+             });
+
+        });
+
+         $("#verify").on('click',function(event){                
+                event.preventDefault();
+
+            var user = firebase.auth().currentUser;
+
+              user.sendEmailVerification().then(function() {
+                window.alert("Verification Sent!");
+              }).catch(function(error) {
+                window.alert("Error: "+ error.message);
+              });
+
+         });
+
      $("#logout").click(function(event){
        firebase.auth().signOut();
      });
