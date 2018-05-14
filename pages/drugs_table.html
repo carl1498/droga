@@ -450,16 +450,17 @@ h2, h3,p{
     var user = firebase.auth().currentUser;
     var email_id = user.email;
     var email_verified =user.emailVerified;
+    $('#loader_modal').modal('hide');
+    $('#loader_modal').on('hidden.bs.modal', function (e) {
+      LoadOnce();
+     });
     // User is signed in.
     // document.location.href = "dashboard.html";
           if(email_verified==false){
             document.getElementById("user_div").style.display = "none";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "block";
-              $('#loader_modal').modal('hide');
-              $('#loader_modal').on('hidden.bs.modal', function (e) {
-                LoadOnce();
-               });
+              
           }else{
             document.getElementById("user_div").style.display = "block";
               document.getElementById("login_div").style.display = "none";
