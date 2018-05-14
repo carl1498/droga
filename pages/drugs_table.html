@@ -18,22 +18,8 @@
     <!-- Documentation extras -->
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/assets-for-demo/demo.css" rel="stylesheet" />
-
-
     <!-- iframe removal -->
 </head>
-<style>
-#myProgress {
-  width: 100%;
-  background-color: #ddd;
-}
-
-#myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #4CAF50;
-}
-</style>
 <style type="text/css">
     html, body{
   background: #17202A;
@@ -46,6 +32,16 @@ h2, h3,p{
   margin:0; padding:0;
   color: white;
   font-family: 'Nunito', sans-serif;
+}
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
 }
 .login {
   margin:0 auto;
@@ -148,7 +144,8 @@ h2, h3,p{
   100% { transform: rotate(360deg); }
 }
 </style>
-<body class="" ">
+<body class="wrapper">
+   <div class="body">
    <div id="login_div" class="login">
         <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -197,6 +194,7 @@ h2, h3,p{
 
 
   </div>
+</div>
 
   <div id="user_div" class="">
     <div class="wrapper">
@@ -242,7 +240,7 @@ h2, h3,p{
             <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="#pablo">DRUG List</a>
+                        <a class="navbar-brand" href="#pablo">DRUG LIST</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
@@ -414,14 +412,14 @@ h2, h3,p{
     </div>
 </div>
 </body>
-
+<script src="../assets/js/plugins/demo.js"></script>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/bootstrap-material-design.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Google Map Plugin -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3Uo3Zc3LdKB_vrJNfqxhgSizm2XG7zc"></script>
-<script src="../assets/js/plugins/demo.js"></script>
+ 
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
 
@@ -847,6 +845,7 @@ h2, h3,p{
 <!--  Notifications Plugin, full documentation here: http://bootstrap-notify.remabledesigns.com/    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
+<script src="../assets/js/material-dashboard.js?v=2.0.0"></script>
 
 </html>
 <!--
