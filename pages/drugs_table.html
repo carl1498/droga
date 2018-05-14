@@ -450,44 +450,67 @@ h2, h3,p{
   if (user) {
     var user = firebase.auth().currentUser;
     var email_id = user.email;
+    var uid = user.uid;
     var email_verified =user.emailVerified;
-    $('#loader_modal').modal('hide');
-    $('#loader_modal').on('hidden.bs.modal', function (e) {
-      LoadOnce();
-     });
-    // User is signed in.
-    // document.location.href = "dashboard.html";
+    var checkuser;
+    var name;
+    var users = firebase.database().ref('user_info');
+    users.on('value', function(snapshot) { 
+    snapshot.forEach(function(childSnapshot) {
+      document.getElementById("user_div").style.display = "none";
+   var childKey = childSnapshot.key;
+   var childData = childSnapshot.val();
+  if(childKey==uid){
+    checkuser=true;
+   document.getElementById("user_div").style.display = "none";
+    name= childData.firstname+' '+childData.lastname;
+    firebase.auth().signOut();
+  }
+   
+    });
+    if(checkuser==true){
+             window.alert("ACCESS DENIED: "+name );
+         $('#loader_modal').modal('hide');
+
+        }else{
+          document.getElementById("user_div").style.display = "none";
           if(email_verified==false){
-             $('#loader_modal').modal('hide');
             document.getElementById("user_div").style.display = "none";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "block";
+              $('#loader_modal').modal('hide');
               
+              
+
+              if(user != null){
+                
+                console.log(email_verified);
+
+              }
+
+
           }else{
-             $('#loader_modal').modal('hide');
+            $('#loader_modal').modal('hide');
             document.getElementById("user_div").style.display = "block";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "none";
-          }              
-          } else {
 
-             $('#loader_modal').modal('hide');
-          document.getElementById("user_div").style.display = "none";
-          document.getElementById("login_div").style.display = "block";
-          document.getElementById("verification").style.display = "none";
-
+          }
         }
+  });
+    
+              
+
+  } else {       
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+    document.getElementById("verification").style.display = "none";
+
+  }
  
 
   $(document).ready(function() {
-
     displayImages();
-     firebase.auth().onAuthStateChanged(function(user) {
-            if(user){
-                      
-             }
-                });
-
     $("#add").on('click',function(){
          $("#myProgress").hide();
         $('#upload_drug').modal('show');
@@ -537,10 +560,20 @@ h2, h3,p{
 
 });
      $("#logout").click(function(event){ 
-       firebase.auth().signOut();
+        firebase.auth().signOut().then(function() {
+         var address = window.location.origin;
+        window.location= address+"/pages";
+        }, function(error) {
+         alert("error");
+        });
      });
      $("#back").click(function(event){ 
-       firebase.auth().signOut();
+        firebase.auth().signOut().then(function() {
+         var address = window.location.origin;
+        window.location= address+"/pages";
+        }, function(error) {
+         alert('error');
+        });
      });
 });
 });

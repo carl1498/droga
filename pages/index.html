@@ -368,14 +368,34 @@ document.getElementById("verification").style.display = "none";
   firebase.initializeApp(config);
 
   firebase.auth().onAuthStateChanged(function(user) {
-  
 
   if (user) {
     var user = firebase.auth().currentUser;
     var email_id = user.email;
+    var uid = user.uid;
     var email_verified =user.emailVerified;
-    // User is signed in.
-    // document.location.href = "dashboard.html";
+    var checkuser;
+    var name;
+    var users = firebase.database().ref('user_info');
+    users.on('value', function(snapshot) { 
+    snapshot.forEach(function(childSnapshot) {
+      document.getElementById("user_div").style.display = "none";
+   var childKey = childSnapshot.key;
+   var childData = childSnapshot.val();
+  if(childKey==uid){
+    checkuser=true;
+   document.getElementById("user_div").style.display = "none";
+    name= childData.firstname+' '+childData.lastname;
+    firebase.auth().signOut();
+  }
+   
+    });
+    if(checkuser==true){
+             window.alert("ACCESS DENIED: "+name );
+         $('#loader_modal').modal('hide');
+
+        }else{
+          document.getElementById("user_div").style.display = "none";
           if(email_verified==false){
             document.getElementById("user_div").style.display = "none";
               document.getElementById("login_div").style.display = "none";
@@ -398,11 +418,12 @@ document.getElementById("verification").style.display = "none";
               document.getElementById("verification").style.display = "none";
 
           }
+        }
+  });
+    
               
 
-  } else {
-
-
+  } else {       
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
     document.getElementById("verification").style.display = "none";

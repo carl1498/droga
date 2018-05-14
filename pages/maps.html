@@ -374,18 +374,24 @@ $('#loader_modal').modal('hide');
          });
 
      $("#logout").click(function(event){
-        var address = window.location.origin;
+      firebase.auth().signOut().then(function() {
+         var address = window.location.origin;
         window.location= address+"/pages";
-       firebase.auth().signOut();
+        }, function(error) {
+         alert();
+        });
+        
+     //  firebase.auth().signOut();
         
         
      });
      $("#back").click(function(event){
-        var address = window.location.origin;
+        firebase.auth().signOut().then(function() {
+         var address = window.location.origin;
         window.location= address+"/pages";
-       firebase.auth().signOut();
-        
-        
+        }, function(error) {
+         alert();
+        });
      });
 
      (function() {
