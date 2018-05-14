@@ -348,7 +348,7 @@ document.getElementById("login_div").style.display = "none";
                    var childData = childSnapshot.val();
 
 
-$.ajax({url: "http://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
+$.ajax({url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
                           //console.log(result.results[0].locations[0]);
                           street = result.results[0].locations[0].street;
                           place = result.results[0].locations[0].adminArea5;
