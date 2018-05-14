@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>DESCRY</title>
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <meta charset="utf-8">
+    <title>DESCRY</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
@@ -21,397 +21,406 @@
     <!-- iframe removal -->
 </head>
 <style type="text/css">
-    html, body{
-  background: #17202A;
-  min-height: 100%;
+html, body{
+    background: #17202A;
+    min-height: 100%;
 }
+
 body{
-  position: relative;
+    position: relative;
 }
+
 h2, h3,p{
-  margin:0; padding:0;
-  color: white;
-  font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    color: white;
+    font-family: 'Nunito', sans-serif;
 }
+
 #myProgress {
-  width: 100%;
-  background-color: #ddd;
+    width: 100%;
+    background-color: #ddd;
 }
 
 #myBar {
-  width: 1%;
-  height: 30px;
-  background-color: #4CAF50;
+    width: 1%;
+    height: 30px;
+    background-color: #4CAF50;
 }
+
 .login {
-  margin:0 auto;
-  max-width:500px;
+    margin:0 auto;
+    max-width:500px;
 }
+
 .login-header {
-  color:#fff;
-  text-align:center;
-  font-size:300%;
+    color:#fff;
+    text-align:center;
+    font-size:300%;
 }
+
 /* .login-header h1 {
-   text-shadow: 0px 5px 15px #000; */
+   text-shadow: 0px 5px 15px #000;
 }
+
 .login-form {
   border:.5px solid #fff;
   background:#4facff;
   border-radius:10px;
   box-shadow:0px 0px 10px #000;
-}
+}*/
+
 .login-form h3 {
-  text-align:left;
-  margin-left:40px;
-  color:#fff;
+    text-align:left;
+    margin-left:40px;
+    color:#fff;
 }
+
 .login-form {
-  box-sizing:border-box;
-  padding-top:15px;
-  padding-bottom:10%;
-  margin:5% auto;
-  text-align:center;
+    box-sizing:border-box;
+    padding-top:15px;
+    padding-bottom:10%;
+    margin:5% auto;
+    text-align:center;
 }
+
 .login input[type="email"],
 .login input[type="password"] {
-  max-width:400px;
-  width: 80%;
-  line-height:3em;
-  font-family: 'Nunito', sans-serif;
-  margin:1em 2em;
-  border-radius:5px;
-  border:2px solid #f2f2f2;
-  outline:none;
-  padding-left:10px;
+    max-width:400px;
+    width: 80%;
+    line-height:3em;
+    font-family: 'Nunito', sans-serif;
+    margin:1em 2em;
+    border-radius:5px;
+    border:2px solid #f2f2f2;
+    outline:none;
+    padding-left:10px;
 }
+
 .login-form button[type="submit"] {
-  height:30px;
-  width:100px;
-  background:#fff;
-  border:1px solid #f2f2f2;
-  border-radius:20px;
-  color: slategrey;
-  text-transform:uppercase;
-  font-family: 'Nunito', sans-serif;
-  cursor:pointer;
+    height:30px;
+    width:100px;
+    background:#fff;
+    border:1px solid #f2f2f2;
+    border-radius:20px;
+    color: slategrey;
+    text-transform:uppercase;
+    font-family: 'Nunito', sans-serif;
+    cursor:pointer;
 }
+
 .sign-up{
-  color:#f2f2f2;
-  margin-left:-70%;
-  cursor:pointer;
-  text-decoration:underline;
+    color:#f2f2f2;
+    margin-left:-70%;
+    cursor:pointer;
+    text-decoration:underline;
 }
+
 .no-access {
-  color:#E86850;
-  margin:20px 0px 20px -57%;
-  text-decoration:underline;
-  cursor:pointer;
+    color:#E86850;
+    margin:20px 0px 20px -57%;
+    text-decoration:underline;
+    cursor:pointer;
 }
+
 .try-again {
-  color:#f2f2f2;
-  text-decoration:underline;
-  cursor:pointer;
+    color:#f2f2f2;
+    text-decoration:underline;
+    cursor:pointer;
 }
 
 /*Media Querie*/
 @media only screen and (min-width : 150px) and (max-width : 530px){
-  .login-form h3 {
-    text-align:center;
-    margin:0;
-  }
-  .sign-up, .no-access {
-    margin:10px 0;
-  }
-  .login-button {
-    margin-bottom:10px;
-  }
- 
- 
-.loader {
-  z-index: -1;
-  margin: auto;
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid black;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+    .login-form h3 {
+        text-align:center;
+        margin:0;
+    }
+    .sign-up, .no-access {
+        margin:10px 0;
+    }
+    .login-button {
+        margin-bottom:10px;
+    }
 }
+
+.loader {
+    z-index: -1;
+    margin: auto;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid black;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 </style>
 <body class="wrapper">
    <div class="body">
-   <div id="login_div" class="login">
-        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >log in</div>             
-         </div>
-        </div>
-    </div>
-       
-        
-    <div class="  ">
-      <br><br><br><br>
-               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
-            </div>
-    <h3 align="center">LOGIN</h3>
-    <form id="login" class="login-form">
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Password..." id="password_field" />
-
-    <button type="submit">Login</button><br>
-    <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
-      </form>
-  </div>
-  <div id="verification" class="login">
-        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >Verifying..</div>             
-         </div>
-        </div>
-    </div>
-       
-        
-    <div class="">
-      <br><br><br><br>
-               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
-            </div>
-    <h3 align="center">Verification</h3>
-    <div align="center">
-      <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
-    </div>
-          <a class="nav-link" href="" id="back">
-                            <i class="material-icons">reply</i>
-                            <p>Back</p>
-                        </a>
-
-
-  </div>
-</div>
-
-  <div id="user_div" class="">
-    <div class="wrapper">
-       <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
-        
-           <div class="logo" align="center">
-            <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../pages/drugs_table.html">
-                            <i class="material-icons">content_paste</i>
-                            <p>Drugs Table</p>
-                        </a>
-                    </li>
-                    <li class="nav-item   ">
-                        <a class="nav-link" href="../pages/maps.html">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                                  <a class="nav-link" href="" id="logout">
-                            <i class="material-icons">reply</i>
-                            <p>Logout</p>
-                        </a>
-                            </li>
-                       
-                </ul>
-            </div>
-        </div>
-
-        
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="#pablo">DRUG LIST</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
-                    
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
+        <div id="login_div" class="login">
+            <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="card bg-dark text-white">
-                                <div class="card-header card-header-danger">
-                                    <h4 class="card-title ">DATA SETS</h4>
+                        <div class="loader">log in</div>             
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <br><br><br><br>
+               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+            </div>
+            <h3 align="center">LOGIN</h3>
+            <form id="login" class="login-form">
+                <input type="email" placeholder="Email..." id="email_field" />
+                <input type="password" placeholder="Password..." id="password_field" />
+
+                <button type="submit">Login</button><br>
+                <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
+            </form>
+        </div>
+        
+        <div id="verification" class="login">
+            <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="row">
+                        <div class="loader">Verifying..</div>             
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <br><br><br><br>
+                <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+            </div>
+            <h3 align="center">Verification</h3>
+            <div align="center">
+                <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
+            </div>
+            <a class="nav-link" href="" id="back">
+                <i class="material-icons">reply</i>
+                <p>Back</p>
+            </a>
+        </div>
+    </div>
+
+    <div id="user_div">
+        <div class="wrapper">
+            <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
+                <div class="logo" align="center">
+                    <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
+                </div>
+            
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../pages">
+                                <i class="material-icons">dashboard</i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../pages/drugs_table.html">
+                                <i class="material-icons">content_paste</i>
+                                <p>Drugs Table</p>
+                            </a>
+                        </li>
+                        <li class="nav-item   ">
+                            <a class="nav-link" href="../pages/maps.html">
+                                <i class="material-icons">location_ons</i>
+                                <p>Maps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" id="logout">
+                                <i class="material-icons">reply</i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main-panel">
+                <!-- Navbar -->
+                <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
+                            <a class="navbar-brand" href="#pablo" style="color: white;">DRUG LIST</a>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                        </button>
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card bg-dark text-white">
+                                    <div class="card-header card-header-danger">
+                                        <h4 class="card-title ">DATA SETS</h4>
                                     
-                                    <button class="btn" id="add">
-                                    <i class="material-icons">create</i>
-                                </button>
-                                </div>
-                                <div class="card-body">
+                                        <button class="btn" id="add">
+                                            <i class="material-icons">create</i>
+                                        </button>
+                                    </div>
+                                
+                                    <div class="card-body">
                                         <div class="container" id="image_display">
                                             <h3>Retrieving Data...</h3>
                                         </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12" hidden="">
-                            <div class="card" >
-                                <div class="card-header card-header-danger">
-                                    <h4 class="card-title ">Add Drug</h4>
-                                    <p class="card-category"> Control Drug</p>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead class=" text-primary">
-                                            <tbody>
-                                                <tr>
-                                                   <td>Id: </td>
-                                                   <td><input type="text" name="id" id="drug_id" /></td>
-                                                  </tr>
-                                                  <tr>
-                                                   <td>Product Name: </td>
-                                                   <td><input type="text" name="drug_name" id="drug_name" /></td>
-                                                  </tr>
-                                                  <tr>
-                                                   <td>Location: </td>
-                                                   <td><input type="text" name="location" id="location" /></td>
-                                                  </tr>
-                                                  <tr>
-                                                   <td>Latitude: </td>
-                                                   <td><input type="text" name="latitude" id="latitude" /></td>
-                                                  </tr>
-                                                  <tr>
-                                                   <td>Longitude: </td>
-                                                   <td><input type="text" name="longitude" id="longitude" /></td>
-                                                  </tr>
-                                                  <tr>
-                                           <td colspan="2">
-                                            <input type="button" class="btn btn-success" value="Save" onclick="save_drug();" />
-                                            <!-- <input type="button" class="btn btn-info" value="Update" onclick="update_drug();" /> -->
-                                            <input type="button" class="btn btn-danger" value="Delete All" onclick="delete_drug();" />
-                                           </td>
-                                          </tr>
-                                            </tbody>
-                                        </thead>
-                                        </table>
-
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         
-                        <div class="col-md-12">
-                            <div class="card bg-dark text-white">
-                                <div class="card-header card-header-warning">
-                                    <h4 class="card-title "> DRUG LIST</h4>
-                                    <p class="card-category">Counterfeit Drugs</p>
-                               </div>
-                            <div class="card-body">
-                                <div class="table-responsive">                                                                          
-                                   <table  class="table" id="tbl_drug_list">
-                                          
-                                           <th>Authenticity</th>
-                                           <th>Email</th>
-                                           <th>Latitude</th>
-                                           <th>Longitude</th>
-                                           <th>Phone</th>                              
-                                        </table>
+                            <div class="col-md-12" hidden="">
+                                <div class="card" >
+                                    <div class="card-header card-header-danger">
+                                        <h4 class="card-title ">Add Drug</h4>
+                                        <p class="card-category"> Control Drug</p>
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class=" text-primary">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Id: </td>
+                                                        <td><input type="text" name="id" id="drug_id" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Product Name: </td>
+                                                        <td><input type="text" name="drug_name" id="drug_name" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Location: </td>
+                                                        <td><input type="text" name="location" id="location" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Latitude: </td>
+                                                        <td><input type="text" name="latitude" id="latitude" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Longitude: </td>
+                                                        <td><input type="text" name="longitude" id="longitude" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <input type="button" class="btn btn-success" value="Save" onclick="save_drug();" />
+                                                            <!-- <input type="button" class="btn btn-info" value="Update" onclick="update_drug();" /> -->
+                                                            <input type="button" class="btn btn-danger" value="Delete All" onclick="delete_drug();" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-md-12">
+                                <div class="card bg-dark text-white">
+                                    <div class="card-header card-header-warning">
+                                        <h4 class="card-title "> DRUG LIST</h4>
+                                        <p class="card-category">Counterfeit Drugs</p>
+                                    </div>
+                                
+                                    <div class="card-body">
+                                        <div class="table-responsive">                                                                          
+                                            <table  class="table" id="tbl_drug_list">
+                                                <th>Authenticity</th>
+                                                <th>Email</th>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
+                                                <th>Phone</th>                              
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
  
-            <div id="upload_drug" class="modal fade" role="dialog">
-                          <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                              <div class="modal-header">
+                <div id="upload_drug" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Add Data Set</h4>
-                              </div>
-                              <div class="modal-body">
+                            </div>
+                            <div class="modal-body">
                                 <form class="add_data">
                                     <div  id="myProgress">
-                                      <div id="myBar"></div>
+                                        <div id="myBar"></div>
                                     </div>
-                                <div class="form-group">
-                                        <input type="text" class="form-control" id="id_drug" placeholder="" name="id_drug" hidden="">
-                                      <label style="color: black;">Drug Name</label>
-                                      <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
-                                </div>
 
-                                <div class="form-group">
-                                      <label style="color: black;">Angle</label>
-                                      <input type="text" class="form-control" id="angle" placeholder="Drug angle" name="angle">
-                                </div>
-                                     <h4>Upload Data Sets</h4>
-                                        <label class="upload-group">
-                                            <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
-                                        </label>
-                                        <h4 id="count">No Data Stored</h4>    
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default add_drug" onclick="uploadImageAsPromise();">Save</button>&nbsp&nbsp
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              </div>
-                               </form>
-                           </div>
-                           </div>
-                            </div>
+                                    <div class="form-group">
+                                            <input type="text" class="form-control" id="id_drug" placeholder="" name="id_drug" hidden="">
+                                        <label style="color: black;">Drug Name</label>
+                                        <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
+                                    </div>
 
-                          </div>
-            <footer class="footer ">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    DROGA SURVEILLANCE SYSTEM
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    About Us
-                                </a>
-                            </li>
-                           
-                        </ul>
-                    </nav>
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> Supported By:
-                        <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
+                                    <div class="form-group">
+                                        <label style="color: black;">Angle</label>
+                                        <input type="text" class="form-control" id="angle" placeholder="Drug angle" name="angle">
+                                    </div>
+
+                                    <h4>Upload Data Sets</h4>
+                                    <label class="upload-group">
+                                        <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
+                                    </label>
+
+                                    <h4 id="count">No Data Stored</h4>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default add_drug" onclick="uploadImageAsPromise();">Save</button>&nbsp&nbsp
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                           </div>
+                        </div>
                     </div>
                 </div>
-            </footer>
+            
+                <footer class="footer ">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">DESCRY SURVEILLANCE SYSTEM</a>
+                                </li>
+                                <li>
+                                    <a href="#">About Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> Supported By:
+                            <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
+                        </div>
+                    </div>
+                </footer>
+            </div>
         </div>
     </div>
-</div>
 </body>
+
 <script src="../assets/js/plugins/demo.js"></script>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
@@ -422,7 +431,6 @@ h2, h3,p{
  
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
-
 <script type="text/javascript">
     document.getElementById("login_div").style.display = "none";
     document.getElementById("user_div").style.display = "none";
@@ -431,409 +439,309 @@ h2, h3,p{
     var imageFile;
     var imagesize=0;
     var ix=0;
-  // Initialize Firebase
- var config = {
-    apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
-    authDomain: "descry-9b0ce.firebaseapp.com",
-    databaseURL: "https://descry-9b0ce.firebaseio.com",
-    projectId: "descry-9b0ce",
-    storageBucket: "gs://descry-9b0ce.appspot.com/",
-    messagingSenderId: "465099358873"
-  };
-  firebase.initializeApp(config);
-  var storage = firebase.storage();
-  firebase.auth().onAuthStateChanged(function(user) {
-  
-
-  if (user) {
-    var user = firebase.auth().currentUser;
-    var email_id = user.email;
-    var uid = user.uid;
-    var email_verified =user.emailVerified;
-    var checkuser;
-    var name;
-    var users = firebase.database().ref('user_info');
-    users.on('value', function(snapshot) { 
-    snapshot.forEach(function(childSnapshot) {
-      document.getElementById("user_div").style.display = "none";
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-  if(childKey==uid){
-    checkuser=true;
-   document.getElementById("user_div").style.display = "none";
-    name= childData.firstname+' '+childData.lastname;
-    firebase.auth().signOut();
-  }
-   
-    });
-    if(checkuser==true){
-             window.alert("ACCESS DENIED: "+name );
-         $('#loader_modal').modal('hide');
-
-        }else{
-          document.getElementById("user_div").style.display = "none";
-          if(email_verified==false){
-            document.getElementById("user_div").style.display = "none";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "block";
-              $('#loader_modal').modal('hide');
-              
-              
-
-              if(user != null){
-                
-                console.log(email_verified);
-
-              }
-
-
-          }else{
-            $('#loader_modal').modal('hide');
-            document.getElementById("user_div").style.display = "block";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "none";
-
-          }
-        }
-  });
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
+        authDomain: "descry-9b0ce.firebaseapp.com",
+        databaseURL: "https://descry-9b0ce.firebaseio.com",
+        projectId: "descry-9b0ce",
+        storageBucket: "gs://descry-9b0ce.appspot.com/",
+        messagingSenderId: "465099358873"
+    };
+    firebase.initializeApp(config);
+    var storage = firebase.storage();
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var user = firebase.auth().currentUser;
+            var email_id = user.email;
+            var uid = user.uid;
+            var email_verified =user.emailVerified;
+            var checkuser;
+            var name;
+            var users = firebase.database().ref('user_info');
+            users.on('value', function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    document.getElementById("user_div").style.display = "none";
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    if(childKey==uid){
+                        checkuser=true;
+                        document.getElementById("user_div").style.display = "none";
+                        name= childData.firstname+' '+childData.lastname;
+                        firebase.auth().signOut();
+                    }
+                });
     
-              
+                if(checkuser==true){
+                    window.alert("ACCESS DENIED: "+name );
+                    $('#loader_modal').modal('hide');
+                }
+                else{
+                    document.getElementById("user_div").style.display = "none";
+                    if(email_verified==false){
+                        document.getElementById("user_div").style.display = "none";
+                        document.getElementById("login_div").style.display = "none";
+                        document.getElementById("verification").style.display = "block";
+                        $('#loader_modal').modal('hide');
+                        if(user != null){
+                            console.log(email_verified);
+                        }
+                    }
+                    else{
+                        $('#loader_modal').modal('hide');
+                        document.getElementById("user_div").style.display = "block";
+                        document.getElementById("login_div").style.display = "none";
+                        document.getElementById("verification").style.display = "none";
+                    }
+                }
+            });
+        }
+        else{    
+            document.getElementById("user_div").style.display = "none";
+            document.getElementById("login_div").style.display = "block";
+            document.getElementById("verification").style.display = "none";
+        }
 
-  } else {       
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-    document.getElementById("verification").style.display = "none";
+        $(document).ready(function() {
+            displayImages();
+            $("#add").on('click',function(){
+                $("#myProgress").hide();
+                $('#upload_drug').modal('show');
+            })
 
-  }
- 
+            $("#file").on("change",function(event){
+                selectedFile = event.target.files[0];
+                if(selectedFile!=null){
+                    imageFile = selectedFile;
+                }
+                $('#count').text("Data Stored");
+            });
 
-  $(document).ready(function() {
-    displayImages();
-    $("#add").on('click',function(){
-         $("#myProgress").hide();
-        $('#upload_drug').modal('show');
-    })
-
-    $("#file").on("change",function(event){
-            selectedFile = event.target.files[0];
-            if(selectedFile!=null){
-                 imageFile = selectedFile;
-                  
-            }
-           
-
-            //uploadImageAsPromise(imageFile);
-            
-
-     
-            $('#count').text("Data Stored");
-})
-
-     $('#upload_drug').on('hidden.bs.modal', function (e) {
-               // imagesize=0;
-               //  ix=0;
-               // imageFile = [];
+            $('#upload_drug').on('hidden.bs.modal', function (e) {
                 $("#data_drug").val('');
                 $("#angle").val('');
                 $('#count').text("No Data Stored");
             })
 
-      $("#login").on('submit',function(event){
-         $('#loader_modal').modal('show');
-        event.preventDefault();
-        //alert();
-      var userEmail = document.getElementById("email_field").value;
-      var userPass = document.getElementById("password_field").value;
+            $("#login").on('submit',function(event){
+                $('#loader_modal').modal('show');
+                event.preventDefault();
+                var userEmail = document.getElementById("email_field").value;
+                var userPass = document.getElementById("password_field").value;
 
-      firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-        // Handle Errors here.
+                firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    window.alert("Error : " + errorMessage);
+                });
+            });
 
-        var errorCode = error.code;
-        var errorMessage = error.message;
+            $("#logout").click(function(event){ 
+                firebase.auth().signOut().then(function() {
+                    var address = window.location.origin;
+                    window.location= address+"/pages";
+                }, function(error) {
+                    alert("error");
+                });
+            });
 
-        window.alert("Error : " + errorMessage);
-
-        // ...
-     });
-
-});
-     $("#logout").click(function(event){ 
-        firebase.auth().signOut().then(function() {
-         var address = window.location.origin;
-        window.location= address+"/pages";
-        }, function(error) {
-         alert("error");
+            $("#back").click(function(event){ 
+                firebase.auth().signOut().then(function() {
+                    var address = window.location.origin;
+                    window.location= address+"/pages";
+                }, function(error) {
+                alert('error');
+                });
+            });
         });
-     });
-     $("#back").click(function(event){ 
-        firebase.auth().signOut().then(function() {
-         var address = window.location.origin;
-        window.location= address+"/pages";
-        }, function(error) {
-         alert('error');
-        });
-     });
-});
-});
-</script>
-<script type="text/javascript">
-  var tbldrugs = document.getElementById('tbl_drug_list');
-  var databaseRef = firebase.database().ref('reports');
-  var rowIndex = 1;
-
-  databaseRef.on('value', function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-   
-   var row = tbldrugs.insertRow(rowIndex);
-   
-   var authenticity = row.insertCell(0);
-   var email = row.insertCell(1);
-   var lat = row.insertCell(2);
-   var lng = row.insertCell(3);
-   var phone = row.insertCell(4);
-   
-   authenticity.appendChild(document.createTextNode(childData.authenticity));
-   email.appendChild(document.createTextNode(childData.email));
-   lat.appendChild(document.createTextNode(childData.latitude));
-   lng.appendChild(document.createTextNode(childData.longitude));
-   phone.appendChild(document.createTextNode(childData.phone));
-   
-   rowIndex = rowIndex + 1;
-   
     });
-  });
-   
+    //END FIREBASE
 
+    var tbldrugs = document.getElementById('tbl_drug_list');
+    var databaseRef = firebase.database().ref('reports');
+    var rowIndex = 1;
 
-  function save_drug(){
-   var drug_name = document.getElementById('drug_name').value;
-   var location = document.getElementById('location').value;
-   var lat = document.getElementById('latitude').value;
-   var lng = document.getElementById('longitude').value;
-  
-   var did = firebase.database().ref().child('drugs').push().key;
-   
-   var data = {
-    drug_id: did,
-    drug_name: drug_name,
-    location: location,
-    lat: lat,
-    lng: lng
-
-   }
-
-   databaseRef.on('child_added',snap=>{
-})
-   
-   var updates = {};
-   updates['/drugs/' + did] = data;
-   firebase.database().ref().update(updates);
-   
-   alert('The drug is added successfully!');
-   //reload_page();
-  }
-  function LoadOnce() 
-      { 
-      window.location.reload(); 
-      } 
-  function update_drug(){
-   var drug_name = document.getElementById('drug_name').value;
-   var drug_id = document.getElementById('drug_id').value;
-   var location = document.getElementById('location').value;
-   var lat = document.getElementById('lat').value;
-   var lng = document.getElementById('lng').value;
-
-   var data = {
-    drug_id: drug_id,
-    drug_name: drug_name,
-    location: location,
-    lat: lat,
-    lng: lng
-   }
-   
-   var updates = {};
-   updates['/drugs/' + drug_id] = data;
-   firebase.database().ref().update(updates);
-   
-   alert('The drug is updated successfully!');
-   
-   reload_page();
-  }
-  
-  function delete_drug(){
-   var drug_id = document.getElementById('drug_id').value;
-  
-   firebase.database().ref().child('/drugs/' + drug_id).remove();
-   alert('The drug is deleted successfully!');
-   reload_page();
-  }
-  
-  function reload_page(){
-   window.location.reload();
-  }
-
-  
-
-
-
-  function uploadImageAsPromise () {
-    if($("#data_drug").val()=="" && $("#angle").val()=="" ){
-            window.alert("Error : Fill Up Everything");
-    }else{
-        return new Promise(function (resolve, reject) {
-
+    databaseRef.on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
     
-
-       
-        var storageRef = firebase.storage().ref("/IMAGES/"+imageFile.name);
-
-        //Upload file
-        var task = storageRef.put(imageFile);
-
-        //Update progress bar
-        task.on('state_changed',
-            function progress(snapshot){
-                
-                var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
-                var elem = document.getElementById("myBar"); 
-                    var width = snapshot.bytesTransferred;
-                    var id = setInterval(frame, 10);
-                    function frame() {
-                        if (width >= 100) {
-                            clearInterval(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-                        } else {
-                            width++; 
-                            elem.style.width = width + '%'; 
-                            elem.innerHTML = width * 1 + '%';
-                        }
-                    }           
-                                $("#myProgress").show();
-                               
-            },
-            function error(err){
-
-            },
-            function complete(){
-                var postKey = firebase.database().ref('/DATASETS/').push().key;
-                var drugname= $("#data_drug").val();
-                var angle = $("#angle").val();
-                var downloadURL = task.snapshot.downloadURL;
-                var updates={};
-                var postData = {
-                        url: downloadURL,
-                        drug: drugname,
-                        angle: angle
-                      };
-                updates['/DATASETS/'+postKey]=postData;
-                firebase.database().ref().update(updates);
-               
-             
-                //location.reload();
-                 window.alert("Upload Completed!");
-                $('#upload_drug').modal('hide');
-
-       
-            }
-        );
-        
-
-    });
-        
-        
+            var row = tbldrugs.insertRow(rowIndex);
+            
+            var authenticity = row.insertCell(0);
+            var email = row.insertCell(1);
+            var lat = row.insertCell(2);
+            var lng = row.insertCell(3);
+            var phone = row.insertCell(4);
    
-       
+            authenticity.appendChild(document.createTextNode(childData.authenticity));
+            email.appendChild(document.createTextNode(childData.email));
+            lat.appendChild(document.createTextNode(childData.latitude));
+            lng.appendChild(document.createTextNode(childData.longitude));
+            phone.appendChild(document.createTextNode(childData.phone));
+   
+            rowIndex = rowIndex + 1;
+        });
+    });
+   
+    function save_drug(){
+        var drug_name = document.getElementById('drug_name').value;
+        var location = document.getElementById('location').value;
+        var lat = document.getElementById('latitude').value;
+        var lng = document.getElementById('longitude').value;
+        
+        var did = firebase.database().ref().child('drugs').push().key;
+   
+        var data = {
+            drug_id: did,
+            drug_name: drug_name,
+            location: location,
+            lat: lat,
+            lng: lng
+
+        }
+
+        databaseRef.on('child_added',snap=>{});
+   
+        var updates = {};
+        updates['/drugs/' + did] = data;
+        firebase.database().ref().update(updates);
+        
+        alert('The drug is added successfully!');
+        //reload_page();
     }
 
-}
-            function displayImages(user){
+    function LoadOnce(){ 
+        window.location.reload(); 
+    } 
 
-                var dataDisplay = firebase.database().ref('DATASETS');
-                    dataDisplay.on('value',function(snapshot){
-                        var datasets = snapshot.val(); 
-                        if(datasets!=null){                 
-                        var keys = Object.keys(datasets);
-                     
-                         $("#image_display").children().remove();
-                        for(var i= 0; i<keys.length; i++){
-                           
-                            var currentData =  datasets[keys[i]];
-                          
-                            if(i%3==0){
+    function update_drug(){
+        var drug_name = document.getElementById('drug_name').value;
+        var drug_id = document.getElementById('drug_id').value;
+        var location = document.getElementById('location').value;
+        var lat = document.getElementById('lat').value;
+        var lng = document.getElementById('lng').value;
 
+        var data = {
+            drug_id: drug_id,
+            drug_name: drug_name,
+            location: location,
+            lat: lat,
+            lng: lng
+        }
+        
+        var updates = {};
+        updates['/drugs/' + drug_id] = data;
+        firebase.database().ref().update(updates);
+   
+        alert('The drug is updated successfully!');
+        
+        reload_page();
+    }
+  
+    function delete_drug(){
+        var drug_id = document.getElementById('drug_id').value;
+        
+        firebase.database().ref().child('/drugs/' + drug_id).remove();
+        alert('The drug is deleted successfully!');
+        reload_page();
+    }
+  
+    function reload_page(){
+        window.location.reload();
+    }
 
-                                currentRow = document.createElement("div");
-                                $(currentRow).addClass("row");
-                                $("#image_display").append(currentRow);
+    function uploadImageAsPromise () {
+        if($("#data_drug").val()=="" && $("#angle").val()=="" ){
+                window.alert("Error : Fill Up Everything");
+        }
+        else{
+            return new Promise(function (resolve, reject) {
+                var storageRef = firebase.storage().ref("/IMAGES/"+imageFile.name);
+
+                //Upload file
+                var task = storageRef.put(imageFile);
+
+                //Update progress bar
+                task.on('state_changed',
+                    function progress(snapshot){
+                        var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                        var elem = document.getElementById("myBar"); 
+                        var width = snapshot.bytesTransferred;
+                        var id = setInterval(frame, 10);
+                        function frame() {
+                            if (width >= 100) {
+                                clearInterval(snapshot.bytesTransferred / snapshot.totalBytes * 100);
                             }
-                            var col = document.createElement("div");
-                            $(col).addClass("col-lg-4");
-                            var image= document.createElement("img");
-                            image.src= currentData.url;
-                            $(image).addClass("contentImage");
-                            $(image).css("width",300);
-                            $(image).css("height",300);
-                            var p = document.createElement("p");
-                            $(p).html("Drug Name: "+ currentData.drug)
-                            $(p).css("color","white");
-                            $(p).addClass("contentCaption");
-                            $(col).append(image);
-                            $(col).append(p);
-                            $(currentRow).append(col);
-                        }
-                         }     
-                    })
-
-
-            }
-            // function upload_drug(){
-  //   var filename= selectedFile.name;
-  //   var storageRef = firebase.storage().ref('/drugImages'+filename);
-  //   var uploadTask = storageRef.put(selectedFile);
-
-  //   console.log(filename);
-  //       // Register three observers:
-  //   // 1. 'state_changed' observer, called any time the state changes
-  //   // 2. Error observer, called on failure
-  //   // 3. Completion observer, called on successful completion
-  //   uploadTask.on('state_changed', function(snapshot){
-  //     // Observe state change events such as progress, pause, and resume
-  //     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-  //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //     console.log('Upload is ' + progress + '% done');
-  //     switch (snapshot.state) {
-  //       case firebase.storage.TaskState.PAUSED: // or 'paused'
-  //         console.log('Upload is paused');
-  //         break;
-  //       case firebase.storage.TaskState.RUNNING: // or 'running'
-  //         console.log('Upload is running');
-  //         break;
-  //     }
-  //   }, function(error) {
-  //     // Handle unsuccessful uploads
-  //   }, function() {
-  //     // Handle successful uploads on complete
-  //     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-  //     var postKey = firebase.database().ref('DATASETS/').push().key;
-  //     var downloadURL = uploadTask.snapshot.downloadURL;
-  //     var updates={};
-  //     var postData = {
-  //       url: downloadURL,
-  //       drug:$("#data_drug").val()
-  //     };
-  //     updates['/DATASETS/'+postKey]=postData;
-  //     firebase.database().ref().update(updates);
-  //     console.log(downloadURL);
-      
-
-  //   });
-
-  // }
+                            else {
+                                width++; 
+                                elem.style.width = width + '%'; 
+                                elem.innerHTML = width * 1 + '%';
+                            }
+                        }           
+                        $("#myProgress").show();           
+                    },
+                    
+                    function error(err){},
+            
+                    function complete(){
+                        var postKey = firebase.database().ref('/DATASETS/').push().key;
+                        var drugname= $("#data_drug").val();
+                        var angle = $("#angle").val();
+                        var downloadURL = task.snapshot.downloadURL;
+                        var updates={};
+                        var postData = {
+                            url: downloadURL,
+                            drug: drugname,
+                            angle: angle
+                        };
+                        updates['/DATASETS/'+postKey]=postData;
+                        firebase.database().ref().update(updates);
+                        
+                        window.alert("Upload Completed!");
+                        $('#upload_drug').modal('hide');
+                    }
+                );
+            });
+        }
+    }
+            
+    function displayImages(user){
+        var dataDisplay = firebase.database().ref('DATASETS');
+        dataDisplay.on('value',function(snapshot){
+            var datasets = snapshot.val(); 
+            if(datasets!=null){                 
+                var keys = Object.keys(datasets);
+                $("#image_display").children().remove();
+                for(var i= 0; i<keys.length; i++){
+                    var currentData =  datasets[keys[i]];
+                    if(i%3==0){
+                        currentRow = document.createElement("div");
+                        $(currentRow).addClass("row");
+                        $("#image_display").append(currentRow);
+                    }
+                    var col = document.createElement("div");
+                    $(col).addClass("col-lg-4");
+                    var image= document.createElement("img");
+                    image.src= currentData.url;
+                    $(image).addClass("contentImage");
+                    $(image).css("width",300);
+                    $(image).css("height",300);
+                    var p = document.createElement("p");
+                    $(p).html("Drug Name: "+ currentData.drug)
+                    $(p).css("color","white");
+                    $(p).addClass("contentCaption");
+                    $(col).append(image);
+                    $(col).append(p);
+                    $(currentRow).append(col);
+                }
+            }     
+        });
+    }
 </script>
 
 <!--   Core JS Files   -->
- 
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/bootstrap-material-design.js"></script>
@@ -846,42 +754,5 @@ h2, h3,p{
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="../assets/js/material-dashboard.js?v=2.0.0"></script>
-
-</html>
-<!--
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- -->
 
 </html>

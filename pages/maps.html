@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>DESCRY</title>
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <meta charset="utf-8">
+	<title>DESCRY</title>
+	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/style.css" />
+	<meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
@@ -21,233 +21,240 @@
     <!-- iframe removal -->
 </head>
 <style type="text/css">
-    html, body{
-  background: #17202A;
-  min-height: 100%;
+html, body{
+	background: #17202A;
+	min-height: 100%;
 }
+
 body{
-  position: relative;
+  	position: relative;
 }
+
 h2, h3,p{
-  margin:0; padding:0;
-  color: white;
-  font-family: 'Nunito', sans-serif;
+	margin:0; padding:0;
+	color: white;
+	font-family: 'Nunito', sans-serif;
 }
+
 .login {
-  margin:0 auto;
-  max-width:500px;
+	margin:0 auto;
+	max-width:500px;
 }
+
 .login-header {
-  color:#fff;
-  text-align:center;
-  font-size:300%;
+	color:#fff;
+	text-align:center;
+	font-size:300%;
 }
+
 /* .login-header h1 {
-   text-shadow: 0px 5px 15px #000; */
+   text-shadow: 0px 5px 15px #000; 
 }
+
 .login-form {
   border:.5px solid #fff;
   background:#4facff;
   border-radius:10px;
   box-shadow:0px 0px 10px #000;
-}
+}*/
+
 .login-form h3 {
-  text-align:left;
-  margin-left:40px;
-  color:#fff;
+	text-align:left;
+	margin-left:40px;
+	color:#fff;
 }
+
 .login-form {
-  box-sizing:border-box;
-  padding-top:15px;
-  padding-bottom:10%;
-  margin:5% auto;
-  text-align:center;
+	box-sizing:border-box;
+	padding-top:15px;
+	padding-bottom:10%;
+	margin:5% auto;
+	text-align:center;
 }
+
 .login input[type="email"],
 .login input[type="password"] {
-  max-width:400px;
-  width: 80%;
-  line-height:3em;
-  font-family: 'Nunito', sans-serif;
-  margin:1em 2em;
-  border-radius:5px;
-  border:2px solid #f2f2f2;
-  outline:none;
-  padding-left:10px;
+	max-width:400px;
+	width: 80%;
+	line-height:3em;
+	font-family: 'Nunito', sans-serif;
+	margin:1em 2em;
+	border-radius:5px;
+	border:2px solid #f2f2f2;
+	outline:none;
+	padding-left:10px;
 }
+
 .login-form button[type="submit"] {
-  height:30px;
-  width:100px;
-  background:#fff;
-  border:1px solid #f2f2f2;
-  border-radius:20px;
-  color: slategrey;
-  text-transform:uppercase;
-  font-family: 'Nunito', sans-serif;
-  cursor:pointer;
+	height:30px;
+	width:100px;
+	background:#fff;
+	border:1px solid #f2f2f2;
+	border-radius:20px;
+	color: slategrey;
+	text-transform:uppercase;
+	font-family: 'Nunito', sans-serif;
+	cursor:pointer;
 }
+
 .sign-up{
-  color:#f2f2f2;
-  margin-left:-70%;
-  cursor:pointer;
-  text-decoration:underline;
+	color:#f2f2f2;
+	margin-left:-70%;
+	cursor:pointer;
+	text-decoration:underline;
 }
+
 .no-access {
-  color:#E86850;
-  margin:20px 0px 20px -57%;
-  text-decoration:underline;
-  cursor:pointer;
+	color:#E86850;
+	margin:20px 0px 20px -57%;
+	text-decoration:underline;
+	cursor:pointer;
 }
+
 .try-again {
-  color:#f2f2f2;
-  text-decoration:underline;
-  cursor:pointer;
+	color:#f2f2f2;
+	text-decoration:underline;
+	cursor:pointer;
 }
 
 /*Media Querie*/
 @media only screen and (min-width : 150px) and (max-width : 530px){
-  .login-form h3 {
-    text-align:center;
-    margin:0;
-  }
-  .sign-up, .no-access {
-    margin:10px 0;
-  }
-  .login-button {
-    margin-bottom:10px;
-  }
+	.login-form h3 {
+		text-align:center;
+		margin:0;
+	}
+	.sign-up, .no-access {
+		margin:10px 0;
+	}
+	.login-button {
+		margin-bottom:10px;
+	}
+}
  
 .loader {
-  z-index: -1;
-  margin: auto;
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid black;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+	z-index: -1;
+	margin: auto;
+	border: 10px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 10px solid black;
+	width: 60px;
+	height: 60px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }
 </style>
 
 <body class="wrapper">      
     <div class="body">
+		<div id="login_div" class="login">
+			<div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="row">
+						<div class="loader">log in</div>             
+					</div>
+				</div>
+			</div>
     
-    <div id="login_div" class="login">
-        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >log in</div>             
-         </div>
-        </div>
-    </div>
+			<div>
+				<br><br><br><br>
+				<h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+			</div>
+			<h3 align="center">LOGIN</h3>
+			<form id="login" class="login-form">
+				<input type="email" placeholder="Email..." id="email_field" />
+				<input type="password" placeholder="Password..." id="password_field" />
+
+				<button type="submit">Login</button><br>
+				<button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
+			</form>
+		</div>
+
+ 		<div id="verification" class="login">
+			<div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="row">
+						<div class="loader" >Verifying..</div>             
+					</div>
+				</div>
+			</div>
        
-        
-    <div class="  ">
-      <br><br><br><br>
+    		<div>
+      			<br><br><br><br>
                <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
             </div>
-    <h3 align="center">LOGIN</h3>
-    <form id="login" class="login-form">
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Password..." id="password_field" />
+			<h3 align="center">Verification</h3>
+			<div align="center">
+				<button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
+			</div>
+    		<a class="nav-link" href="" id="back">
+				<i class="material-icons">reply</i>
+				<p>Back</p>
+			</a>
+  		</div>
+  	</div>
 
-    <button type="submit">Login</button><br>
-    <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
-      </form>
-  </div>
-  <div id="verification" class="login">
-        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >Verifying..</div>             
-         </div>
-        </div>
-    </div>
-       
-        
-    <div class="">
-      <br><br><br><br>
-               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
-            </div>
-    <h3 align="center">Verification</h3>
-    <div align="center">
-      <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
-    </div>
-     <a class="nav-link" href="" id="back">
-                            <i class="material-icons">reply</i>
-                            <p>Back</p>
-                        </a>
-
-
-  </div>
-
-
-  </div>
-
-  <div id="user_div" class="">
-    <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
-           <div class="logo"  align="center">
-            <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../pages">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="../pages/drugs_table.html">
-                            <i class="material-icons">content_paste</i>
-                            <p>Drugs Table</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active  ">
-                        <a class="nav-link" href="../pages/maps.html">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-
-                            <li class="nav-item">
-                                  <a class="nav-link" href="" id="logout">
-                            <i class="material-icons">reply</i>
-                            <p>Logout</p>
-                        </a>
-                            </li>
-                       
-                </ul>
-
-            </div>
-        </div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="#pablo">Map</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
-                    
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div id="map"></div>
-        </div>
-    </div>
-</div>
+  	<div id="user_div">
+    	<div class="wrapper">
+        	<div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
+           		<div class="logo"  align="center">
+            		<h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
+				</div>
+				
+            	<div class="sidebar-wrapper">
+					<ul class="nav">
+						<li class="nav-item">
+							<a class="nav-link" href="../pages">
+								<i class="material-icons">dashboard</i>
+								<p>Dashboard</p>
+							</a>
+						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="../pages/drugs_table.html">
+								<i class="material-icons">content_paste</i>
+								<p>Drugs Table</p>
+							</a>
+						</li>
+						<li class="nav-item active  ">
+							<a class="nav-link" href="../pages/maps.html">
+								<i class="material-icons">location_ons</i>
+								<p>Maps</p>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="" id="logout">
+								<i class="material-icons">reply</i>
+								<p>Logout</p>
+							</a>
+						</li>
+					</ul>
+            	</div>
+        	</div>
+			
+			<div class="main-panel">
+            	<!-- Navbar -->
+				<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+					<div class="container-fluid">
+						<div class="navbar-wrapper">
+							<a class="navbar-brand" href="#pablo" style="color: white;">Map</a>
+						</div>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+						</button>
+						
+					</div>
+				</nav>
+            	<!-- End Navbar -->
+            	<div id="map"></div>
+        	</div>
+    	</div>
+	</div>
 </body>
 
 <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
@@ -264,278 +271,184 @@ h2, h3,p{
 <script src="../assets/js/plugins/demo.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script type="text/javascript">
-document.getElementById("login_div").style.display = "none";
-document.getElementById("user_div").style.display = "none";
-document.getElementById("verification").style.display = "none";
- var config = {
-    apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
-    authDomain: "descry-9b0ce.firebaseapp.com",
-    databaseURL: "https://descry-9b0ce.firebaseio.com",
-    projectId: "descry-9b0ce",
-    storageBucket: "",
-    messagingSenderId: "465099358873"
-  };
-  firebase.initializeApp(config);
+	document.getElementById("login_div").style.display = "none";
+	document.getElementById("user_div").style.display = "none";
+	document.getElementById("verification").style.display = "none";
+	var config = {
+		apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
+		authDomain: "descry-9b0ce.firebaseapp.com",
+		databaseURL: "https://descry-9b0ce.firebaseio.com",
+		projectId: "descry-9b0ce",
+		storageBucket: "",
+		messagingSenderId: "465099358873"
+	};
+	firebase.initializeApp(config);
 
-  firebase.auth().onAuthStateChanged(function(user) {
-  
-
-  if (user) {
-    var user = firebase.auth().currentUser;
-    var email_id = user.email;
-    var email_verified =user.emailVerified;
-    $('#loader_modal').modal('hide');
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			var user = firebase.auth().currentUser;
+			var email_id = user.email;
+			var email_verified =user.emailVerified;
+			$('#loader_modal').modal('hide');
      
-    // User is signed in.
-    // document.location.href = "dashboard.html";
-          if(email_verified==false){
-            $('#loader_modal').modal('hide');
-            document.getElementById("user_div").style.display = "none";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "block";
-              
-          }else{
-            $('#loader_modal').modal('hide');
+    		// User is signed in.
+          	if(email_verified==false){
+				$('#loader_modal').modal('hide');
+				document.getElementById("user_div").style.display = "none";
+				document.getElementById("login_div").style.display = "none";
+				document.getElementById("verification").style.display = "block";
+          	}else{
+				$('#loader_modal').modal('hide');
 
-            $('#loader_modal').on('hidden.bs.modal', function (e) {
-      LoadOnce();
-     });
-            document.getElementById("user_div").style.display = "block";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "none";
-          }              
+				$('#loader_modal').on('hidden.bs.modal', function (e) {
+      				LoadOnce();
+     			});
+				document.getElementById("user_div").style.display = "block";
+				document.getElementById("login_div").style.display = "none";
+				document.getElementById("verification").style.display = "none";
+          	}
+  		}
+		else{
+			$('#loader_modal').modal('hide');
+			document.getElementById("user_div").style.display = "none";
+			document.getElementById("login_div").style.display = "block";
+			document.getElementById("verification").style.display = "none";
+  		}
 
-  } else {
+  		$(document).ready(function() {
+			$("#login").on('submit',function(event){
+				$('#loader_modal').modal('show');
+				event.preventDefault();
+				//alert();
+				var userEmail = document.getElementById("email_field").value;
+				var userPass = document.getElementById("password_field").value;
 
-$('#loader_modal').modal('hide');
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-    document.getElementById("verification").style.display = "none";
+				firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					window.alert("Error : " + errorMessage);
+				});
+			});
 
-  }
+      		$("#create_account").on('click',function(event){
+				$('#loader_modal').modal('show');
+				event.preventDefault();
+				var userEmail = document.getElementById("email_field").value;
+				var userPass = document.getElementById("password_field").value;
 
-  $(document).ready(function() {
-    
- 
-     $("#login").on('submit',function(event){
-         $('#loader_modal').modal('show');
-        event.preventDefault();
-        //alert();
-      var userEmail = document.getElementById("email_field").value;
-      var userPass = document.getElementById("password_field").value;
+              	firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+					// Handle Errors here.
+					var errorCode = error.code;
+					var errorMessage = error.message;
+					window.alert("Error : " + errorMessage);
+             	});
+        	});
 
-      firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-        // Handle Errors here.
+			$("#verify").on('click',function(event){                
+				event.preventDefault();
+				var user = firebase.auth().currentUser;
+				user.sendEmailVerification().then(function() {
+					window.alert("Verification Sent!");
+				}).catch(function(error) {
+					window.alert("Error: "+ error.message);
+				});
+			});
 
-        var errorCode = error.code;
-        var errorMessage = error.message;
+     		$("#logout").click(function(event){
+				firebase.auth().signOut().then(function() {
+					var address = window.location.origin;
+					window.location= address+"/pages";
+				}, function(error) {
+					alert();
+				});
+     		});
 
-        window.alert("Error : " + errorMessage);
+			$("#back").click(function(event){
+				firebase.auth().signOut().then(function() {
+					var address = window.location.origin;
+					window.location= address+"/pages";
+				}, function(error) {
+					alert();
+				});
+			});
 
-        // ...
-     });
-
-});
-
-      $("#create_account").on('click',function(event){
-                 $('#loader_modal').modal('show');
-                event.preventDefault();
-                //alert();
-              var userEmail = document.getElementById("email_field").value;
-              var userPass = document.getElementById("password_field").value;
-
-              firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-                // Handle Errors here.
-
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-                window.alert("Error : " + errorMessage);
-
-                // ...
-             });
-
-        });
-
-         $("#verify").on('click',function(event){                
-                event.preventDefault();
-
-            var user = firebase.auth().currentUser;
-
-              user.sendEmailVerification().then(function() {
-                window.alert("Verification Sent!");
-              }).catch(function(error) {
-                window.alert("Error: "+ error.message);
-              });
-
-         });
-
-     $("#logout").click(function(event){
-      firebase.auth().signOut().then(function() {
-         var address = window.location.origin;
-        window.location= address+"/pages";
-        }, function(error) {
-         alert();
-        });
-        
-     //  firebase.auth().signOut();
-        
-        
-     });
-     $("#back").click(function(event){
-        firebase.auth().signOut().then(function() {
-         var address = window.location.origin;
-        window.location= address+"/pages";
-        }, function(error) {
-         alert();
-        });
-     });
-
-     (function() {
-
-
-       
-               L.mapbox.accessToken = 'pk.eyJ1IjoiZHJ1Z2Rlc2NyeSIsImEiOiJjamg0Y256ZHMwbjJxMnpvMm84aWpmb3dmIn0.evfUh1Swt1ChxQCFFUU3mg';
+     		(function() {
+				L.mapbox.accessToken = 'pk.eyJ1IjoiZHJ1Z2Rlc2NyeSIsImEiOiJjamg0Y256ZHMwbjJxMnpvMm84aWpmb3dmIn0.evfUh1Swt1ChxQCFFUU3mg';
           
+              	var mapSimple = L.mapbox.map('map', 'mapbox.dark').setView([7.1907, 125.4553], 9);
 
-              var mapSimple = L.mapbox.map('map', 'mapbox.dark')
-                .setView([7.1907, 125.4553], 9);
-
-                 
-                 // mapSimple.addControl(L.mapbox.geocoderControl('mapbox.dark',{
-                 //   autocomplete: true
-                 // }));
-                // NY and CA sample Lat / Lng
                 var databaseRef = firebase.database().ref('reports');
-                  var rowIndex = 1;
-                  var street='';
-                  var place='';
-                  var city='';
-                  var country='';
-                  databaseRef.on('value', function(snapshot) {
+				var rowIndex = 1;
+				var street='';
+				var place='';
+				var city='';
+				var country='';
+				databaseRef.on('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
-                      // function getRandomColor() {
-                      //   var letters = '0123456789ABCDEF';
-                      //   var color = '#';
-                      //   for (var i = 0; i < 6; i++) {
-                      //     color += letters[Math.floor(Math.random() * 16)];
-                      //   }
-                      //   return color;
-                      // }
-
-                   var childKey = childSnapshot.key;
-                   var childData = childSnapshot.val();
-
-
-$.ajax({url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
-                          //console.log(result.results[0].locations[0]);
-                          street = result.results[0].locations[0].street;
-                          place = result.results[0].locations[0].adminArea5;
-                          city = result.results[0].locations[0].adminArea3;
-                          country = result.results[0].locations[0].adminArea1;
-                           var geojson = [
-                          {
-                            type: 'Feature',
-                            geometry: {
-                              type: 'Point',
-                              coordinates: [childData.longitude, childData.latitude]
-                            },
-                            properties: {
-                              'marker-color': '#FF0000',
-                              'marker-symbol': 'danger',
-                              'description': '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
-                              '<br><strong>Fake Drug: </strong> Drug Name ' ,
-                               
-                            }
-                          }
-                        ];
-                      var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
-                      }});
-               
-                  
-                   // init markers
-                    // var marker = new google.maps.Marker({
-                    //     position: new google.maps.LatLng(childData.latitude, childData.longitude),
-                    //     map: map,
-                    //     title: childData.email
-                    // });
-                  //   var latlng = {lat: parseFloat(childData.latitude), lng: parseFloat(childData.longitude)};
-
-                  //   geocoder.geocode({'location': latlng}, function(results, status) {
-                  //   if (status === 'OK') {
-                  //     if (results[0]) {
-                  //       map.setZoom(11);
-                  //       var marker = new google.maps.Marker({
-                  //         position: latlng,
-                  //         map: map
-                  //       });
-                  //       infowindow.setContent(results[0].formatted_address);
-                  //       infowindow.open(map, marker);
-                  //     } else {
-                  //       window.alert('No results found');
-                  //     }
-                  //   } else {
-                  //    console.log('Geocoder failed due to: ' + status);
-                  //   }
-                  // });
-                    // process multiple info windows
-                    // (function(marker, i) {
-                       
-                        
-                    //     // add click event
-                    //     google.maps.event.addListener(marker, 'click', function() {
-                    //         infowindow = new google.maps.InfoWindow({
-                    //             content: 'FAKE DRUG: ' + childData.email
-                    //         });
-                    //         infowindow.open(map, marker);
-                    //     });
-                    // })(marker, i);
-                   rowIndex = rowIndex + 1;
-                   
+						var childKey = childSnapshot.key;
+						var childData = childSnapshot.val();
+						$.ajax({url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
+							street = result.results[0].locations[0].street;
+							place = result.results[0].locations[0].adminArea5;
+							city = result.results[0].locations[0].adminArea3;
+							country = result.results[0].locations[0].adminArea1;
+							var geojson = [{
+								type: 'Feature',
+								geometry: {
+									type: 'Point',
+									coordinates: [childData.longitude, childData.latitude]
+								},
+								properties: {
+									'marker-color': '#FF0000',
+									'marker-symbol': 'danger',
+									'description': '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
+									'<br><strong>Fake Drug: </strong> Drug Name ' ,
+                            	}
+                          	}];
+                      		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
+                      	}});
+                   		rowIndex = rowIndex + 1;
                     });
-                  });
-
-                
+				});
 
                 // set multiple marker
-                for (var i = 0; i < 250; i++) {
-                    
-                }
+                for (var i = 0; i < 250; i++) {}
             })();
+		});
 
-});
+		function LoadOnce(){ 
+			window.location.reload(); 
+		} 
 
-function LoadOnce() 
-      { 
-      window.location.reload(); 
-      } 
-function geocodeLatLng(geocoder, map, infowindow) {
-  var input = document.getElementById('latlng').value;
-  var latlngStr = input.split(',', 2);
-  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  console.log(latlng);
-  geocoder.geocode({'location': latlng}, function(results, status) {
-    if (status === 'OK') {
-      if (results[0]) {
-        map.setZoom(11);
-        var marker = new google.maps.Marker({
-          position: latlng,
-          map: map
-        });
-        infowindow.setContent(results[0].formatted_address);
-        infowindow.open(map, marker);
-      } else {
-        window.alert('No results found');
-      }
-    } else {
-      window.alert('Geocoder failed due to: ' + status);
-    }
-  });
-}
-
-
-});
+		function geocodeLatLng(geocoder, map, infowindow) {
+			var input = document.getElementById('latlng').value;
+			var latlngStr = input.split(',', 2);
+			var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+			console.log(latlng);
+			geocoder.geocode({'location': latlng}, function(results, status) {
+				if (status === 'OK') {
+					if (results[0]) {
+						map.setZoom(11);
+						var marker = new google.maps.Marker({
+							position: latlng,
+							map: map
+						});
+						infowindow.setContent(results[0].formatted_address);
+						infowindow.open(map, marker);
+      				}
+					else{
+        				window.alert('No results found');
+      				}
+				}
+				else{
+      				window.alert('Geocoder failed due to: ' + status);
+    			}
+  			});
+		}
+	});
 </script>
+
 <!--  Charts Plugin, full documentation here: https://gionkunz.github.io/chartist-js/ -->
 <script src="../assets/js/plugins/chartist.min.js"></script>
 <!-- Library for adding dinamically elements -->
@@ -545,9 +458,4 @@ function geocodeLatLng(geocoder, map, infowindow) {
 <!-- Material Dashboard Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="../assets/js/material-dashboard.js?v=2.0.0"></script>
 <!-- demo init -->
-
-
-
- 
-
 </html>

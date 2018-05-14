@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <title>DESCRY</title>
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <meta charset="utf-8">
+    <title>DESCRY</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!-- Favicons -->
@@ -21,510 +21,485 @@
     <!-- iframe removal -->
 </head>
 <style type="text/css">
-    html, body{
-  background: #17202A;
-  min-height: 100%;
+html, body{
+    background: #17202A;
+    min-height: 100%;
 }
+
 body{
-  position: relative;
+    position: relative;
 }
+
 h2, h3,p{
-  margin:0; padding:0;
-  color: white;
-  font-family: 'Nunito', sans-serif;
+    margin:0; padding:0;
+    color: white;
+    font-family: 'Nunito', sans-serif;
 }
+
 .login {
-  margin:0 auto;
-  max-width:500px;
+    margin:0 auto;
+    max-width:500px;
 }
+
 .login-header {
-  color:#fff;
-  text-align:center;
-  font-size:300%;
+    color:#fff;
+    text-align:center;
+    font-size:300%;
 }
-/* .login-header h1 {
-   text-shadow: 0px 5px 15px #000; */
+
+/*.login-header h1 {
+   text-shadow: 0px 5px 15px #000;
 }
+
 .login-form {
-  border:.5px solid #fff;
-  background:#4facff;
-  border-radius:10px;
-  box-shadow:0px 0px 10px #000;
-}
+    border:.5px solid #fff;
+    //background:#4facff;
+    border-radius:10px;
+    box-shadow:0px 0px 10px #000;
+}*/
+
 .login-form h3 {
-  text-align:left;
-  margin-left:40px;
-  color:#fff;
+    text-align:left;
+    margin-left:40px;
+    color:#fff;
 }
+
 .login-form {
-  box-sizing:border-box;
-  padding-top:15px;
-  padding-bottom:10%;
-  margin:5% auto;
-  text-align:center;
+    box-sizing:border-box;
+    padding-top:15px;
+    padding-bottom:10%;
+    margin:5% auto;
+    text-align:center;
 }
+
 .login input[type="email"],
 .login input[type="password"] {
-  max-width:400px;
-  width: 80%;
-  line-height:3em;
-  font-family: 'Nunito', sans-serif;
-  margin:1em 2em;
-  border-radius:5px;
-  border:2px solid #f2f2f2;
-  outline:none;
-  padding-left:10px;
+    max-width:400px;
+    width: 80%;
+    line-height:3em;
+    font-family: 'Nunito', sans-serif;
+    margin:1em 2em;
+    border-radius:5px;
+    border:2px solid #f2f2f2;
+    outline:none;
+    padding-left:10px;
 }
 .login-form button[type="submit"] {
-  height:30px;
-  width:100px;
-  background:#fff;
-  border:1px solid #f2f2f2;
-  border-radius:20px;
-  color: slategrey;
-  text-transform:uppercase;
-  font-family: 'Nunito', sans-serif;
-  cursor:pointer;
+    height:30px;
+    width:100px;
+    background:#fff;
+    border:1px solid #f2f2f2;
+    border-radius:20px;
+    color: slategrey;
+    text-transform:uppercase;
+    font-family: 'Nunito', sans-serif;
+    cursor:pointer;
 }
+
 .sign-up{
-  color:#f2f2f2;
-  margin-left:-70%;
-  cursor:pointer;
-  text-decoration:underline;
+    color:#f2f2f2;
+    margin-left:-70%;
+    cursor:pointer;
+    text-decoration:underline;
 }
+
 .no-access {
-  color:#E86850;
-  margin:20px 0px 20px -57%;
-  text-decoration:underline;
-  cursor:pointer;
+    color:#E86850;
+    margin:20px 0px 20px -57%;
+    text-decoration:underline;
+    cursor:pointer;
 }
+
 .try-again {
-  color:#f2f2f2;
-  text-decoration:underline;
-  cursor:pointer;
+    color:#f2f2f2;
+    text-decoration:underline;
+    cursor:pointer;
 }
 
 /*Media Querie*/
 @media only screen and (min-width : 150px) and (max-width : 530px){
-  .login-form h3 {
-    text-align:center;
-    margin:0;
-  }
-  .sign-up, .no-access {
-    margin:10px 0;
-  }
-  .login-button {
-    margin-bottom:10px;
-  }
- 
-.loader {
-  z-index: -1;
-  margin: auto;
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid black;
-  width: 60px;
-  height: 60px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+    .login-form h3 {
+        text-align:center;
+        margin:0;
+    }
+    .sign-up, .no-access {
+        margin:10px 0;
+    }
+    .login-button {
+        margin-bottom:10px;
+    }
 }
+
+.loader {
+    z-index: -1;
+    margin: auto;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid black;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 </style>
-<body class="">
-
+<body>
    <div id="login_div" class="login">
         <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >log in</div>             
-         </div>
-        </div>
-    </div>
-       
-        
-    <div class="  ">
-      <br><br><br><br>
-               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="row">
+                    <div class="loader" >log in</div>             
+                </div>
             </div>
-    <h3 align="center">LOGIN</h3>
-    <form id="login" class="login-form">
-    <input type="email" placeholder="Email..." id="email_field" />
-    <input type="password" placeholder="Password..." id="password_field" />
-
-    <button type="submit">Login</button><br>
-    <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
-
-      </form>
-
-
-  </div>
-  <div id="verification" class="login">
-        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
-             <div class="row">
-             <div class="loader" >Verifying..</div>             
-         </div>
         </div>
-    </div>
        
-        
-    <div class="">
-      <br><br><br><br>
-               <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
-            </div>
-    <h3 align="center">Verification</h3>
-    <div align="center">
-      <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
-           <a class="nav-link" href="" id="back">
-                            <i class="material-icons">reply</i>
-                            <p>Logout</p>
-                        </a>
+        <div>
+            <br><br><br><br>
+            <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+        </div>
+        <h3 align="center">LOGIN</h3>
+        <form id="login" class="login-form">
+            <input type="email" placeholder="Email..." id="email_field" />
+            <input type="password" placeholder="Password..." id="password_field" />
+
+            <button type="submit">Login</button><br>
+            <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
+        </form>
     </div>
     
-
-
-  </div>
-
-
-  <div id="user_div" class="">
-    <div class="wrapper">
-        <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="logo"  align="center">
-               <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../pages">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="../pages/drugs_table.html">
-                            <i class="material-icons">content_paste</i>
-                            <p>Drugs Table</p>
-                        </a>
-                    </li>
-                    <li class="nav-item   ">
-                        <a class="nav-link" href="../pages/maps.html">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                                  <a class="nav-link" href="" id="logout">
-                            <i class="material-icons">reply</i>
-                            <p>Logout</p>
-                        </a>
-                            </li>
-                       
-                </ul>
+    <div id="verification" class="login">
+        <div class="modal fade" id="loader_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="row">
+                    <div class="loader" >Verifying..</div>             
+                </div>
             </div>
         </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="#pablo">Dashboard</a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
-                     
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div class="content" align="center">
-                <div class="container-fluid" align="center">
-                    <div class="row" align="center">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="card card-stats bg-dark text-white">
-                                <div class="card-header card-header-danger card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">whatshot</i>
-                                    </div>
-                                    <p class="card-category">FAKE DRUGS</p>
-                                    <h2 class="card-title text-white" id="count_report">
-                                      Loading...
-                                        <small></small>
-                                    </h2>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons text-danger">warning</i>
-                                        <a href="#" class="table text-white">See Table..</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="card card-stats bg-dark text-white">
-                                <div class="card-header card-header-success card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">style</i>
-                                    </div>
-                                    <p class="card-category">DATA SETS</p>                                  
-                                    <h2 class="card-title text-white" id="count_data">
-                                      Loading...
-                                    </h2>
-                                     <small></small>
-                                </div>
-                                 <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons text-success">style</i>
-                                        <a href="#" class="table text-white" >Add Data Set..</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="card card-stats bg-dark text-white">
-                                <div class="card-header card-header-warning card-header-icon">
-                                    <div class="card-icon">
-                                        <i class="material-icons">gesture</i>
-                                    </div>
-                                    <p class="card-category">Solved Issues</p>
-                                    <h2 class="card-title text-white">5
-                                    </h2>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">local_offer</i> 
-                                        <a href="#" class="table text-white" >Raid Anytime</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                 </div>   
-              </div>     
-                <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    DROGA SURVEILLANCE SYSTEM
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    About Us
-                                </a>
-                            </li>
-                           
-                        </ul>
-                    </nav>
-                    <div class="copyright pull-right">
-                        &copy;
-                        <script>
-                            document.write(new Date().getFullYear())
-                        </script> Supported By:
-                        <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
-                    </div>
-                </div>
-            </footer>
+       
+        <div>
+            <br><br><br><br>
+            <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+        </div>
+        <h3 align="center">Verification</h3>
+        <div align="center">
+            <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
+            <a class="nav-link" href="" id="back">
+                <i class="material-icons">reply</i>
+                <p>Logout</p>
+            </a>
+        </div>
     </div>
-  </div>
-</div>
-  </body>
 
+    <div id="user_div" class="">
+        <div class="wrapper">
+            <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
+                <!--Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+                    Tip 2: you can also add an image using data-image tag-->
+                <div class="logo" align="center">
+                    <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
+                </div>
+                <div class="sidebar-wrapper">
+                    <ul class="nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="../pages">
+                                <i class="material-icons">dashboard</i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="../pages/drugs_table.html">
+                                <i class="material-icons">content_paste</i>
+                                <p>Drugs Table</p>
+                            </a>
+                        </li>
+                        <li class="nav-item   ">
+                            <a class="nav-link" href="../pages/maps.html">
+                                <i class="material-icons">location_ons</i>
+                                <p>Maps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" id="logout">
+                                <i class="material-icons">reply</i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="main-panel">
+                <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-wrapper">
+                            <a class="navbar-brand" href="#pablo" style="color: white;">Dashboard</a>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                            <span class="navbar-toggler-icon icon-bar"></span>
+                        </button>
+                        
+                    </div>
+                </nav>
+                <!-- End Navbar -->
+                <div class="content" align="center">
+                    <div class="container-fluid" align="center">
+                        <div class="row" align="center">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats bg-dark text-white">
+                                    <div class="card-header card-header-danger card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">whatshot</i>
+                                        </div>
+                                        <p class="card-category">FAKE DRUGS</p>
+                                        <h2 class="card-title text-white" id="count_report">
+                                            Loading...
+                                            <small></small>
+                                        </h2>
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons text-danger">warning</i>
+                                            <a href="#" class="table text-white">See Table..</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats bg-dark text-white">
+                                    <div class="card-header card-header-success card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">style</i>
+                                        </div>
+                                        <p class="card-category">DATA SETS</p>                                  
+                                        <h2 class="card-title text-white" id="count_data">
+                                        Loading...
+                                        </h2>
+                                        <small></small>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons text-success">style</i>
+                                            <a href="#" class="table text-white" >Add Data Set..</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="card card-stats bg-dark text-white">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">gesture</i>
+                                        </div>
+                                        <p class="card-category">Solved Issues</p>
+                                        <h2 class="card-title text-white">5
+                                        </h2>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">local_offer</i> 
+                                            <a href="#" class="table text-white" >Raid Anytime</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                </div>     
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">DESCRY SURVEILLANCE SYSTEM</a>
+                                </li>
+                                <li>
+                                    <a href="#">About Us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> Supported By:
+                            <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
 
 <script src="../assets/js/plugins/demo.js"></script>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/bootstrap-material-design.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
 <!-- Google Map Plugin -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3Uo3Zc3LdKB_vrJNfqxhgSizm2XG7zc"></script>  
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script type="text/javascript">
-document.getElementById("login_div").style.display = "none";
-document.getElementById("user_div").style.display = "none";
-document.getElementById("verification").style.display = "none";
-  var config = {
-    apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
-    authDomain: "descry-9b0ce.firebaseapp.com",
-    databaseURL: "https://descry-9b0ce.firebaseio.com",
-    projectId: "descry-9b0ce",
-    storageBucket: "",
-    messagingSenderId: "465099358873"
-  };
-  firebase.initializeApp(config);
-
-  firebase.auth().onAuthStateChanged(function(user) {
-
-  if (user) {
-    var user = firebase.auth().currentUser;
-    var email_id = user.email;
-    var uid = user.uid;
-    var email_verified =user.emailVerified;
-    var checkuser;
-    var name;
-    var users = firebase.database().ref('user_info');
-    users.on('value', function(snapshot) { 
-    snapshot.forEach(function(childSnapshot) {
-      document.getElementById("user_div").style.display = "none";
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-  if(childKey==uid){
-    checkuser=true;
-   document.getElementById("user_div").style.display = "none";
-    name= childData.firstname+' '+childData.lastname;
-    firebase.auth().signOut();
-  }
-   
-    });
-    if(checkuser==true){
-             window.alert("Sorry "+name+', This Site is for Admin Only.' );
-         $('#loader_modal').modal('hide');
-
-        }else{
-          document.getElementById("user_div").style.display = "none";
-          if(email_verified==false){
-            document.getElementById("user_div").style.display = "none";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "block";
-              $('#loader_modal').modal('hide');
-              
-              
-
-              if(user != null){
-                
-                console.log(email_verified);
-
-              }
-
-
-          }else{
-            $('#loader_modal').modal('hide');
-            document.getElementById("user_div").style.display = "block";
-              document.getElementById("login_div").style.display = "none";
-              document.getElementById("verification").style.display = "none";
-
-          }
-        }
-  });
-    
-              
-
-  } else {       
+    document.getElementById("login_div").style.display = "none";
     document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
     document.getElementById("verification").style.display = "none";
+    var config = {
+        apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
+        authDomain: "descry-9b0ce.firebaseapp.com",
+        databaseURL: "https://descry-9b0ce.firebaseio.com",
+        projectId: "descry-9b0ce",
+        storageBucket: "",
+        messagingSenderId: "465099358873"
+    };
+    firebase.initializeApp(config);
 
-  }
-
-  $(document).ready(function() {
-    if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
-      //alert("It's a local server!");
-        $('.table').on('click',function(){
-      var address = window.location.origin;
-         window.location= address+"/pages/drugs_table.html";
-        })
-    }else{
-      $('.table').on('click',function(){
-          var address = window.location.origin;
-         window.location= address+"/pages/drugs_table.html";
-        })
-    }
-    
-  var databaseRef = firebase.database().ref('reports/');
-  
-  var rowIndex = 0;
-  databaseRef.on('value', function(snapshot) { 
-    rowIndex = 0;  
-    snapshot.forEach(function(childSnapshot) {
-   var childKey = childSnapshot.key;
-   var childData = childSnapshot.val();
-    rowIndex++;
-    });
-    document.getElementById("count_report").innerHTML = rowIndex;
-  });
-
-  var datasets = firebase.database().ref('DATASETS/');
-  
-  
-  datasets.on('value', function(snapshot) {   
-    var data_count = 0;
-  snapshot.forEach(function(childSnapshot) {
-   data_count = data_count + 1;
-    });
-    document.getElementById("count_data").innerHTML = data_count;
-  });
-
-      $("#login").on('submit',function(event){
-         $('#loader_modal').modal('show');
-        event.preventDefault();
-      var userEmail = document.getElementById("email_field").value;
-      var userPass = document.getElementById("password_field").value;
-
-      firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-        // Handle Errors here.
-
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        window.alert("Error : " + errorMessage);
-
-        // ...
-     });
-
-});
-        $("#create_account").on('click',function(event){
-                 $('#loader_modal').modal('show');
-                event.preventDefault();
-                //alert();
-              var userEmail = document.getElementById("email_field").value;
-              var userPass = document.getElementById("password_field").value;
-
-              firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-                // Handle Errors here.
-
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-                window.alert("Error : " + errorMessage);
-
-                // ...
-             });
-
-        });
-
-         $("#verify").on('click',function(event){                
-                event.preventDefault();
-
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
             var user = firebase.auth().currentUser;
+            var email_id = user.email;
+            var uid = user.uid;
+            var email_verified =user.emailVerified;
+            var checkuser;
+            var name;
+            var users = firebase.database().ref('user_info');
+            users.on('value', function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    document.getElementById("user_div").style.display = "none";
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    if(childKey==uid){
+                        checkuser=true;
+                        document.getElementById("user_div").style.display = "none";
+                        name= childData.firstname+' '+childData.lastname;
+                        firebase.auth().signOut();
+                    }
+                });
+        
+                if(checkuser==true){
+                    window.alert("Sorry "+name+', This Site is for Admin Only.' );
+                    $('#loader_modal').modal('hide');
+                }else{
+                    document.getElementById("user_div").style.display = "none";
+                    if(email_verified==false){
+                        document.getElementById("user_div").style.display = "none";
+                        document.getElementById("login_div").style.display = "none";
+                        document.getElementById("verification").style.display = "block";
+                        $('#loader_modal').modal('hide');
+                    if(user != null){
+                        console.log(email_verified);
+                    }
+                    }
+                    else{
+                        $('#loader_modal').modal('hide');
+                        document.getElementById("user_div").style.display = "block";
+                        document.getElementById("login_div").style.display = "none";
+                        document.getElementById("verification").style.display = "none";
+                    }
+                }
+            });
+        }
+        else{       
+            document.getElementById("user_div").style.display = "none";
+            document.getElementById("login_div").style.display = "block";
+            document.getElementById("verification").style.display = "none";
+        }
 
-              user.sendEmailVerification().then(function() {
-                window.alert("Verification Sent!");
-              }).catch(function(error) {
-                window.alert("Error: "+ error.message);
-              });
+        $(document).ready(function() {
+            if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
+                $('.table').on('click',function(){
+                    var address = window.location.origin;
+                    window.location= address+"/pages/drugs_table.html";
+                });
+            }
+            else{
+                $('.table').on('click',function(){
+                    var address = window.location.origin;
+                    window.location= address+"/pages/drugs_table.html";
+                });
+            }
+        
+            var databaseRef = firebase.database().ref('reports/');
+    
+            var rowIndex = 0;
+            databaseRef.on('value', function(snapshot) { 
+                rowIndex = 0;  
+                snapshot.forEach(function(childSnapshot) {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    rowIndex++;
+                });
+                document.getElementById("count_report").innerHTML = rowIndex;
+            });
 
-         });
+            var datasets = firebase.database().ref('DATASETS/');
+    
+    
+            datasets.on('value', function(snapshot) {   
+                var data_count = 0;
+                snapshot.forEach(function(childSnapshot) {
+                    data_count = data_count + 1;
+                });
+                document.getElementById("count_data").innerHTML = data_count;
+            });
 
-     $("#logout").click(function(event){
-       firebase.auth().signOut();
-     });
-     $("#back").click(function(event){
-       firebase.auth().signOut();
-     });
-});
+            $("#login").on('submit',function(event){
+                $('#loader_modal').modal('show');
+                event.preventDefault();
+                var userEmail = document.getElementById("email_field").value;
+                var userPass = document.getElementById("password_field").value;
 
-});
+                firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    window.alert("Error : " + errorMessage);
+                });
+            });
+
+            $("#create_account").on('click',function(event){
+                $('#loader_modal').modal('show');
+                event.preventDefault();
+                var userEmail = document.getElementById("email_field").value;
+                var userPass = document.getElementById("password_field").value;
+
+                firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    window.alert("Error : " + errorMessage);
+                });
+            });
+
+            $("#verify").on('click',function(event){                
+                event.preventDefault();
+                var user = firebase.auth().currentUser;
+                user.sendEmailVerification().then(function() {
+                    window.alert("Verification Sent!");
+                }).catch(function(error) {
+                    window.alert("Error: "+ error.message);
+                });
+            });
+
+            $("#logout").click(function(event){
+                firebase.auth().signOut();
+            });
+
+            $("#back").click(function(event){
+                firebase.auth().signOut();
+            });
+        });
+    });
 </script>
 
 <script src="../assets/js/core/jquery.min.js"></script>
