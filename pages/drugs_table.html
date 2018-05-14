@@ -168,7 +168,8 @@ h2, h3,p{
     <input type="email" placeholder="Email..." id="email_field" />
     <input type="password" placeholder="Password..." id="password_field" />
 
-    <button type="submit">Login</button>
+    <button type="submit">Login</button><br>
+    <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
       </form>
   </div>
   <div id="verification" class="login">
@@ -189,7 +190,7 @@ h2, h3,p{
     <div align="center">
       <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
     </div>
-          <a class="nav-link" href="" id="logout">
+          <a class="nav-link" href="" id="back">
                             <i class="material-icons">reply</i>
                             <p>Back</p>
                         </a>
@@ -457,18 +458,20 @@ h2, h3,p{
     // User is signed in.
     // document.location.href = "dashboard.html";
           if(email_verified==false){
+             $('#loader_modal').modal('hide');
             document.getElementById("user_div").style.display = "none";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "block";
               
           }else{
+             $('#loader_modal').modal('hide');
             document.getElementById("user_div").style.display = "block";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "none";
           }              
           } else {
 
-
+             $('#loader_modal').modal('hide');
           document.getElementById("user_div").style.display = "none";
           document.getElementById("login_div").style.display = "block";
           document.getElementById("verification").style.display = "none";
@@ -478,7 +481,7 @@ h2, h3,p{
 
   $(document).ready(function() {
 
-
+    displayImages();
      firebase.auth().onAuthStateChanged(function(user) {
             if(user){
                       
@@ -534,6 +537,9 @@ h2, h3,p{
 
 });
      $("#logout").click(function(event){ 
+       firebase.auth().signOut();
+     });
+     $("#back").click(function(event){ 
        firebase.auth().signOut();
      });
 });

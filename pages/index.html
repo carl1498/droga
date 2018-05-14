@@ -179,11 +179,12 @@ h2, h3,p{
     <h3 align="center">Verification</h3>
     <div align="center">
       <button type="button" id="verify"  class="btn bootstrap-notify">Verify Account!</button>
-    </div>
-     <a class="nav-link" href="" id="logout">
+           <a class="nav-link" href="" id="back">
                             <i class="material-icons">reply</i>
-                            <p>Back</p>
+                            <p>Logout</p>
                         </a>
+    </div>
+    
 
 
   </div>
@@ -373,25 +374,38 @@ document.getElementById("verification").style.display = "none";
     var user = firebase.auth().currentUser;
     var email_id = user.email;
     var email_verified =user.emailVerified;
-     $('#loader_modal').modal('hide');
     // User is signed in.
     // document.location.href = "dashboard.html";
           if(email_verified==false){
             document.getElementById("user_div").style.display = "none";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "block";
-             
+              $('#loader_modal').modal('hide');
+              
+              
+
+              if(user != null){
+                
+                console.log(email_verified);
+
+              }
+
+
           }else{
+            $('#loader_modal').modal('hide');
             document.getElementById("user_div").style.display = "block";
               document.getElementById("login_div").style.display = "none";
               document.getElementById("verification").style.display = "none";
-          }             
-          } else {
+
+          }
+              
+
+  } else {
 
 
-              document.getElementById("user_div").style.display = "none";
-              document.getElementById("login_div").style.display = "block";
-              document.getElementById("verification").style.display = "none";
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+    document.getElementById("verification").style.display = "none";
 
   }
 
@@ -485,6 +499,9 @@ document.getElementById("verification").style.display = "none";
          });
 
      $("#logout").click(function(event){
+       firebase.auth().signOut();
+     });
+     $("#back").click(function(event){
        firebase.auth().signOut();
      });
 });
