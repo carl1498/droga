@@ -131,21 +131,21 @@ h2, h3,p{
 	}
 }
  
-.loader {
-	z-index: -1;
-	margin: auto;
-	border: 10px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 10px solid black;
-	width: 60px;
-	height: 60px;
-	-webkit-animation: spin 2s linear infinite; /* Safari */
-	animation: spin 2s linear infinite;
-}
+
 @keyframes spin {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
+#menu {
+        z-index: 1;
+        margin-top: 65px;
+        margin-left: 35px;
+        position: absolute;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    #map { position:absolute; top:0; bottom:0; width:100%; 
+      z-index:0}
 </style>
 
 <body class="wrapper">      
@@ -239,7 +239,7 @@ h2, h3,p{
 				<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
 					<div class="container-fluid">
 						<div class="navbar-wrapper">
-							<a class="navbar-brand" href="#pablo" style="color: white;">Map</a>
+							<h5 class="navbar-brand" style="color: white;" align="center">Maps</h5>
 						</div>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="sr-only">Toggle navigation</span>
@@ -251,7 +251,23 @@ h2, h3,p{
 					</div>
 				</nav>
             	<!-- End Navbar -->
+              <div id="allview">
+             
             	<div id="map"></div>
+            </div>
+             <div id='menu'>
+                <input id='basic' type='radio' name='rtoggle' value='dark' checked='checked'>
+                <label for='basic'>Dark</label>
+                <input id='streets' type='radio' name='rtoggle' value='streets'>
+                <label for='streets'>Streets</label>
+                <input id='light' type='radio' name='rtoggle' value='streets-satellite'>
+                <label for='light'>SS</label>
+                <input id='dark' type='radio' name='rtoggle' value='light'>
+                <label for='dark'>Light</label>
+                <input id='satellite' type='radio' name='rtoggle' value='satellite'>
+                <label for='satellite'>S</label>
+              </div>
+              
         	</div>
     	</div>
 	</div>
@@ -274,6 +290,8 @@ h2, h3,p{
 	document.getElementById("login_div").style.display = "none";
 	document.getElementById("user_div").style.display = "none";
 	document.getElementById("verification").style.display = "none";
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
 	var config = {
 		apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
 		authDomain: "descry-9b0ce.firebaseapp.com",
@@ -285,6 +303,8 @@ h2, h3,p{
 	firebase.initializeApp(config);
 
 	firebase.auth().onAuthStateChanged(function(user) {
+    var mapview;
+    var mapSimple;
 		if (user) {
 			var user = firebase.auth().currentUser;
 			var email_id = user.email;
@@ -316,6 +336,12 @@ h2, h3,p{
   		}
 
   		$(document).ready(function() {
+        mapview = "dark"
+       switchLayer();
+        $('input:radio[name="rtoggle"]').change(function() {
+        mapview =$(this).val(); 
+         switchLayer();
+    });
 			$("#login").on('submit',function(event){
 				$('#loader_modal').modal('show');
 				event.preventDefault();
@@ -373,10 +399,19 @@ h2, h3,p{
 				});
 			});
 
-     		(function() {
+      
+       
+  function switchLayer(layer) {
+    if(mapSimple!=null){
+      mapremove();
+      addElement();
+    }
+
+       
 				L.mapbox.accessToken = 'pk.eyJ1IjoiZHJ1Z2Rlc2NyeSIsImEiOiJjamg0Y256ZHMwbjJxMnpvMm84aWpmb3dmIn0.evfUh1Swt1ChxQCFFUU3mg';
           
-              	var mapSimple = L.mapbox.map('map', 'mapbox.dark').setView([7.1907, 125.4553], 9);
+               mapSimple = L.mapbox.map('map', 'mapbox.'+mapview).setView([7.1907, 125.4553], 9);
+
 
                 var databaseRef = firebase.database().ref('reports');
 				var rowIndex = 1;
@@ -403,7 +438,7 @@ h2, h3,p{
 									'marker-color': '#FF0000',
 									'marker-symbol': 'danger',
 									'description': '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
-									'<br><strong>Fake Drug: </strong> Drug Name ' ,
+									'<br><strong>Fake Drug: </strong>'+childData.drugName ,
                             	}
                           	}];
                       		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
@@ -414,12 +449,36 @@ h2, h3,p{
 
                 // set multiple marker
                 for (var i = 0; i < 250; i++) {}
-            })();
+                  for (var i = 0; i < inputs.length; i++) {
+                        inputs[i].onclick = switchLayer;
+                    }
+      }
 		});
 
 		function LoadOnce(){ 
 			window.location.reload(); 
 		} 
+
+      function mapremove(){ 
+     map.remove();
+    } 
+    function addElement() {
+    var div = document.createElement('div');
+    div.id='map';
+      
+    document.getElementById('allview').appendChild(div);
+}
+
+
+//     function switchLayer(layer) {
+//       //alert();
+//     var layerId = layer.target.id;
+//   // mapSimple.setStyle('mapbox://styles/mapbox/' + layerId + '-v9');
+//   L.mapbox.featureLayer().setStyle('mapbox://styles/mapbox/' + layerId + '-v9').addTo(mapSimple);
+// }
+
+
+
 
 		function geocodeLatLng(geocoder, map, infowindow) {
 			var input = document.getElementById('latlng').value;
