@@ -339,11 +339,12 @@ h2, h3,p{
                                     <div class="card-body">
                                         <div class="table-responsive">                                                                          
                                             <table  class="table" id="tbl_drug_list">
+                                                <th>Drug Name</th>       
                                                 <th>Authenticity</th>
                                                 <th>Email</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                <th>Phone</th>                              
+                                                                       
                                             </table>
                                         </div>
                                     </div>
@@ -372,12 +373,6 @@ h2, h3,p{
                                         <label style="color: black;">Drug Name</label>
                                         <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label style="color: black;">Angle</label>
-                                        <input type="text" class="form-control" id="angle" placeholder="Drug angle" name="angle">
-                                    </div>
-
                                     <h4>Upload Data Sets</h4>
                                     <label class="upload-group">
                                         <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
@@ -568,18 +563,18 @@ h2, h3,p{
             var childData = childSnapshot.val();
     
             var row = tbldrugs.insertRow(rowIndex);
+            var DrugName = row.insertCell(0);
+            var authenticity = row.insertCell(1);
+            var email = row.insertCell(2);
+            var lat = row.insertCell(3);
+            var lng = row.insertCell(4);
             
-            var authenticity = row.insertCell(0);
-            var email = row.insertCell(1);
-            var lat = row.insertCell(2);
-            var lng = row.insertCell(3);
-            var phone = row.insertCell(4);
-   
+            DrugName.appendChild(document.createTextNode(childData.drugName));
             authenticity.appendChild(document.createTextNode(childData.authenticity));
             email.appendChild(document.createTextNode(childData.email));
             lat.appendChild(document.createTextNode(childData.latitude));
             lng.appendChild(document.createTextNode(childData.longitude));
-            phone.appendChild(document.createTextNode(childData.phone));
+            
    
             rowIndex = rowIndex + 1;
         });
@@ -653,7 +648,9 @@ h2, h3,p{
     }
 
     function uploadImageAsPromise () {
-        if($("#data_drug").val()=="" && $("#angle").val()=="" ){
+      var namedrug = $("#data_drug").val();
+      var key=null;
+        if($("#data_drug").val()==""){
                 window.alert("Error : Fill Up Everything");
         }
         else{
@@ -686,21 +683,54 @@ h2, h3,p{
                     function error(err){},
             
                     function complete(){
-                        var postKey = firebase.database().ref('/DATASETS/').push().key;
-                        var drugname= $("#data_drug").val();
-                        var angle = $("#angle").val();
-                        var downloadURL = task.snapshot.downloadURL;
-                        var updates={};
-                        var postData = {
-                            url: downloadURL,
-                            drug: drugname,
-                            angle: angle
-                        };
-                        updates['/DATASETS/'+postKey]=postData;
-                        firebase.database().ref().update(updates);
-                        
+                         var datasetupdate = firebase.database().ref('DATASETS');
+
+                          datasetupdate.once('value', function(snapshot) {
+                              snapshot.forEach(function(childSnapshot) {  
+                                  var childKey = childSnapshot.key;
+                                  var childData = childSnapshot.val();
+                          
+                                 if(childData.drug==namedrug){
+                                    key= childKey;
+                                   var postKey = firebase.database().ref('/DATASETS/'+key).push().key;
+                                    var drugname= $("#data_drug").val();
+                                    var downloadURL = task.snapshot.downloadURL;
+                                    var updates={};
+                                    var postData = {
+                                        url: downloadURL,
+                                        drug: drugname,
+                                    };
+                                    updates['/DATASETS/'+key]=postData;
+                                   firebase.database().ref().update(updates);
+                                    
+                                  window.alert("Update Completed!");
+                                  $('#upload_drug').modal('hide');
+                                    return;
+                                 }
+                                  
+                                 
+                              });
+                          });
+                          if(key==null){
+                             var postKey = firebase.database().ref('/DATASETS/').push().key;
+                          var drugname= $("#data_drug").val();
+                          var downloadURL = task.snapshot.downloadURL;
+                          var updates={};
+                          var postData = {
+                              url: downloadURL,
+                              drug: drugname,
+                          };
+                          updates['/DATASETS/'+postKey]=postData;
+                          firebase.database().ref().update(updates);
+                          
                         window.alert("Upload Completed!");
                         $('#upload_drug').modal('hide');
+                        key=null;
+                          }
+                         
+                         
+
+                         
                     }
                 );
             });

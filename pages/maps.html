@@ -27,7 +27,7 @@ html, body{
 }
 
 body{
-  	position: relative;
+  	position: absolute;
 }
 
 h2, h3,p{
@@ -140,11 +140,11 @@ h2, h3,p{
         z-index: 1;
         margin-top: 65px;
         margin-left: 35px;
-        position: absolute;
+        position: relative;
         padding: 10px;
         font-family: 'Open Sans', sans-serif;
     }
-    #map { position:absolute; top:0; bottom:0; width:100%; 
+    #map { position:absolute; top:0; bottom:0; 
       z-index:0}
 </style>
 
@@ -239,7 +239,7 @@ h2, h3,p{
 				<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
 					<div class="container-fluid">
 						<div class="navbar-wrapper">
-							<h5 class="navbar-brand" style="color: white;" align="center">Maps</h5>
+							<a class="navbar-brand" style="color: white;">Maps</a>
 						</div>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="sr-only">Toggle navigation</span>
@@ -254,7 +254,7 @@ h2, h3,p{
               <div id="allview">
              
             	<div id="map"></div>
-            </div>
+            
              <div id='menu'>
                 <input id='basic' type='radio' name='rtoggle' value='dark' checked='checked'>
                 <label for='basic'>Dark</label>
@@ -267,7 +267,7 @@ h2, h3,p{
                 <input id='satellite' type='radio' name='rtoggle' value='satellite'>
                 <label for='satellite'>S</label>
               </div>
-              
+              </div>
         	</div>
     	</div>
 	</div>
@@ -277,6 +277,8 @@ h2, h3,p{
 <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
 <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
 <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
@@ -410,7 +412,11 @@ var inputs = layerList.getElementsByTagName('input');
        
 				L.mapbox.accessToken = 'pk.eyJ1IjoiZHJ1Z2Rlc2NyeSIsImEiOiJjamg0Y256ZHMwbjJxMnpvMm84aWpmb3dmIn0.evfUh1Swt1ChxQCFFUU3mg';
           
-               mapSimple = L.mapbox.map('map', 'mapbox.'+mapview).setView([7.1907, 125.4553], 9);
+               mapSimple = L.mapbox.map('map','mapbox.'+mapview,{
+                fullscreenControl: true,
+                fullscreenControl: {
+                    pseudoFullscreen: false 
+               }},).setView([7.1907, 125.4553], 9);
 
 
                 var databaseRef = firebase.database().ref('reports');
