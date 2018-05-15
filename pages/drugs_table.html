@@ -690,7 +690,7 @@ h2, h3,p{
                                   var childKey = childSnapshot.key;
                                   var childData = childSnapshot.val();
                           
-                                 if(childData.drug==namedrug){
+                                 if(childData.drug.toUpperCase()==namedrug.toUpperCase()){
                                     key= childKey;
                                    var postKey = firebase.database().ref('/DATASETS/'+key).push().key;
                                     var drugname= $("#data_drug").val();
@@ -698,7 +698,7 @@ h2, h3,p{
                                     var updates={};
                                     var postData = {
                                         url: downloadURL,
-                                        drug: drugname,
+                                        drug: drugname.toUpperCase(),
                                     };
                                     updates['/DATASETS/'+key]=postData;
                                    firebase.database().ref().update(updates);
@@ -718,7 +718,7 @@ h2, h3,p{
                           var updates={};
                           var postData = {
                               url: downloadURL,
-                              drug: drugname,
+                              drug: drugname.toUpperCase(),
                           };
                           updates['/DATASETS/'+postKey]=postData;
                           firebase.database().ref().update(updates);
