@@ -19,6 +19,7 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/assets-for-demo/demo.css" rel="stylesheet" />
     <!-- iframe removal -->
+
 </head>
 <style type="text/css">
 html, body{
@@ -313,7 +314,9 @@ h2, h3,p{
                                 </div>
                             </div>
                         </div>
-                    </div>   
+                        <canvas id="graph" style="background-color: none;" ></canvas> 
+                    </div>  
+
                 </div>     
                 
                 <footer class="footer">
@@ -333,7 +336,7 @@ h2, h3,p{
                             <script>
                                 document.write(new Date().getFullYear())
                             </script> Supported By:
-                            <a href="https://www.creative-tim.com" target="_blank">ScriptedScript Web Systems</a>.
+                            <a href="https://www.facebook.com/Ximdrake" target="_blank">ScriptedScript Web Systems</a>.
                         </div>
                     </div>
                 </footer>
@@ -347,7 +350,7 @@ h2, h3,p{
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/bootstrap-material-design.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <!-- Google Map Plugin -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI3Uo3Zc3LdKB_vrJNfqxhgSizm2XG7zc"></script>  
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
@@ -416,6 +419,8 @@ h2, h3,p{
             document.getElementById("verification").style.display = "none";
         }
 
+
+
         $(document).ready(function() {
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
                 $('.table').on('click',function(){
@@ -431,27 +436,103 @@ h2, h3,p{
             }
         
             var databaseRef = firebase.database().ref('reports/');
-    
+            var dates=['January','February','March','April','June','July','August']
             var rowIndex = 0;
+            var alaxan=1;
+            var biogesic=1;
             databaseRef.on('value', function(snapshot) { 
                 rowIndex = 0;  
                 snapshot.forEach(function(childSnapshot) {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
+                    
+                    console.log(childData);
+                    if(childData.drugName=='ALAXAN'){
+                        
+                      //myNewChart.data.datasets[0].data[0] = rowIndex;
+                    myNewChart.data.datasets[0].data[rowIndex] = alaxan;
+                    myNewChart.data.labels[rowIndex] = dates[rowIndex];
+                    myNewChart.datasets[0].label = "ALAXAN";
+                    myNewChart.update();  
+                    alaxan++;
+                    }else if(childData.drugName=="BIOGESIC"){
+                      //myNewChart.data.datasets[0].data[0] = rowIndex;
+                    myNewChart.data.datasets[1].data[rowIndex] = biogesic;
+                    myNewChart.data.labels[rowIndex] = dates[rowIndex];
+                    myNewChart.data.datasets[1].label = "BIOGESIC";
+                    myNewChart.update();
+                    biogesic++;
+                    }
+                    
                     rowIndex++;
                 });
+                 myNewChart.data.datasets[0].data[0] = rowIndex;
+                    myNewChart.data.datasets[1].data[rowIndex] = rowIndex;
+                    //myNewChart.data.labels[7] = "Newly Added";
+                    myNewChart.update();
                 document.getElementById("count_report").innerHTML = rowIndex;
             });
 
             var datasets = firebase.database().ref('DATASETS/');
     
     
-            datasets.on('value', function(snapshot) {   
+            datasets.on('value', function(snapshot) {
+
                 var data_count = 0;
                 snapshot.forEach(function(childSnapshot) {
                     data_count = data_count + 1;
                 });
                 document.getElementById("count_data").innerHTML = data_count;
+            });
+
+
+            var data = {
+                labels: [],
+                datasets: [{
+                    label: 'ALAXAN',
+                    data: [],
+                    fill: false,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHitRadius: 10,
+                },
+                {
+                    label: "",
+                    data: [],
+                    fill: false,
+                    backgroundColor: "#ff1a1a",
+                    borderColor: "#ff1a1a",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,193,192,1)",
+                    pointBackgroundColor: "red",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,199,192,3)",
+                    pointHoverBorderColor: "rgba(224,220,223,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHitRadius: 10,
+                }]
+            }
+            var context= document.querySelector('#graph').getContext('2d');
+            var myNewChart = new Chart(context , {
+                type: "line",
+                data: data, 
             });
 
             $("#login").on('submit',function(event){
