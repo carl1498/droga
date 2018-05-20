@@ -209,6 +209,7 @@ h2, h3,p{
     </div>
 
     <div id="user_div">
+       
         <div class="wrapper">
             <div class="sidebar" data-color="azure" data-background-color="white" style="background-color: #212F3C;" data-image="../assets/img/sidebar-1.jpg">
                 <div class="logo" align="center">
@@ -246,6 +247,7 @@ h2, h3,p{
             </div>
 
             <div class="main-panel">
+
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
                     <div class="container-fluid">
@@ -389,6 +391,27 @@ h2, h3,p{
                         </div>
                     </div>
                 </div>
+                <div id="delete_modal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title">Delete Data Set</h1>
+                            </div>
+                            <div class="modal-body">                              
+                                   
+                                    <h4 align="center">Are you sure?</h4>
+                                    
+                                  
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger delete_data">Delete</button>&nbsp&nbsp
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
             
                 <footer class="footer ">
                     <div class="container-fluid">
@@ -434,6 +457,7 @@ h2, h3,p{
     var imageFile;
     var imagesize=0;
     var ix=0;
+    var id_delete;
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
@@ -499,6 +523,7 @@ h2, h3,p{
 
         $(document).ready(function() {
             displayImages();
+            
             $("#add").on('click',function(){
                 $("#myProgress").hide();
                 $('#upload_drug').modal('show');
@@ -647,6 +672,7 @@ h2, h3,p{
         window.location.reload();
     }
 
+
     function uploadImageAsPromise () {
       var namedrug = $("#data_drug").val();
       var key=null;
@@ -736,8 +762,21 @@ h2, h3,p{
             });
         }
     }
+    
             
     function displayImages(user){
+       $(document).on("click",".remove",function(){
+            $('#delete_modal').modal('show');
+                id_delete = this.id;
+            
+          });
+       $('.delete_data').on('click',function(){
+                 firebase.database().ref().child('/DATASETS/'+id_delete).remove();
+                 window.alert('DATA SET DELETED');
+                 $('#delete_modal').modal('hide');
+              
+            })
+        
         var dataDisplay = firebase.database().ref('DATASETS');
         dataDisplay.on('value',function(snapshot){
             var datasets = snapshot.val(); 
@@ -750,25 +789,43 @@ h2, h3,p{
                         currentRow = document.createElement("div");
                         $(currentRow).addClass("row");
                         $("#image_display").append(currentRow);
+
                     }
+                    var maoni = Object.keys(datasets)[i];
                     var col = document.createElement("div");
-                    $(col).addClass("col-lg-4");
+                    $(col).addClass("picture col-lg-4");
+                    $(col).css("position","relative");
+                    $(col).attr("id",Object.keys(datasets)[i]);
                     var image= document.createElement("img");
+                    var anchor= document.createElement("button");
+                    var del= document.createElement("img");
                     image.src= currentData.url;
+                    del.src="../assets/img/delete.png";
+                    $(anchor).attr("id",Object.keys(datasets)[i]);
+                    $(anchor).addClass("remove");
+                    $(anchor).css("background-color","transparent");
+                    $(anchor).css("border","none");
+                    $(anchor).css("cursor","pointer");
                     $(image).addClass("contentImage");
                     $(image).css("width",300);
                     $(image).css("height",300);
+                    $(anchor).css("position","absolute");
+                    $(anchor).css("top","1px");
+                    $(anchor).css("right","16px");
                     var p = document.createElement("p");
                     $(p).html("Drug Name: "+ currentData.drug)
                     $(p).css("color","white");
                     $(p).addClass("contentCaption");
                     $(col).append(image);
+                    $(anchor).append(del);
+                    $(col).append(anchor);
                     $(col).append(p);
                     $(currentRow).append(col);
                 }
             }     
         });
     }
+
 </script>
 
 <!--   Core JS Files   -->
