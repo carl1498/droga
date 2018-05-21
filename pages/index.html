@@ -452,7 +452,7 @@ h2, h3,p{
                       //myNewChart.data.datasets[0].data[0] = rowIndex;
                     myNewChart.data.datasets[0].data[rowIndex] = alaxan;
                     myNewChart.data.labels[rowIndex] = dates[rowIndex];
-                    myNewChart.datasets[0].label = "ALAXAN";
+                     
                     myNewChart.update();  
                     alaxan++;
                     }else if(childData.drugName=="BIOGESIC"){
@@ -489,7 +489,7 @@ h2, h3,p{
             var data = {
                 labels: [],
                 datasets: [{
-                    label: '',
+                    label: 'ALAXAN',
                     data: [],
                     fill: false,
                     backgroundColor: "rgba(75,192,192,0.4)",
@@ -509,7 +509,7 @@ h2, h3,p{
                     pointHitRadius: 10,
                 },
                 {
-                    label: "",
+                    label: "BIOGESIC",
                     data: [],
                     fill: false,
                     backgroundColor: "#ff1a1a",

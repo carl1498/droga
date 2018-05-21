@@ -146,6 +146,23 @@ h2, h3,p{
     }
     #map { position:absolute; top:0; bottom:0; 
       z-index:0}
+      .popup {
+  text-align:center;
+  }
+.popup .slideshow .image        { display:none; }
+.popup .slideshow .image.active { display:block; }
+.popup .slideshow img {
+  width:100%;
+  }
+.popup .slideshow .caption {
+  background:#eee;
+  padding:10px;
+  }
+.popup .cycle {
+  padding:10px 0 20px;
+  }
+  .popup .cycle a.prev { float:left; }
+  .popup .cycle a.next { float:right; }
 </style>
 
 <body class="wrapper">      
@@ -428,6 +445,8 @@ h2, h3,p{
                     snapshot.forEach(function(childSnapshot) {
 						var childKey = childSnapshot.key;
 						var childData = childSnapshot.val();
+
+						console.log(childData.url);
 						$.ajax({url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
 							street = result.results[0].locations[0].street;
 							place = result.results[0].locations[0].adminArea5;
@@ -438,12 +457,16 @@ h2, h3,p{
 								geometry: {
 									type: 'Point',
 									coordinates: [childData.longitude, childData.latitude]
+									
 								},
 								properties: {
 									'marker-color': '#FF0000',
 									'marker-symbol': 'danger',
-									'description': '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
-									'<br><strong>Fake Drug: </strong>'+childData.drugName ,
+									'images': [
+									            [childData.url,'<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
+									'<br><strong>Fake Drug: </strong>'+childData.drugName]
+									          ]
+     								 
                             	}
                           	}];
                       		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
@@ -451,6 +474,59 @@ h2, h3,p{
                    		rowIndex = rowIndex + 1;
                     });
 				});
+				mapSimple.on('layeradd', function(e) {
+				    var marker = e.layer;
+				    var feature = marker.feature;
+				    var images = feature.properties.images
+				    var slideshowContent = '';
+
+				    for(var i = 0; i < images.length; i++) {
+				        var img = images[i];
+
+				        slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+				                              '<img src="' + img[0] + '" />' +
+				                              '<div class="caption">' + img[1] + '</div>' +
+				                            '</div>';
+				    }
+
+				    // Create custom popup content
+				    var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+				                            '<h2>' + feature.properties.title + '</h2>' +
+				                            '<div class="slideshow">' +
+				                                slideshowContent +
+				                            '</div>' +
+				                             
+				                        '</div>';
+
+				    // http://leafletjs.com/reference.html#popup
+				    marker.bindPopup(popupContent,{
+				        closeButton: false,
+				        minWidth: 320
+				    });
+				});
+			//	mapSimple.setGeoJSON(geoJson);
+
+					// $('#map').on('click', '.popup .cycle a', function() {
+					//     var $slideshow = $('.slideshow'),
+					//         $newSlide;
+
+					//     if ($(this).hasClass('prev')) {
+					//         $newSlide = $slideshow.find('.active').prev();
+					//         if ($newSlide.index() < 0) {
+					//             $newSlide = $('.image').last();
+					//         }
+					//     } else {
+					//         $newSlide = $slideshow.find('.active').next();
+					//         if ($newSlide.index() < 0) {
+					//             $newSlide = $('.image').first();
+					//         }
+					//     }
+
+					//     $slideshow.find('.active').removeClass('active').hide();
+					//     $newSlide.addClass('active').show();
+					//     return false;
+					// });
+
 
                 // set multiple marker
                 // for (var i = 0; i < 250; i++) {}
@@ -485,31 +561,31 @@ h2, h3,p{
 
 
 
-		function geocodeLatLng(geocoder, map, infowindow) {
-			var input = document.getElementById('latlng').value;
-			var latlngStr = input.split(',', 2);
-			var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-			console.log(latlng);
-			geocoder.geocode({'location': latlng}, function(results, status) {
-				if (status === 'OK') {
-					if (results[0]) {
-						map.setZoom(11);
-						var marker = new google.maps.Marker({
-							position: latlng,
-							map: map
-						});
-						infowindow.setContent(results[0].formatted_address);
-						infowindow.open(map, marker);
-      				}
-					else{
-        				window.alert('No results found');
-      				}
-				}
-				else{
-      				window.alert('Geocoder failed due to: ' + status);
-    			}
-  			});
-		}
+		// function geocodeLatLng(geocoder, map, infowindow) {	
+		// 	var input = document.getElementById('latlng').value;
+		// 	var latlngStr = input.split(',', 2);
+		// 	var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+		// 	console.log(latlng);
+		// 	geocoder.geocode({'location': latlng}, function(results, status) {
+		// 		if (status === 'OK') {
+		// 			if (results[0]) {
+		// 				map.setZoom(11);
+		// 				var marker = new google.maps.Marker({
+		// 					position: latlng,
+		// 					map: map
+		// 				});
+		// 				infowindow.setContent(results[0].formatted_address);
+		// 				infowindow.open(map, marker);
+  //     				}
+		// 			else{
+  //       				window.alert('No results found');
+  //     				}
+		// 		}
+		// 		else{
+  //     				window.alert('Geocoder failed due to: ' + status);
+  //   			}
+  // 			});
+		// }
 	});
 </script>
 
