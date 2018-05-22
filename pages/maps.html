@@ -232,7 +232,7 @@ h2, h3,p{
 						<li class="nav-item ">
 							<a class="nav-link" href="../pages/drugs_table.html">
 								<i class="material-icons">content_paste</i>
-								<p>Drugs Table</p>
+								<p>DATASETS</p>
 							</a>
 						</li>
 						<li class="nav-item active  ">
@@ -434,7 +434,7 @@ h2, h3,p{
                     pseudoFullscreen: false 
                }},).setView([7.1907, 125.4553], 9);
 
-
+               var mapLayer = L.mapbox.featureLayer().addTo(mapSimple);
                 var databaseRef = firebase.database().ref('reports');
 				var rowIndex = 1;
 				var street='';
@@ -461,49 +461,70 @@ h2, h3,p{
 								},
 								properties: {
 									'marker-color': '#FF0000',
-									'marker-symbol': 'danger',
-									'images': [
-									            [childData.url,'<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
-									'<br><strong>Fake Drug: </strong>'+childData.drugName]
-									          ]
-     								 
+									'marker-symbol': 'camera',
+									description: '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
+									'<br><strong>Drug: </strong>'+childData.drugName,
+									image: childData.url,
+									// icon: {
+								 //       iconUrl: 'https://www.mapbox.com/mapbox.js/assets/images/astronaut2.png',
+								 //       iconSize: [50, 50], // size of the icon
+								 //        iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+								 //        popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+								 //        className: 'dot'
+								 //      }
                             	}
                           	}];
                       		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
+                      		mapLayer.setGeoJSON(geojson);
                       	}});
                    		rowIndex = rowIndex + 1;
                     });
 				});
-				mapSimple.on('layeradd', function(e) {
-				    var marker = e.layer;
-				    var feature = marker.feature;
-				    var images = feature.properties.images
-				    var slideshowContent = '';
-
-				    for(var i = 0; i < images.length; i++) {
-				        var img = images[i];
-
-				        slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
-				                              '<img src="' + img[0] + '" />' +
-				                              '<div class="caption">' + img[1] + '</div>' +
-				                            '</div>';
-				    }
-
-				    // Create custom popup content
-				    var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
-				                            '<h2>' + feature.properties.title + '</h2>' +
-				                            '<div class="slideshow">' +
-				                                slideshowContent +
+				mapLayer.on('layeradd', function(e) {
+					console.log(e.layer);
+					  var marker = e.layer,
+					    feature = marker.feature;
+					 // marker.setIcon(L.icon(feature.properties.icon));
+					  var content ='<div "class="popup">' +
+				                            '<p style="color:black;font-size:12px;" >' + feature.properties.description + '</p>' +
+				                            '<div class="image" align="center">' +
+				                                '<img src="'+feature.properties.image+'" style="height: 200px; width:200px" align="center">'+ 
 				                            '</div>' +
-				                             
 				                        '</div>';
+					  marker.bindPopup(content);
+					  });
+					
+				 
+				// mapSimple.on('layeradd', function(e) {
+				//     var marker = e.layer;
+				//     var feature = marker.feature;
+				//     var images = feature.properties.images
+				//     var slideshowContent = '';
 
-				    // http://leafletjs.com/reference.html#popup
-				    marker.bindPopup(popupContent,{
-				        closeButton: false,
-				        minWidth: 320
-				    });
-				});
+				//     for(var i = 0; i < images.length; i++) {
+				//         var img = images[i];
+
+				//         slideshowContent += '<div class="image' + (i === 0 ? ' active' : '') + '">' +
+				//                               '<img src="' + img[0] + '" />' +
+				//                               '<div class="caption">' + img[1] + '</div>' +
+				//                             '</div>';
+				//     }
+
+				//     // Create custom popup content
+				//     var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+				//                             '<h2>' + feature.properties.title + '</h2>' +
+				//                             '<div class="slideshow">' +
+				//                                 slideshowContent +
+				//                             '</div>' +
+				                             
+				//                         '</div>';
+
+				//     // http://leafletjs.com/reference.html#popup
+				//     marker.bindPopup(popupContent,{
+				//         closeButton: false,
+				//         minWidth: 320
+				//     });
+				// });
 			//	mapSimple.setGeoJSON(geoJson);
 
 					// $('#map').on('click', '.popup .cycle a', function() {

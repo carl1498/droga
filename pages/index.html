@@ -183,7 +183,7 @@ h2, h3,p{
        
         <div>
             <br><br><br><br>
-            <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80">CRY</h2>
+            <h2 align="center">DES<img src="../assets/img/pills.png" height="80" width="80" style="color: white">CRY</h2>
         </div>
         <h3 align="center">Verification</h3>
         <div align="center">
@@ -214,7 +214,7 @@ h2, h3,p{
                         <li class="nav-item ">
                             <a class="nav-link" href="../pages/drugs_table.html">
                                 <i class="material-icons">content_paste</i>
-                                <p>Drugs Table</p>
+                                <p>DATASETS</p>
                             </a>
                         </li>
                         <li class="nav-item   ">
@@ -289,7 +289,7 @@ h2, h3,p{
                                     <div class="card-footer">
                                         <div class="stats">
                                             <i class="material-icons text-success">style</i>
-                                            <a href="#" class="table text-white" >Add Data Set..</a>
+                                            <a href="#" class="data_add text-white" >Add Data Set..</a>
                                         </div>
                                     </div>
                                 </div>
@@ -297,24 +297,46 @@ h2, h3,p{
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="card card-stats bg-dark text-white">
-                                    <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-header card-header-info card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">gesture</i>
+                                            <i class="material-icons">face</i>
                                         </div>
-                                        <p class="card-category">Solved Issues</p>
-                                        <h2 class="card-title text-white">5
+                                        <p class="card-category">USERS</p>
+                                        <h2 class="card-title text-white" id="user_count">Loading...
                                         </h2>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">local_offer</i> 
-                                            <a href="#" class="table text-white" >Raid Anytime</a>
+                                            <i class="material-icons">supervised_user_circle</i> 
+                                            <a href="#" class="table text-white" >Number of Mobile Users</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card bg-dark text-white">
+                                    <div class="card-header card-header-warning">
+                                        <h4 class="card-title "> REPORTS</h4>
+                                        <p class="card-category">Reported Drugs</p>
+                                    </div>
+                                
+                                    <div class="card-body">
+                                        <div class="table-responsive">                                                                          
+                                            <table  class="table" id="tbl_drug_list">
+                                                <th>Drug Name</th>       
+                                                <th>Authenticity</th>
+                                                <th>Email</th>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
+                                                                       
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <canvas id="graph" style="background-color: none;" ></canvas> 
+                        <!-- <canvas id="graph" style="background-color: none;" ></canvas>  -->
+                        
                     </div>  
 
                 </div>     
@@ -423,55 +445,120 @@ h2, h3,p{
 
         $(document).ready(function() {
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
-                $('.table').on('click',function(){
+                $('.data_add').on('click',function(){
                     var address = window.location.origin;
                     window.location= address+"/pages/drugs_table.html";
                 });
             }
             else{
-                $('.table').on('click',function(){
+                $('.data_add').on('click',function(){
                     var address = window.location.origin;
                     window.location= address+"/pages/drugs_table.html";
                 });
             }
-        
+            var tbldrugs = document.getElementById('tbl_drug_list');
             var databaseRef = firebase.database().ref('reports/');
-            var dates=['January','February','March','April','June','July','August']
+            //var dates=['January','February','March','April','June','July','August']
             var rowIndex = 0;
-            var alaxan=1;
-            var biogesic=1;
+            // var alaxan=1;
+            // var biogesic=1;
             databaseRef.on('value', function(snapshot) { 
                 rowIndex = 0;  
                 snapshot.forEach(function(childSnapshot) {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
+
+                    var row = tbldrugs.insertRow(rowIndex+1);
+                    var DrugName = row.insertCell(0);
+                    var authenticity = row.insertCell(1);
+                    var email = row.insertCell(2);
+                    var lat = row.insertCell(3);
+                    var lng = row.insertCell(4);
                     
-                    console.log(childData);
-                    if(childData.drugName=='ALAXAN'){
+                    DrugName.appendChild(document.createTextNode(childData.drugName));
+                    authenticity.appendChild(document.createTextNode(childData.authenticity));
+                    email.appendChild(document.createTextNode(childData.email));
+                    lat.appendChild(document.createTextNode(childData.latitude));
+                    lng.appendChild(document.createTextNode(childData.longitude));
+                    
+                    // console.log(childData);
+                    // if(childData.drugName=='ALAXAN'){
                         
-                      //myNewChart.data.datasets[0].data[0] = rowIndex;
-                    myNewChart.data.datasets[0].data[rowIndex] = alaxan;
-                    myNewChart.data.labels[rowIndex] = dates[rowIndex];
+                    //   //myNewChart.data.datasets[0].data[0] = rowIndex;
+                    // myNewChart.data.datasets[0].data[rowIndex] = alaxan;
+                    // myNewChart.data.labels[rowIndex] = dates[rowIndex];
                      
-                    myNewChart.update();  
-                    alaxan++;
-                    }else if(childData.drugName=="BIOGESIC"){
-                      //myNewChart.data.datasets[0].data[0] = rowIndex;
-                    myNewChart.data.datasets[1].data[rowIndex] = biogesic;
-                    myNewChart.data.labels[rowIndex] = dates[rowIndex];
-                    myNewChart.data.datasets[1].label = "BIOGESIC";
-                    myNewChart.update();
-                    biogesic++;
-                    }
+                    // myNewChart.update();  
+                    // alaxan++;
+                    // }else if(childData.drugName=="BIOGESIC"){
+                    //   //myNewChart.data.datasets[0].data[0] = rowIndex;
+                    // myNewChart.data.datasets[1].data[rowIndex] = biogesic;
+                    // myNewChart.data.labels[rowIndex] = dates[rowIndex];
+                    // myNewChart.data.datasets[1].label = "BIOGESIC";
+                    // myNewChart.update();
+                    // biogesic++;
+                    // }
                     
                     rowIndex++;
                 });
-                 myNewChart.data.datasets[0].data[0] = rowIndex;
-                    myNewChart.data.datasets[1].data[rowIndex] = rowIndex;
-                    //myNewChart.data.labels[7] = "Newly Added";
-                    myNewChart.update();
+                 // myNewChart.data.datasets[0].data[0] = rowIndex;
+                 //    myNewChart.data.datasets[1].data[rowIndex] = rowIndex;
+                 //    //myNewChart.data.labels[7] = "Newly Added";
+                 //    myNewChart.update();
                 document.getElementById("count_report").innerHTML = rowIndex;
             });
+
+
+
+
+            // var data = {
+            //     labels: [],
+            //     datasets: [{
+            //         label: 'ALAXAN',
+            //         data: [],
+            //         fill: false,
+            //         backgroundColor: "rgba(75,192,192,0.4)",
+            //         borderColor: "rgba(75,192,192,1)",
+            //         borderCapStyle: 'butt',
+            //         borderDash: [],
+            //         borderDashOffset: 0.0,
+            //         borderJoinStyle: 'miter',
+            //         pointBorderColor: "rgba(75,192,192,1)",
+            //         pointBackgroundColor: "#fff",
+            //         pointBorderWidth: 1,
+            //         pointHoverRadius: 5,
+            //         pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            //         pointHoverBorderColor: "rgba(220,220,220,1)",
+            //         pointHoverBorderWidth: 2,
+            //         pointRadius: 5,
+            //         pointHitRadius: 10,
+            //     },
+            //     {
+            //         label: "BIOGESIC",
+            //         data: [],
+            //         fill: false,
+            //         backgroundColor: "#ff1a1a",
+            //         borderColor: "#ff1a1a",
+            //         borderCapStyle: 'butt',
+            //         borderDash: [],
+            //         borderDashOffset: 0.0,
+            //         borderJoinStyle: 'miter',
+            //         pointBorderColor: "rgba(75,193,192,1)",
+            //         pointBackgroundColor: "red",
+            //         pointBorderWidth: 1,
+            //         pointHoverRadius: 5,
+            //         pointHoverBackgroundColor: "rgba(75,199,192,3)",
+            //         pointHoverBorderColor: "rgba(224,220,223,1)",
+            //         pointHoverBorderWidth: 2,
+            //         pointRadius: 5,
+            //         pointHitRadius: 10,
+            //     }]
+            // }
+            // var context= document.querySelector('#graph').getContext('2d');
+            // var myNewChart = new Chart(context , {
+            //     type: "line",
+            //     data: data, 
+            // });
 
             var datasets = firebase.database().ref('DATASETS/');
     
@@ -484,56 +571,19 @@ h2, h3,p{
                 });
                 document.getElementById("count_data").innerHTML = data_count;
             });
+            
+            var user_info = firebase.database().ref('user_info/');
+    
+    
+            user_info.on('value', function(snapshot) {
 
-
-            var data = {
-                labels: [],
-                datasets: [{
-                    label: 'ALAXAN',
-                    data: [],
-                    fill: false,
-                    backgroundColor: "rgba(75,192,192,0.4)",
-                    borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHitRadius: 10,
-                },
-                {
-                    label: "BIOGESIC",
-                    data: [],
-                    fill: false,
-                    backgroundColor: "#ff1a1a",
-                    borderColor: "#ff1a1a",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,193,192,1)",
-                    pointBackgroundColor: "red",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,199,192,3)",
-                    pointHoverBorderColor: "rgba(224,220,223,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHitRadius: 10,
-                }]
-            }
-            var context= document.querySelector('#graph').getContext('2d');
-            var myNewChart = new Chart(context , {
-                type: "line",
-                data: data, 
+                var user_count = 0;
+                snapshot.forEach(function(childSnapshot) {
+                    user_count = user_count + 1;
+                });
+                document.getElementById("user_count").innerHTML = user_count;
             });
+            
 
             $("#login").on('submit',function(event){
                 $('#loader_modal').modal('show');
