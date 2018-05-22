@@ -375,6 +375,18 @@ h2, h3,p{
                                         <label style="color: black;">Drug Name</label>
                                         <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
                                     </div>
+                                    <div class="form-group">                                            
+                                        <label style="color: black;">Range</label>
+                                        <input type="text" class="form-control" id="range" placeholder="Range" name="range">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: black;">Distance</label>
+                                        <input type="text" class="form-control" id="distance" placeholder="Distance" name="distance">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: black;">Minimum Distance</label>
+                                        <input type="text" class="form-control" id="m_distance" placeholder="Minimum Distance" name="m_distance">
+                                    </div>
                                     <h4>Upload Data Sets</h4>
                                     <label class="upload-group">
                                         <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
@@ -384,6 +396,43 @@ h2, h3,p{
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default add_drug" onclick="uploadImageAsPromise();">Save</button>&nbsp&nbsp
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="update_drug" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Update Adjustments</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="update_set">
+                                    <div class="form-group">
+                                        <label style="color: black;">Drug Name</label>
+                                        <input type="text" class="form-control" id="data_drug_u" placeholder="Drug Name" name="data_drug">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="idupdate" placeholder="" name="idupdate" value="" hidden="">                                            
+                                        <label style="color: black;">Range</label>
+                                        <input type="text" class="form-control" id="range_u" placeholder="Range" name="range">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: black;">Distance</label>
+                                        <input type="text" class="form-control" id="distance_u" placeholder="Distance" name="distance">
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="color: black;">Minimum Distance</label>
+                                        <input type="text" class="form-control" id="m_distance_u" placeholder="Minimum Distance" name="m_distance">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-default up_drug">Save</button>&nbsp&nbsp
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </form>
@@ -458,6 +507,7 @@ h2, h3,p{
     var imagesize=0;
     var ix=0;
     var id_delete;
+    var update_id;
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyDUjaNAD6BhgCQCf1WqKvhBE_iV5bGlZ44",
@@ -503,7 +553,7 @@ h2, h3,p{
                         document.getElementById("verification").style.display = "block";
                         $('#loader_modal').modal('hide');
                         if(user != null){
-                            console.log(email_verified);
+                           
                         }
                     }
                     else{
@@ -676,7 +726,7 @@ h2, h3,p{
     function uploadImageAsPromise () {
       var namedrug = $("#data_drug").val();
       var key=null;
-        if($("#data_drug").val()==""){
+        if($("#data_drug").val()==""&&($("#range").val()=="")&&($("#distance").val()=="")&&($("#m_distance").val()=="")){
                 window.alert("Error : Fill Up Everything");
         }
         else{
@@ -715,16 +765,22 @@ h2, h3,p{
                               snapshot.forEach(function(childSnapshot) {  
                                   var childKey = childSnapshot.key;
                                   var childData = childSnapshot.val();
-                          
+                                
                                  if(childData.drug.toUpperCase()==namedrug.toUpperCase()){
                                     key= childKey;
                                    var postKey = firebase.database().ref('/DATASETS/'+key).push().key;
                                     var drugname= $("#data_drug").val();
+                                    var range= $("#range").val();
+                                    var distance= $("#distance").val();
+                                    var m_distance= $("#m_distance").val();
                                     var downloadURL = task.snapshot.downloadURL;
                                     var updates={};
                                     var postData = {
                                         url: downloadURL,
                                         drug: drugname.toUpperCase(),
+                                        range:range,
+                                        distance:distance,
+                                        m_distance:m_distance
                                     };
                                     updates['/DATASETS/'+key]=postData;
                                    firebase.database().ref().update(updates);
@@ -740,11 +796,17 @@ h2, h3,p{
                           if(key==null){
                              var postKey = firebase.database().ref('/DATASETS/').push().key;
                           var drugname= $("#data_drug").val();
+                          var range= $("#range").val();
+                          var distance= $("#distance").val();
+                          var m_distance= $("#m_distance").val();
                           var downloadURL = task.snapshot.downloadURL;
                           var updates={};
                           var postData = {
                               url: downloadURL,
                               drug: drugname.toUpperCase(),
+                              range:range,
+                              distance:distance,
+                              m_distance:m_distance
                           };
                           updates['/DATASETS/'+postKey]=postData;
                           firebase.database().ref().update(updates);
@@ -763,7 +825,8 @@ h2, h3,p{
         }
     }
     
-            
+       var idupdate;  
+       var downloadURL;   
     function displayImages(user){
        $(document).on("click",".remove",function(){
             $('#delete_modal').modal('show');
@@ -776,7 +839,54 @@ h2, h3,p{
                  $('#delete_modal').modal('hide');
               
             })
-        
+         $(document).on("click",".update_data",function(){
+            idupdate = this.id;
+            $('#update_drug').modal('show');
+              document.getElementById("idupdate").value = idupdate;
+          });
+          $("#update_drug").on("shown.bs.modal", function(){
+               var datasetupdate = firebase.database().ref('DATASETS');
+            datasetupdate.once('value', function(snapshot) {
+              snapshot.forEach(function(childSnapshot) {  
+                  var childKey = childSnapshot.key;
+                  var childData = childSnapshot.val();
+                  if(childKey==idupdate){
+                    $('#data_drug_u').val(childData.drug);
+                    document.getElementById("range_u").value = childData.range;
+                    document.getElementById("distance_u").value = childData.distance;
+                    document.getElementById("m_distance_u").value = childData.m_distance;
+                    downloadURL=childData.url;
+                  }
+                
+              });
+            });
+            });
+         $('.update_set').on('submit',function(e){
+            e.preventDefault();
+            var dataArray = $(".update_set").serializeArray();
+            var drug=dataArray[0].value;
+            var id_data=dataArray[1].value;
+            var range1=dataArray[2].value;
+            var distance1=dataArray[3].value;
+            var m1=dataArray[4].value;
+
+         
+            //var postKey = firebase.database().ref('/DATASETS/'+id_data).push().key;                           
+            var updates={};
+            var postData = {
+                distance:distance1,
+                drug:drug,
+                m_distance:m1,
+                range:range1,
+                url:downloadURL
+            };
+            updates['/DATASETS/'+id_data]=postData;
+           firebase.database().ref().update(updates);
+                 window.alert("Update Completed!");
+                 $('#update_drug').modal('hide'); 
+                 downloadURL=null;
+                 idupdate=null;                
+            })
         var dataDisplay = firebase.database().ref('DATASETS');
         dataDisplay.on('value',function(snapshot){
             var datasets = snapshot.val(); 
@@ -799,10 +909,18 @@ h2, h3,p{
                     var image= document.createElement("img");
                     var anchor= document.createElement("button");
                     var del= document.createElement("img");
+                    var upd= document.createElement("button");
                     image.src= currentData.url;
                     del.src="../assets/img/delete.png";
                     $(anchor).attr("id",Object.keys(datasets)[i]);
                     $(anchor).addClass("remove");
+                    $(upd).addClass("update_data btn  btn-sm");
+                    $(upd).append("<i class='material-icons right'>edit</i>");
+                    $(upd).attr("id",Object.keys(datasets)[i]);
+                    $(upd).css("background-color","transparent");
+                    $(upd).css("color","orange");
+                    $(upd).css("border","none");
+                    $(upd).css("cursor","pointer");
                     $(anchor).css("background-color","transparent");
                     $(anchor).css("border","none");
                     $(anchor).css("cursor","pointer");
@@ -812,14 +930,18 @@ h2, h3,p{
                     $(anchor).css("position","absolute");
                     $(anchor).css("top","1px");
                     $(anchor).css("right","16px");
+                    $(upd).css("position","absolute");
+                    $(upd).css("top","-7px");
+                    $(upd).css("left","14px");
                     var p = document.createElement("p");
-                    $(p).html("Drug Name: "+ currentData.drug)
+                    $(p).html("<strong>Drug Name:</strong> "+ currentData.drug+"&nbsp&nbsp&nbsp Range: "+ currentData.range+"<br> Distance: "+ currentData.distance+"&nbsp&nbsp&nbsp Min Distance: "+ currentData.m_distance)
                     $(p).css("color","white");
                     $(p).addClass("contentCaption");
                     $(col).append(image);
                     $(anchor).append(del);
                     $(col).append(anchor);
                     $(col).append(p);
+                    $(col).append(upd);
                     $(currentRow).append(col);
                 }
             }     
