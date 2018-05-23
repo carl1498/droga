@@ -375,7 +375,7 @@ h2, h3,p{
                                         <label style="color: black;">Drug Name</label>
                                         <input type="text" class="form-control" id="data_drug" placeholder="Drug Name" name="data_drug">
                                     </div>
-                                    <div class="form-group">                                            
+                                   <!--  <div class="form-group">                                            
                                         <label style="color: black;">Range</label>
                                         <input type="text" class="form-control" id="range" placeholder="Range" name="range">
                                     </div>
@@ -386,7 +386,7 @@ h2, h3,p{
                                     <div class="form-group">
                                         <label style="color: black;">Minimum Distance</label>
                                         <input type="text" class="form-control" id="m_distance" placeholder="Minimum Distance" name="m_distance">
-                                    </div>
+                                    </div> -->
                                     <h4>Upload Data Sets</h4>
                                     <label class="upload-group">
                                         <input style="color: transparent;" type="file" name="file" id="file" class="upload-group">
@@ -419,17 +419,17 @@ h2, h3,p{
                                     </div>
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="idupdate" placeholder="" name="idupdate" value="" hidden="">                                            
-                                        <label style="color: black;">Range</label>
-                                        <input type="text" class="form-control" id="range_u" placeholder="Range" name="range">
+                                       <!--  <label style="color: black;">Range</label>
+                                        <input type="text" class="form-control" id="range_u" placeholder="Range" name="range"> -->
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label style="color: black;">Distance</label>
                                         <input type="text" class="form-control" id="distance_u" placeholder="Distance" name="distance">
                                     </div>
                                     <div class="form-group">
                                         <label style="color: black;">Minimum Distance</label>
                                         <input type="text" class="form-control" id="m_distance_u" placeholder="Minimum Distance" name="m_distance">
-                                    </div>
+                                    </div> -->
 
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-default up_drug">Save</button>&nbsp&nbsp
@@ -589,7 +589,7 @@ h2, h3,p{
 
             $('#upload_drug').on('hidden.bs.modal', function (e) {
                 $("#data_drug").val('');
-                $("#angle").val('');
+                // $("#angle").val('');
                 $('#count').text("No Data Stored");
             })
 
@@ -628,32 +628,32 @@ h2, h3,p{
     });
     //END FIREBASE
 
-    var tbldrugs = document.getElementById('tbl_drug_list');
-    var databaseRef = firebase.database().ref('reports');
-    var rowIndex = 1;
+    //var tbldrugs = document.getElementById('tbl_drug_list');
+    // var databaseRef = firebase.database().ref('reports');
+    // var rowIndex = 1;
 
-    databaseRef.on('value', function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
+    // databaseRef.on('value', function(snapshot) {
+    //     snapshot.forEach(function(childSnapshot) {
+    //         var childKey = childSnapshot.key;
+    //         var childData = childSnapshot.val();
     
-            var row = tbldrugs.insertRow(rowIndex);
-            var DrugName = row.insertCell(0);
-            var authenticity = row.insertCell(1);
-            var email = row.insertCell(2);
-            var lat = row.insertCell(3);
-            var lng = row.insertCell(4);
+    //         var row = tbldrugs.insertRow(rowIndex);
+    //         var DrugName = row.insertCell(0);
+    //         var authenticity = row.insertCell(1);
+    //         var email = row.insertCell(2);
+    //         var lat = row.insertCell(3);
+    //         var lng = row.insertCell(4);
             
-            DrugName.appendChild(document.createTextNode(childData.drugName));
-            authenticity.appendChild(document.createTextNode(childData.authenticity));
-            email.appendChild(document.createTextNode(childData.email));
-            lat.appendChild(document.createTextNode(childData.latitude));
-            lng.appendChild(document.createTextNode(childData.longitude));
+    //         DrugName.appendChild(document.createTextNode(childData.drugName));
+    //         authenticity.appendChild(document.createTextNode(childData.authenticity));
+    //         email.appendChild(document.createTextNode(childData.email));
+    //         lat.appendChild(document.createTextNode(childData.latitude));
+    //         lng.appendChild(document.createTextNode(childData.longitude));
             
    
-            rowIndex = rowIndex + 1;
-        });
-    });
+    //         rowIndex = rowIndex + 1;
+    //     });
+    // });
    
     function save_drug(){
         var drug_name = document.getElementById('drug_name').value;
@@ -770,17 +770,17 @@ h2, h3,p{
                                     key= childKey;
                                    var postKey = firebase.database().ref('/DATASETS/'+key).push().key;
                                     var drugname= $("#data_drug").val();
-                                    var range= $("#range").val();
-                                    var distance= $("#distance").val();
-                                    var m_distance= $("#m_distance").val();
+                                    // var range= $("#range").val();
+                                    // var distance= $("#distance").val();
+                                    // var m_distance= $("#m_distance").val();
                                     var downloadURL = task.snapshot.downloadURL;
                                     var updates={};
                                     var postData = {
                                         url: downloadURL,
                                         drug: drugname.toUpperCase(),
-                                        range:range,
-                                        distance:distance,
-                                        m_distance:m_distance
+                                        // range:range,
+                                        // distance:distance,
+                                        // m_distance:m_distance
                                     };
                                     updates['/DATASETS/'+key]=postData;
                                    firebase.database().ref().update(updates);
@@ -796,17 +796,17 @@ h2, h3,p{
                           if(key==null){
                              var postKey = firebase.database().ref('/DATASETS/').push().key;
                           var drugname= $("#data_drug").val();
-                          var range= $("#range").val();
-                          var distance= $("#distance").val();
-                          var m_distance= $("#m_distance").val();
+                          // var range= $("#range").val();
+                          // var distance= $("#distance").val();
+                          // var m_distance= $("#m_distance").val();
                           var downloadURL = task.snapshot.downloadURL;
                           var updates={};
                           var postData = {
                               url: downloadURL,
                               drug: drugname.toUpperCase(),
-                              range:range,
-                              distance:distance,
-                              m_distance:m_distance
+                              // range:range,
+                              // distance:distance,
+                              // m_distance:m_distance
                           };
                           updates['/DATASETS/'+postKey]=postData;
                           firebase.database().ref().update(updates);
@@ -852,9 +852,9 @@ h2, h3,p{
                   var childData = childSnapshot.val();
                   if(childKey==idupdate){
                     $('#data_drug_u').val(childData.drug);
-                    document.getElementById("range_u").value = childData.range;
-                    document.getElementById("distance_u").value = childData.distance;
-                    document.getElementById("m_distance_u").value = childData.m_distance;
+                    // document.getElementById("range_u").value = childData.range;
+                    // document.getElementById("distance_u").value = childData.distance;
+                    // document.getElementById("m_distance_u").value = childData.m_distance;
                     downloadURL=childData.url;
                   }
                 
@@ -866,18 +866,18 @@ h2, h3,p{
             var dataArray = $(".update_set").serializeArray();
             var drug=dataArray[0].value;
             var id_data=dataArray[1].value;
-            var range1=dataArray[2].value;
-            var distance1=dataArray[3].value;
-            var m1=dataArray[4].value;
+            // var range1=dataArray[2].value;
+            // var distance1=dataArray[3].value;
+            // var m1=dataArray[4].value;
 
          
             //var postKey = firebase.database().ref('/DATASETS/'+id_data).push().key;                           
             var updates={};
             var postData = {
-                distance:distance1,
+                //distance:distance1,
                 drug:drug,
-                m_distance:m1,
-                range:range1,
+                // m_distance:m1,
+                // range:range1,
                 url:downloadURL
             };
             updates['/DATASETS/'+id_data]=postData;
@@ -934,7 +934,7 @@ h2, h3,p{
                     $(upd).css("top","-7px");
                     $(upd).css("left","14px");
                     var p = document.createElement("p");
-                    $(p).html("<strong>Drug Name:</strong> "+ currentData.drug+"&nbsp&nbsp&nbsp Range: "+ currentData.range+"<br> Distance: "+ currentData.distance+"&nbsp&nbsp&nbsp Min Distance: "+ currentData.m_distance)
+                    $(p).html("<strong>Drug Name:</strong> "+ currentData.drug)
                     $(p).css("color","white");
                     $(p).addClass("contentCaption");
                     $(col).append(image);
