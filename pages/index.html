@@ -168,7 +168,6 @@ h2, h3,p{
             <input type="password" placeholder="Password..." id="password_field" />
 
             <button type="submit">Login</button><br>
-            <button type="button" id="create_account" class="btn bootstrap-notify">Create New Account</button>
         </form>
     </div>
     
@@ -202,6 +201,7 @@ h2, h3,p{
                     Tip 2: you can also add an image using data-image tag-->
                 <div class="logo" align="center">
                     <h2> DES<img src="../assets/img/pills.png" height="70" width="70">CRY</h2>
+                    <button class="add_admin btn bootstrap-notify btn-sm" style="background-color: transparent;"><i class="material-icons text-info">add</i></button>
                 </div>
                 <div class="sidebar-wrapper">
                     <ul class="nav">
@@ -232,6 +232,35 @@ h2, h3,p{
                     </ul>
                 </div>
             </div>
+            <div id="add_admin_modal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Add Admin</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="add_admin_form">
+
+                                    <div class="form-group">
+                                            <input type="text" class="form-control" id="id_drug" placeholder="" name="id_drug" hidden="">
+                                        <label style="color: black;">Email</label>
+                                        <input type="email" class="form-control" id="email_admin" placeholder="Email" name="email_admin">
+                                    </div>                                                                       
+                                    <div class="form-group">
+                                        <label style="color: black;">Password</label>
+                                        <input type="password" class="form-control" id="password_admin" placeholder="Password" name="password_admin">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success save_admin">Save</button>&nbsp&nbsp
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                           </div>
+                        </div>
+                    </div>
+                </div>
         
             <div class="main-panel">
                 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
@@ -444,6 +473,7 @@ h2, h3,p{
 
 
         $(document).ready(function() {
+
             if (location.hostname === "localhost" || location.hostname === "127.0.0.1"){
                 $('.data_add').on('click',function(){
                     var address = window.location.origin;
@@ -583,7 +613,20 @@ h2, h3,p{
                 });
                 document.getElementById("user_count").innerHTML = user_count;
             });
-            
+            $(".save_admin").on('click',function(event){
+                event.preventDefault();
+                // $('#add_admin_modal').modal('show');
+                var userEmail = document.getElementById("email_admin").value;
+                var userPass = document.getElementById("password_admin").value;                                
+                firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                    // Handle Errors here.
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    window.alert("Error : " + errorMessage);
+                    $('#add_admin_modal').modal('hide');
+                });
+            });
+
 
             $("#login").on('submit',function(event){
                 $('#loader_modal').modal('show');
@@ -598,20 +641,20 @@ h2, h3,p{
                 });
             });
 
-            $("#create_account").on('click',function(event){
-                $('#loader_modal').modal('show');
+            $(".add_admin").on('click',function(event){
+                $('#add_admin_modal').modal('show');
                 event.preventDefault();
-                var userEmail = document.getElementById("email_field").value;
-                var userPass = document.getElementById("password_field").value;
+                // var userEmail = document.getElementById("email_field").value;
+                // var userPass = document.getElementById("password_field").value;
 
-                firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
-                    // Handle Errors here.
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    window.alert("Error : " + errorMessage);
-                });
+                // firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+                //     // Handle Errors here.
+                //     var errorCode = error.code;
+                //     var errorMessage = error.message;
+                //     window.alert("Error : " + errorMessage);
+                // });
             });
-
+            
             $("#verify").on('click',function(event){                
                 event.preventDefault();
                 var user = firebase.auth().currentUser;
