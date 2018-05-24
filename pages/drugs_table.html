@@ -735,14 +735,15 @@ h2, h3,p{
 
                 //Upload file
                 var task = storageRef.put(imageFile);
-
+                 $("#myProgress").show();          
                 //Update progress bar
                 task.on('state_changed',
                     function progress(snapshot){
                         var percentage = snapshot.bytesTransferred / snapshot.totalBytes * 100;
+                        console.log(parseInt(percentage));
                         var elem = document.getElementById("myBar"); 
                         var width = snapshot.bytesTransferred;
-                        var id = setInterval(frame, 10);
+                         setInterval(frame, 12);
                         function frame() {
                             if (width >= 100) {
                                 clearInterval(snapshot.bytesTransferred / snapshot.totalBytes * 100);
@@ -753,7 +754,7 @@ h2, h3,p{
                                 elem.innerHTML = width * 1 + '%';
                             }
                         }           
-                        $("#myProgress").show();           
+                        
                     },
                     
                     function error(err){},

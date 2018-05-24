@@ -475,26 +475,38 @@ h2, h3,p{
                             	}
                           	}];
                       		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
-                      		mapLayer.setGeoJSON(geojson);
+							 mapLayer.setGeoJSON(geojson);
+							 // 	console.log(mapLayer._geojson[0].properties.image);
+							 // var content ='<div "class="popup">' +
+				    //                         '<p style="color:black;font-size:12px;" >' + mapLayer._geojson[0].properties.description + '</p>' +
+				    //                         '<div class="image" align="center">' +
+				    //                             '<img src="'+mapLayer._geojson[0].properties.image+'" style="height: 200px; width:200px" align="center">'+ 
+				    //                         '</div>' +
+				    //                     '</div>';
+					 
+				    //                      mapLayer.bindPopup(content);
                       	}});
+
                    		rowIndex = rowIndex + 1;
+                   	
+
                     });
+                    
+     //                mapLayer.on('layeradd', function(e) {
+					// console.log(e.layer);
+					//   var marker = e.layer,
+					//     feature = marker.feature;
+					//  // marker.setIcon(L.icon(feature.properties.icon));
+					//   var content ='<div "class="popup">' +
+				 //                            '<p style="color:black;font-size:12px;" >' + feature.properties.description + '</p>' +
+				 //                            '<div class="image" align="center">' +
+				 //                                '<img src="'+feature.properties.image+'" style="height: 200px; width:200px" align="center">'+ 
+				 //                            '</div>' +
+				 //                        '</div>';
+					//   marker.bindPopup(content);
+					//   });
 				});
-				mapLayer.on('layeradd', function(e) {
-					console.log(e.layer);
-					  var marker = e.layer,
-					    feature = marker.feature;
-					 // marker.setIcon(L.icon(feature.properties.icon));
-					  var content ='<div "class="popup">' +
-				                            '<p style="color:black;font-size:12px;" >' + feature.properties.description + '</p>' +
-				                            '<div class="image" align="center">' +
-				                                '<img src="'+feature.properties.image+'" style="height: 200px; width:200px" align="center">'+ 
-				                            '</div>' +
-				                        '</div>';
-					  marker.bindPopup(content);
-					  });
-					
-				 
+				
 				// mapSimple.on('layeradd', function(e) {
 				//     var marker = e.layer;
 				//     var feature = marker.feature;

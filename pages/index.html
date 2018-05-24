@@ -350,16 +350,24 @@ h2, h3,p{
                                     </div>
                                 
                                     <div class="card-body">
-                                        <div class="table-responsive">                                                                          
+                                         <table class="table">
+                                                
+                                            </table>
+                                        <div class="table-responsive " id="table_list">                                                                          
                                             <table  class="table" id="tbl_drug_list">
+                                                
+                                                <tbody>
                                                 <th>Drug Name</th>       
                                                 <th>Authenticity</th>
                                                 <th>Email</th>
                                                 <th>Latitude</th>
                                                 <th>Longitude</th>
-                                                                       
+                                                <th>Image</th>
+                                                </tbody>                 
                                             </table>
+                                            
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -471,6 +479,49 @@ h2, h3,p{
         }
 
 
+        var  row;  
+            var databaseRef = firebase.database().ref('reports/');
+            //var dates=['January','February','March','April','June','July','August']
+            var rowIndex = 0;
+            // var alaxan=1;
+            // var biogesic=1;
+            databaseRef.on('value', function(snapshot) { 
+                    if(row!=null){
+                         $( "#tbl_drug_list tbody tr td" ).each( function(){
+                         this.parentNode.removeChild( this ); 
+                        });
+                    }
+                rowIndex = 0;  
+                snapshot.forEach(function(childSnapshot) {
+                    console.log('ayhay');
+                    var tbldrugs = document.getElementById('tbl_drug_list');
+                    
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+                    var img = "<img src="+childData.url+"  style="+'width:100px;height:100px;'+"/>";
+                    row = tbldrugs.insertRow(rowIndex+1);
+                    var DrugName = row.insertCell(0);
+                    var authenticity = row.insertCell(1);
+                    var email = row.insertCell(2);
+                    var lat = row.insertCell(3);
+                    var lng = row.insertCell(4);
+                    var d_image=row.insertCell(5);
+
+                    
+                    DrugName.appendChild(document.createTextNode(childData.drugName));
+                    authenticity.appendChild(document.createTextNode(childData.authenticity));
+                    email.appendChild(document.createTextNode(childData.email));
+                    lat.appendChild(document.createTextNode(childData.latitude));
+                    lng.appendChild(document.createTextNode(childData.longitude));
+                     d_image.innerHTML = img;
+                    rowIndex++;
+                });
+                 
+                document.getElementById("count_report").innerHTML = rowIndex;
+            });
+
+
+
 
         $(document).ready(function() {
 
@@ -486,58 +537,7 @@ h2, h3,p{
                     window.location= address+"/pages/drugs_table.html";
                 });
             }
-            var tbldrugs = document.getElementById('tbl_drug_list');
-            var databaseRef = firebase.database().ref('reports/');
-            //var dates=['January','February','March','April','June','July','August']
-            var rowIndex = 0;
-            // var alaxan=1;
-            // var biogesic=1;
-            databaseRef.on('value', function(snapshot) { 
-                rowIndex = 0;  
-                snapshot.forEach(function(childSnapshot) {
-                    var childKey = childSnapshot.key;
-                    var childData = childSnapshot.val();
-
-                    var row = tbldrugs.insertRow(rowIndex+1);
-                    var DrugName = row.insertCell(0);
-                    var authenticity = row.insertCell(1);
-                    var email = row.insertCell(2);
-                    var lat = row.insertCell(3);
-                    var lng = row.insertCell(4);
-                    
-                    DrugName.appendChild(document.createTextNode(childData.drugName));
-                    authenticity.appendChild(document.createTextNode(childData.authenticity));
-                    email.appendChild(document.createTextNode(childData.email));
-                    lat.appendChild(document.createTextNode(childData.latitude));
-                    lng.appendChild(document.createTextNode(childData.longitude));
-                    
-                    // console.log(childData);
-                    // if(childData.drugName=='ALAXAN'){
-                        
-                    //   //myNewChart.data.datasets[0].data[0] = rowIndex;
-                    // myNewChart.data.datasets[0].data[rowIndex] = alaxan;
-                    // myNewChart.data.labels[rowIndex] = dates[rowIndex];
-                     
-                    // myNewChart.update();  
-                    // alaxan++;
-                    // }else if(childData.drugName=="BIOGESIC"){
-                    //   //myNewChart.data.datasets[0].data[0] = rowIndex;
-                    // myNewChart.data.datasets[1].data[rowIndex] = biogesic;
-                    // myNewChart.data.labels[rowIndex] = dates[rowIndex];
-                    // myNewChart.data.datasets[1].label = "BIOGESIC";
-                    // myNewChart.update();
-                    // biogesic++;
-                    // }
-                    
-                    rowIndex++;
-                });
-                 // myNewChart.data.datasets[0].data[0] = rowIndex;
-                 //    myNewChart.data.datasets[1].data[rowIndex] = rowIndex;
-                 //    //myNewChart.data.labels[7] = "Newly Added";
-                 //    myNewChart.update();
-                document.getElementById("count_report").innerHTML = rowIndex;
-            });
-
+            
 
 
 
