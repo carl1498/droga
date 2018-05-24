@@ -441,18 +441,17 @@ h2, h3,p{
 				var place='';
 				var city='';
 				var country='';
+				var geojson;
 				databaseRef.on('value', function(snapshot) {
                     snapshot.forEach(function(childSnapshot) {
 						var childKey = childSnapshot.key;
 						var childData = childSnapshot.val();
-
-						console.log(childData.url);
 						$.ajax({url: "https://www.mapquestapi.com/geocoding/v1/reverse?key=GjXdAfoF0XL1JdpVSEAP34B2YAIEvRno&location="+childData.latitude+","+childData.longitude+"&includeRoadMetadata=true&includeNearestIntersection=true", success: function(result){
 							street = result.results[0].locations[0].street;
 							place = result.results[0].locations[0].adminArea5;
 							city = result.results[0].locations[0].adminArea3;
 							country = result.results[0].locations[0].adminArea1;
-							var geojson = [{
+							geojson = [{
 								type: 'Feature',
 								geometry: {
 									type: 'Point',
@@ -464,6 +463,7 @@ h2, h3,p{
 									'marker-symbol': 'camera',
 									description: '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
 									'<br><strong>Drug: </strong>'+childData.drugName+'<br><strong>Reported By: </strong>'+childData.email,
+										image: childData.url,
 									// icon: {
 								 //       iconUrl: 'https://www.mapbox.com/mapbox.js/assets/images/astronaut2.png',
 								 //       iconSize: [50, 50], // size of the icon
@@ -473,24 +473,28 @@ h2, h3,p{
 								 //      }
                             	}
                           	}];
+                          	
+
                       		var myLayer = L.mapbox.featureLayer().setGeoJSON(geojson).addTo(mapSimple);
-							 mapLayer.setGeoJSON(geojson);
-							 // 	console.log(mapLayer._geojson[0].properties.image);
-							 // var content ='<div "class="popup">' +
-				    //                         '<p style="color:black;font-size:12px;" >' + mapLayer._geojson[0].properties.description + '</p>' +
-				    //                         '<div class="image" align="center">' +
-				    //                             '<img src="'+mapLayer._geojson[0].properties.image+'" style="height: 200px; width:200px" align="center">'+ 
-				    //                         '</div>' +
-				    //                     '</div>';
-					 
-				    //                      mapLayer.bindPopup(content);
+                      		 console.log(myLayer._geojson[0]);
+                      		  var content ='<div "class="popup">' +
+				                            '<p style="color:black;font-size:12px;" >' + myLayer._geojson[0].properties.description + '</p>' +
+				                            '<div class="image" align="center">' +
+				                                '<img src="'+myLayer._geojson[0].properties.image+'" style="height: 200px; width:200px" align="center">'+ 
+				                            '</div>' +
+				                        '</div>';
+				                         
+							 myLayer.setGeoJSON(geojson);
+							 myLayer.bindPopup(content);
+							 
                       	}});
 
                    		rowIndex = rowIndex + 1;
                    	
 
                     });
-
+                    	
+				         	          
      //                mapLayer.on('layeradd', function(e) {
 					// console.log(e.layer);
 					//   var marker = e.layer,
