@@ -463,8 +463,7 @@ h2, h3,p{
 									'marker-color': '#FF0000',
 									'marker-symbol': 'camera',
 									description: '<strong>Location:</strong> '+ street+', '+place+', '+city+', '+country+'.'+
-									'<br><strong>Drug: </strong>'+childData.drugName,
-									image: childData.url,
+									'<br><strong>Drug: </strong>'+childData.drugName+'<br><strong>Reported By: </strong>'+childData.email,
 									// icon: {
 								 //       iconUrl: 'https://www.mapbox.com/mapbox.js/assets/images/astronaut2.png',
 								 //       iconSize: [50, 50], // size of the icon
@@ -491,7 +490,7 @@ h2, h3,p{
                    	
 
                     });
-                    
+
      //                mapLayer.on('layeradd', function(e) {
 					// console.log(e.layer);
 					//   var marker = e.layer,
